@@ -1,43 +1,17 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { doctor, type VerifiedTestimonial } from "../_data/home";
+import { Header } from "./SiteHeader";
+
+export { Header } from "./SiteHeader";
 
 export const Arrow = () => <span aria-hidden="true">↗</span>;
-
-export function Header() {
-  return (
-    <header className="site-header">
-      <Link className="brand" href="/" aria-label="Melimedics Startseite">
-        <span className="brand-mark">M</span>
-        <span>MELIMEDICS<small>ÄRZTLICHE PRIVATPRAXIS · MAINZ</small></span>
-      </Link>
-      <nav className="desktop-nav" aria-label="Hauptnavigation">
-        <Link href="/behandlungen/">Behandlungen</Link>
-        <Link href="/haare/">Haare</Link>
-        <Link href="/preise/">Preise</Link>
-        <Link href="/arzt-praxis/">Arzt &amp; Praxis</Link>
-        <Link href="/ratgeber/">Ratgeber</Link>
-      </nav>
-      <Link className="button button-dark header-cta" href="/termin/">Termin buchen <Arrow /></Link>
-      <details className="mobile-menu">
-        <summary aria-label="Menü öffnen"><span/><span/></summary>
-        <nav aria-label="Mobile Navigation">
-          <Link href="/behandlungen/">Behandlungen</Link>
-          <Link href="/haare/">Haare</Link>
-          <Link href="/preise/">Preise</Link>
-          <Link href="/arzt-praxis/">Arzt &amp; Praxis</Link>
-          <Link href="/ratgeber/">Ratgeber</Link>
-          <Link href="/termin/">Termin buchen</Link>
-        </nav>
-      </details>
-    </header>
-  );
-}
 
 export function Footer() {
   return (
     <footer className="footer">
       <div className="footer-lead">
-        <Link className="brand brand-light" href="/"><span className="brand-mark">M</span><span>MELIMEDICS<small>ÄRZTLICHE PRIVATPRAXIS · MAINZ</small></span></Link>
+        <Link className="brand brand-light" href="/"><span className="brand-mark">M</span><span className="brand-word">MELIMEDICS<small>PRIVATPRAXIS · MAINZ</small></span></Link>
         <p>Ärztliche Ästhetik, Haut- und Haarmedizin aus einer Hand – persönlich in Mainz.</p>
       </div>
       <div className="footer-grid">
@@ -75,7 +49,7 @@ export function TreatmentCard({ title, items, href }: { title: string; items: st
 }
 
 export function DoctorTrust() {
-  return <section className="doctor-trust"><div className="doctor-portrait" aria-label="Porträtbereich der ärztlichen Leitung"><span>MK</span><small>Bild der ärztlichen Leitung wird nach Freigabe ergänzt.</small></div><div><p className="eyebrow">Ärztliche Leitung</p><h2>Beratung, die mit<br/><em>Zuhören beginnt.</em></h2><p>Melimedics wird ärztlich von Melih Kandemir geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><p className="content-note">Qualifikationen und ärztliche Vita werden nach redaktioneller Freigabe ergänzt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <span>→</span></Link></div></section>;
+  return <section className="doctor-trust"><div className="doctor-portrait image-placeholder" aria-label="Platzhalter für das Originalporträt von Melih Kandemir"><span>MK</span><small>Originalfoto wird nach Freigabe ergänzt.</small></div><div><p className="eyebrow">Persönlich ärztlich beraten</p><h2>Medizinische Ästhetik beginnt mit einer <em>persönlichen Beratung.</em></h2><p>Melimedics wird ärztlich von {doctor.name} geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><p className="content-note">Titel, Vita, Qualifikationen, Fortbildungen und Tätigkeitsschwerpunkte sind im Content-Layer als Freigabe-TODOs hinterlegt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <span>→</span></Link></div></section>;
 }
 
 export function CTA({ title = "Lassen Sie uns über Ihr Anliegen sprechen.", copy = "In einem persönlichen Beratungsgespräch klären wir, welcher Weg medizinisch sinnvoll ist und zu Ihren Wünschen passt." }: { title?: string; copy?: string }) {
@@ -88,4 +62,11 @@ export function FAQ({ items }: { items: { question: string; answer: string }[] }
 
 export function PriceRow({ name, price, note }: { name: string; price?: string; note?: string }) {
   return <div className="price-row"><div><strong>{name}</strong>{note && <small>{note}</small>}</div><span>{price ?? "Preis nach Beratung"}</span></div>;
+}
+
+export function Testimonials({ items }: { items: VerifiedTestimonial[] }) {
+  if (items.length === 0) {
+    return <section className="testimonials-empty" aria-labelledby="testimonials-title"><div><p className="eyebrow">Erfahrungen</p><h2 id="testimonials-title">Vertrauen zeigt sich<br/><em>im persönlichen Erleben.</em></h2></div><p>Hier werden ausschließlich echte, nachvollziehbar verifizierte Bewertungen veröffentlicht. Bis zur Freigabe bleibt dieser Bereich bewusst ohne Zitate, Sterne oder Bewertungszahlen.</p></section>;
+  }
+  return <section className="testimonials"><h2 id="testimonials-title">Verifizierte Erfahrungen</h2><div>{items.map((item) => <figure key={`${item.source}-${item.verifiedAt}`}><blockquote>{item.quote}</blockquote><figcaption>{item.displayName} · {item.source}</figcaption></figure>)}</div></section>;
 }

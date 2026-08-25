@@ -26,3 +26,10 @@
 - originale Arzt- und Praxisfotografie
 - rechtlich vollständiges Impressum und Datenschutz
 - verbindliche Terminbuchungs-URL
+
+## Bewertungen
+
+- nur nachweislich echte Bewertungen übernehmen
+- Quelle und Prüfdatum dokumentieren
+- Freigabe zur Veröffentlichung klären
+- keine Sterne, Gesamtzahlen oder Zitate aus ungeprüften Bestands-/Template-Inhalten verwenden
