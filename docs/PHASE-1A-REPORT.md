@@ -70,4 +70,4 @@ Kein Blocker für die Phase-1A-Vorschau. Vor Produktivgang fehlen der vollständ
 
 ## 10. Qualität
 
-Build und Lint laufen fehlerfrei. Render-Tests für Startseite und eine repräsentative Behandlungsseite bestehen. Alle 15 Zielrouten antworten mit HTTP 200; acht geprüfte Alt-URLs liefern permanente HTTP-308-Weiterleitungen.
+Build, Lint und Typecheck laufen fehlerfrei. Render-Tests für Startseite und eine repräsentative Behandlungsseite bestehen. Alle 15 Zielrouten antworten mit HTTP 200; acht geprüfte Alt-URLs liefern permanente HTTP-308-Weiterleitungen.
