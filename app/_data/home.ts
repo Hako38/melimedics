@@ -13,12 +13,12 @@ export const concerns: LinkCard[] = [
 ];
 
 export const featuredTreatments: LinkCard[] = [
-  { title: "Botulinumtoxin", copy: "Ärztlich geplante Behandlung für ausgewählte ästhetische und medizinische Anliegen.", href: "/behandlungen/gesicht/", label: "Gesicht" },
-  { title: "Hyaluronsäure", copy: "Individuelle Planung mit Blick auf Proportionen und einen natürlichen Gesamteindruck.", href: "/behandlungen/gesicht/", label: "Gesicht" },
-  { title: "Biostimulatoren", copy: "Behandlungskonzepte nach persönlicher Beratung und ärztlicher Einschätzung.", href: "/behandlungen/gesicht/", label: "Gesicht" },
-  { title: "CO₂-Laser", copy: "Hautbehandlung auf Grundlage von Hautzustand, Anliegen und medizinischer Einschätzung.", href: "/behandlungen/haut-laser/", label: "Haut & Laser" },
-  { title: "PRP Haare", copy: "Ein möglicher Baustein eines individuell geplanten Wegs bei Haarausfall.", href: "/behandlungen/prp/", label: "Haarmedizin" },
-  { title: "Haartransplantation", copy: "Persönliche Beratung, sorgfältige Planung und eine klare Nachsorgeperspektive.", href: "/haare/", label: "Haarmedizin" },
+  { title: "Botulinumtoxin", copy: "Ärztlich geplante Behandlung für ausgewählte ästhetische und medizinische Anliegen.", href: "/behandlungen/botulinumtoxin/", label: "Gesicht" },
+  { title: "Hyaluronsäure", copy: "Individuelle Planung mit Blick auf Proportionen und einen natürlichen Gesamteindruck.", href: "/behandlungen/hyaluronsaeure/", label: "Gesicht" },
+  { title: "Biostimulatoren", copy: "Behandlungskonzepte nach persönlicher Beratung und ärztlicher Einschätzung.", href: "/behandlungen/biostimulatoren/", label: "Gesicht" },
+  { title: "CO₂-Laser", copy: "Hautbehandlung auf Grundlage von Hautzustand, Anliegen und medizinischer Einschätzung.", href: "/behandlungen/co2-laser/", label: "Haut & Laser" },
+  { title: "PRP Haare", copy: "Ein möglicher Baustein eines individuell geplanten Wegs bei Haarausfall.", href: "/behandlungen/prp-haare/", label: "Haarmedizin" },
+  { title: "Haartransplantation", copy: "Persönliche Beratung, sorgfältige Planung und eine klare Nachsorgeperspektive.", href: "/behandlungen/haartransplantation/", label: "Haarmedizin" },
 ];
 
 export const doctor = {
@@ -30,11 +30,13 @@ export const doctor = {
   focusAreas: [] as string[],
   originalPhoto: null,
   contentTodos: [
+    "Vollständigen Namen anhand eines Primärnachweises bestätigen",
     "Korrekte Berufsbezeichnung und Titel freigeben",
     "Vita ärztlich/redaktionell freigeben",
     "Qualifikationen und Fortbildungen verifizieren",
     "Tätigkeitsschwerpunkte bestätigen",
     "Originalfoto bereitstellen",
+    "Praxisteam und Praxisinformationen ergänzen",
   ],
 };
 

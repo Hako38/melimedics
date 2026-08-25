@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { doctor, type VerifiedTestimonial } from "../_data/home";
+import { visibleContact } from "../_data/practice";
 import { Header } from "./SiteHeader";
 
 export { Header } from "./SiteHeader";
@@ -17,7 +18,7 @@ export function Footer() {
       <div className="footer-grid">
         <div><h3>Schwerpunkte</h3><Link href="/behandlungen/gesicht/">Ästhetische Medizin</Link><Link href="/behandlungen/haut-laser/">Haut &amp; Laser</Link><Link href="/haare/">Haare</Link><Link href="/gesundheit/">Gesundheit</Link><Link href="/kosmetik/">Kosmetik</Link></div>
         <div><h3>Praxis</h3><Link href="/arzt-praxis/">Arzt &amp; Praxis</Link><Link href="/preise/">Preise</Link><Link href="/ratgeber/">Ratgeber</Link><Link href="/kontakt/">Kontakt</Link></div>
-        <div><h3>Kontakt</h3><a href="tel:+4915758272466">01575 8272466</a><a href="mailto:info@melimedics.de">info@melimedics.de</a><p>Elbestraße 90<br/>55124 Mainz</p></div>
+        <div><h3>Kontakt</h3><a href={visibleContact.phoneHref}>{visibleContact.phone}</a><a href={visibleContact.emailHref}>{visibleContact.email}</a><p>{visibleContact.location}<br/><Link href="/kontakt/">Kontaktdetails</Link></p></div>
       </div>
       <div className="footer-bottom"><span>© {new Date().getFullYear()} Melimedics</span><div><Link href="/impressum/">Impressum</Link><Link href="/datenschutz/">Datenschutz</Link></div></div>
     </footer>
@@ -53,7 +54,7 @@ export function DoctorTrust() {
 }
 
 export function CTA({ title = "Lassen Sie uns über Ihr Anliegen sprechen.", copy = "In einem persönlichen Beratungsgespräch klären wir, welcher Weg medizinisch sinnvoll ist und zu Ihren Wünschen passt." }: { title?: string; copy?: string }) {
-  return <section className="cta"><p className="eyebrow">Persönliche Beratung in Mainz</p><h2>{title}</h2><p>{copy}</p><div><Link className="button button-light" href="/termin/">Termin buchen <Arrow/></Link><a href="tel:+4915758272466">01575 8272466</a></div></section>;
+  return <section className="cta"><p className="eyebrow">Persönliche Beratung in Mainz</p><h2>{title}</h2><p>{copy}</p><div><Link className="button button-light" href="/termin/">Termin buchen <Arrow/></Link><a href={visibleContact.phoneHref}>{visibleContact.phone}</a></div></section>;
 }
 
 export function FAQ({ items }: { items: { question: string; answer: string }[] }) {
@@ -61,7 +62,7 @@ export function FAQ({ items }: { items: { question: string; answer: string }[] }
 }
 
 export function PriceRow({ name, price, note }: { name: string; price?: string; note?: string }) {
-  return <div className="price-row"><div><strong>{name}</strong>{note && <small>{note}</small>}</div><span>{price ?? "Preis nach Beratung"}</span></div>;
+  return <div className="price-row"><div><strong>{name}</strong>{note && <small>{note}</small>}</div><span>{price ?? "Noch nicht freigegeben"}</span></div>;
 }
 
 export function Testimonials({ items }: { items: VerifiedTestimonial[] }) {

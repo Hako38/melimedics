@@ -20,12 +20,28 @@
 
 ## Praxisdaten freigeben
 
-- korrekte Postleitzahl 55122 oder 55124
+- vollständige Praxisanschrift inklusive korrekter Postleitzahl (Widerspruch 55122/55124 auflösen)
 - Öffnungszeiten
 - ärztliche Vita, Qualifikationen, Fortbildungen und Berufsangaben
 - originale Arzt- und Praxisfotografie
+- Operateur, Standort und Methode einer möglichen Haartransplantation
+- Praxis- und Nachsorgeablauf für operative Leistungen
 - rechtlich vollständiges Impressum und Datenschutz
 - verbindliche Terminbuchungs-URL
+
+## Behandlungsinhalte
+
+- alle Felder mit `medicalApprovalStatus: "needs_review"` ärztlich prüfen
+- Indikationen und typische Anliegen pro Behandlung freigeben
+- Geräte-, Produkt- und Methodenbezeichnungen verifizieren
+- individuelle Behandlungsschritte, Ausfallzeiten und Ergebnisentwicklung ergänzen
+- für Haartransplantation keine Graft-Zahlen, Methode, Operateur oder Preise ohne Freigabe veröffentlichen
+
+## Kontaktdaten
+
+- Telefonnummer und E-Mail sind zentral als verifiziert hinterlegt
+- Mainz-Gonsenheim ist als Standort sichtbar
+- Straße, Hausnummer, Postleitzahl, Öffnungszeiten, Maps-Link und Anfahrt bleiben bis zur Bestätigung verborgen
 
 ## Bewertungen
 

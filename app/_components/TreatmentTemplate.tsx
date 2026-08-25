@@ -1,33 +1,53 @@
-import type { ReactNode } from "react";
-import { Breadcrumbs, CTA, DoctorTrust, FAQ, InteriorHero, PageShell, SectionHeader } from "./SiteShell";
+import Link from "next/link";
+import { treatmentBySlug, type TreatmentCategory, type TreatmentContent } from "../_data/treatments";
+import { Arrow, Breadcrumbs, CTA, DoctorTrust, FAQ, InteriorHero, PageShell, SectionHeader } from "./SiteShell";
 
-export type TreatmentContent = {
-  slug: string;
-  title: string;
-  eyebrow: string;
-  intro: string;
-  concern: string;
-  explanation: ReactNode;
-  benefits: string[];
-  process: { title: string; copy: string }[];
-  facts: { label: string; value: string }[];
-  price?: string;
-  risks?: ReactNode;
-  faq: { question: string; answer: string }[];
+const categoryRoutes: Record<TreatmentCategory, { label: string; href: string }> = {
+  aesthetics: { label: "Ästhetische Medizin", href: "/behandlungen/gesicht/" },
+  skin_laser: { label: "Haut & Laser", href: "/behandlungen/haut-laser/" },
+  prp: { label: "PRP", href: "/behandlungen/prp/" },
+  hair: { label: "Haarmedizin", href: "/haare/" },
+  health: { label: "Gesundheit", href: "/gesundheit/" },
+  cosmetics: { label: "Kosmetik", href: "/kosmetik/" },
 };
 
 export function TreatmentTemplate({ treatment }: { treatment: TreatmentContent }) {
+  const category = categoryRoutes[treatment.category];
+  const related = treatment.relatedTreatments?.map((slug) => treatmentBySlug[slug]).filter(Boolean) ?? [];
+
   return <PageShell>
-    <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: treatment.title }]}/>
-    <InteriorHero eyebrow={treatment.eyebrow} title={treatment.title} intro={treatment.intro}/>
-    <section className="two-col-section"><SectionHeader eyebrow="Für wen / welches Anliegen?" title="Individuell statt nach Schema."/><div className="prose"><p>{treatment.concern}</p></div></section>
-    <section className="soft-section"><SectionHeader eyebrow="Behandlung erklärt" title="Was Sie wissen sollten."/><div className="prose">{treatment.explanation}</div></section>
-    <section className="content-section"><SectionHeader eyebrow="Vorteile" title="Auf einen Blick."/><ul className="benefit-grid">{treatment.benefits.map((benefit, index) => <li key={benefit}><span>{String(index + 1).padStart(2,"0")}</span>{benefit}</li>)}</ul></section>
-    <section className="process-section"><SectionHeader eyebrow="Behandlungsablauf" title="Von der Beratung bis zur Nachsorge."/><div className="process-grid">{treatment.process.map((step,index) => <article key={step.title}><span>{String(index+1).padStart(2,"0")}</span><h3>{step.title}</h3><p>{step.copy}</p></article>)}</div></section>
-    <section className="facts-section"><SectionHeader eyebrow="Kurzüberblick" title="Die wichtigsten Fakten."/><div className="facts-grid">{treatment.facts.map((fact) => <div key={fact.label}><small>{fact.label}</small><strong>{fact.value}</strong></div>)}<div><small>Preis</small><strong>{treatment.price ?? "TODO · medizinisch/redaktionell freigeben"}</strong></div></div></section>
-    <section className="two-col-section"><SectionHeader eyebrow="Risiken & wichtige Hinweise" title="Sicherheit braucht Aufklärung."/><div className="prose">{treatment.risks ?? <p className="content-note">TODO: Medizinisch geprüfte Risiken, Kontraindikationen und Nachsorgehinweise ergänzen. Bis zur Freigabe werden keine Angaben veröffentlicht.</p>}</div></section>
+    <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: category.label, href: category.href }, { label: treatment.title }]}/>
+    <div className={treatment.theme === "hair" ? "treatment-theme-hair" : "treatment-theme-default"}>
+      <InteriorHero eyebrow={treatment.eyebrow} title={treatment.hero} intro={treatment.shortDescription}>
+        <Link className="button button-dark" href="/termin/">Beratung vereinbaren <Arrow/></Link>
+      </InteriorHero>
+    </div>
+
+    {treatment.concerns?.length ? <section className="content-section concern-list-section">
+      <SectionHeader eyebrow="Typische Anliegen" title="Wann ein persönliches Gespräch sinnvoll sein kann."/>
+      <ul className="editorial-list">{treatment.concerns.map((concern, index) => <li key={concern}><span>{String(index + 1).padStart(2, "0")}</span><strong>{concern}</strong></li>)}</ul>
+    </section> : null}
+
+    {treatment.explanation?.length ? <section className="soft-section explanation-section">
+      <SectionHeader eyebrow="Behandlung erklärt" title="Eine erste Orientierung."/>
+      <div className="prose prose-large">{treatment.explanation.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+    </section> : null}
+
+    {treatment.facts?.length ? <section className="facts-section"><SectionHeader eyebrow="Treatment Facts" title="Kurz zusammengefasst."/><div className="facts-grid">{treatment.facts.map((fact) => <div key={fact.label}><small>{fact.label}</small><strong>{fact.value}</strong></div>)}</div></section> : null}
+
+    {treatment.procedure?.length ? <section className="process-section treatment-process"><SectionHeader eyebrow="Möglicher Ablauf" title="Sorgfältig von Anfang an."/><div className="process-grid">{treatment.procedure.map((step,index) => <article key={step.title}><span>{String(index+1).padStart(2,"0")}</span><h3>{step.title}</h3><p>{step.copy}</p></article>)}</div></section> : null}
+
+    {treatment.benefits?.length ? <section className="content-section"><SectionHeader eyebrow="Vorteile" title="Auf einen Blick."/><ul className="benefit-grid">{treatment.benefits.map((benefit, index) => <li key={benefit}><span>{String(index + 1).padStart(2,"0")}</span>{benefit}</li>)}</ul></section> : null}
+
+    {treatment.risks?.length ? <section className="two-col-section"><SectionHeader eyebrow="Risiken & Hinweise" title="Sicherheit braucht Aufklärung."/><div className="prose">{treatment.risks.map((risk) => <p key={risk}>{risk}</p>)}</div></section> : null}
+
+    {treatment.price ? <section className="facts-section"><SectionHeader eyebrow="Preis" title="Transparent vor der Behandlung."/><p className="treatment-price">{treatment.price}</p></section> : null}
+
     <DoctorTrust/>
-    <section className="content-section"><SectionHeader eyebrow="Häufige Fragen" title="Gut informiert entscheiden."/><FAQ items={treatment.faq}/></section>
-    <CTA/>
+
+    {treatment.faq?.length ? <section className="content-section"><SectionHeader eyebrow="Häufige Fragen" title="Gut informiert entscheiden."/><FAQ items={treatment.faq}/></section> : null}
+
+    {related.length ? <section className="content-section related-section"><SectionHeader eyebrow="Verwandte Behandlungen" title="Weitere mögliche Perspektiven."/><div className="related-grid">{related.map((item) => <Link key={item.slug} href={item.href}><span>{categoryRoutes[item.category].label}</span><h3>{item.title}</h3><p>{item.shortDescription}</p><strong>Mehr erfahren <Arrow/></strong></Link>)}</div></section> : null}
+    <CTA title={treatment.bookingType === "consultation" ? "Ihre Beratung beginnt mit einer persönlichen Einordnung." : "Lassen Sie uns die passende Behandlung besprechen."}/>
   </PageShell>;
 }

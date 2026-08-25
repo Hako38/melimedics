@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
-import { Breadcrumbs, CTA, InteriorHero, PageShell, PriceRow, SectionHeader } from "../_components/SiteShell";
-export const metadata: Metadata = { title: "Preise", description: "Preisübersicht der Behandlungen bei Melimedics in Mainz." };
-export default function PricesPage(){return <PageShell><Breadcrumbs items={[{label:"Preise"}]}/><InteriorHero eyebrow="Preise" title={<>Transparent beraten.<br/><em>Individuell planen.</em></>} intro="Der genaue Preis hängt von Indikation, Behandlungsumfang und dem gemeinsam festgelegten Plan ab. Verbindliche Angaben erhalten Sie vor der Behandlung."/>
-  <section className="content-section price-section"><SectionHeader eyebrow="Preisübersicht" title="Medizinisch geprüft vor Veröffentlichung." intro="In Phase 1A werden keine Preise aus nicht freigegebenen Quellen übernommen. Die Werte werden nach fachlicher und kaufmännischer Freigabe ergänzt."/><div className="price-groups">
-    <div><h3>Ästhetische Medizin</h3><PriceRow name="Botulinumtoxin"/><PriceRow name="Hyaluronsäure"/><PriceRow name="Biostimulatoren"/><PriceRow name="Polynukleotide"/></div>
-    <div><h3>Haut & Laser</h3><PriceRow name="CO₂-Laser"/><PriceRow name="Tattoo-Laser"/><PriceRow name="HIFU"/></div>
-    <div><h3>Haare & PRP</h3><PriceRow name="PRP Haare"/><PriceRow name="Haartransplantation" note="Umfang nach persönlicher Planung"/></div>
-    <div><h3>Gesundheit & Kosmetik</h3><PriceRow name="Gewichtsmanagement"/><PriceRow name="Blutuntersuchungen & Diagnostik"/><PriceRow name="Microneedling"/><PriceRow name="Aquafacial"/></div>
-  </div></section><CTA title="Ihr persönlicher Behandlungsplan beginnt mit einem Gespräch."/></PageShell>}
+import Link from "next/link";
+import { Arrow, Breadcrumbs, CTA, InteriorHero, PageShell, SectionHeader } from "../_components/SiteShell";
+import { priceCategories, treatmentBySlug } from "../_data/treatments";
+import { pageMetadata } from "../_lib/metadata";
+
+export const metadata = pageMetadata("Preise", "Zentrale, künftig transparent pflegbare Preisübersicht der Melimedics-Behandlungen in Mainz.", "/preise/");
+
+export default function PricesPage(){return <PageShell><Breadcrumbs items={[{label:"Preise"}]}/><InteriorHero eyebrow="Preise" title={<>Transparent beraten.<br/><em>Individuell planen.</em></>} intro="Die finale Preisliste liegt noch nicht zur Veröffentlichung vor. Deshalb zeigen wir bewusst keine Schätzwerte oder erfundenen Zahlen."/><section className="content-section price-section"><SectionHeader eyebrow="Preisarchitektur" title="Bereit für die zentral gepflegte Preisliste." intro="Sobald medizinische und kaufmännische Freigaben vorliegen, werden alle Werte an einer zentralen Stelle ergänzt und automatisch hier ausgegeben."/><div className="price-category-grid">{priceCategories.map((category, index) => <section key={category.title}><div><span>{String(index+1).padStart(2,"0")}</span><h2>{category.title}</h2></div>{category.items.map((item) => {const treatment=treatmentBySlug[item.treatmentSlug]; return <div className="price-row" key={item.label}><div><strong>{treatment ? <Link href={treatment.href}>{item.label}</Link> : item.label}</strong></div><span>{item.price ?? "Preis folgt nach Freigabe"}</span></div>})}</section>)}</div><div className="price-notice"><p className="eyebrow">Gut zu wissen</p><h2>Verbindlichkeit entsteht vor der Behandlung.</h2><p>Der konkrete Preis kann von Indikation und Behandlungsumfang abhängen. Sie erhalten eine nachvollziehbare Auskunft, bevor eine Behandlung durchgeführt wird.</p><Link className="text-link" href="/termin/">Beratung vereinbaren <Arrow/></Link></div></section><CTA title="Ihr persönlicher Behandlungsplan beginnt mit einem Gespräch."/></PageShell>}

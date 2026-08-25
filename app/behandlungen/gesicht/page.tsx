@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import { CategoryPage } from "../../_components/CategoryPage";
+import { pageMetadata } from "../../_lib/metadata";
 
-export const metadata: Metadata = { title: "Ästhetische Gesichtsbehandlungen", description: "Ärztlich geplante ästhetische Gesichtsbehandlungen bei Melimedics in Mainz." };
-export default function FacePage(){return <CategoryPage eyebrow="Ästhetische Medizin" title={<>Frische, die nach<br/><em>Ihnen aussieht.</em></>} intro="Ästhetische Medizin beginnt für uns nicht mit einer Behandlung, sondern mit einem genauen Blick auf Mimik, Proportionen und Ihre persönlichen Wünsche." note="Einzelseiten werden ergänzt, sobald medizinisch geprüfte Inhalte vorliegen." groups={[
-  {title:"Botulinumtoxin",items:["Mimische Falten","Ausgewählte medizinische Indikationen"]},
-  {title:"Hyaluronsäure",items:["Lippen","Nase","Jawline","Kinn","Augenringe","Nasolabialfalten","Marionettenfalten"]},
-  {title:"Biostimulatoren",items:["Sculptra","Radiesse","NCTF"]},
-  {title:"Polynukleotide",items:["Indikation und Behandlungsplan nach Beratung"]}
+export const metadata = pageMetadata("Ästhetische Gesichtsbehandlungen", "Botulinumtoxin, Hyaluronsäure, Biostimulatoren und Polynukleotide – ärztlich geplant bei Melimedics in Mainz.", "/behandlungen/gesicht/");
+
+export default function FacePage(){return <CategoryPage eyebrow="Ästhetische Medizin" title={<>Frische, die nach<br/><em>Ihnen aussieht.</em></>} intro="Ästhetische Medizin beginnt für uns nicht mit einer Methode, sondern mit einem genauen Blick auf Mimik, Proportionen und Ihre persönlichen Wünsche." note="Medizinische Detailangaben werden erst nach ärztlicher Prüfung veröffentlicht." groups={[
+  {title:"Botulinumtoxin",items:["Mimik individuell betrachten","Mögliche Behandlungswege einordnen"],href:"/behandlungen/botulinumtoxin/"},
+  {title:"Hyaluronsäure",items:["Lippen","Nase","Jawline","Kinn","Augenringe","Nasolabialfalten","Marionettenfalten"],href:"/behandlungen/hyaluronsaeure/"},
+  {title:"Biostimulatoren",items:["Sculptra","Radiesse","NCTF"],href:"/behandlungen/biostimulatoren/"},
+  {title:"Polynukleotide",items:["Polynukleotide","Ergänzende Nutzerbezeichnung: Lachs-DNA"],href:"/behandlungen/polynukleotide/"}
 ]}/>}

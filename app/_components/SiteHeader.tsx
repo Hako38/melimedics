@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { visibleContact } from "../_data/practice";
 
 const navigation = [
   ["Behandlungen", "/behandlungen/"],
@@ -43,7 +44,7 @@ export function Header() {
           {navigation.map(([label, href], index) => <Link key={href} href={href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{label}</Link>)}
           <Link href="/termin/" onClick={() => setOpen(false)}><span>06</span>Termin buchen</Link>
         </nav>
-        <div><a href="tel:+4915758272466">01575 8272466</a><a href="mailto:info@melimedics.de">info@melimedics.de</a></div>
+        <div><a href={visibleContact.phoneHref}>{visibleContact.phone}</a><a href={visibleContact.emailHref}>{visibleContact.email}</a></div>
       </div>
     </header>
   );

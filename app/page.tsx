@@ -1,7 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Reveal } from "./_components/Reveal";
 import { Arrow, DoctorTrust, FAQ, Footer, Header, Testimonials } from "./_components/SiteShell";
 import { concerns, featuredTreatments, generalFaq, verifiedTestimonials } from "./_data/home";
+import { pageMetadata } from "./_lib/metadata";
+
+export const metadata: Metadata = pageMetadata("Ärztliche Ästhetik, Haut & Haare", "Ärztliche Ästhetik, Haut- und Haarmedizin mit persönlicher Beratung bei Melimedics in Mainz.", "/");
 
 const coreAreas = [
   { number: "01", title: "Ästhetische Medizin", copy: "Individuell geplante Gesichtsbehandlungen mit Blick für Mimik, Proportionen und Natürlichkeit.", href: "/behandlungen/gesicht/" },

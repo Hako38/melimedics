@@ -28,3 +28,34 @@ test("keeps SEO redirects and legal routes", async () => {
   assert.match(privacy, /Datenschutz/);
   assert.match(imprint, /Impressum/);
 });
+
+test("provides the Phase 1C treatment architecture without fabricated prices", async () => {
+  const [data, template, prices, hair, contact] = await Promise.all([
+    read("app/_data/treatments.ts"),
+    read("app/_components/TreatmentTemplate.tsx"),
+    read("app/preise/page.tsx"),
+    read("app/haare/page.tsx"),
+    read("app/_data/practice.ts"),
+  ]);
+  assert.match(data, /"approved" \| "needs_review" \| "missing"/);
+  assert.match(data, /medicalApprovalStatus/);
+  assert.match(data, /slug: "haartransplantation"/);
+  assert.match(template, /treatment\.concerns\?\.length/);
+  assert.match(template, /relatedTreatments/);
+  assert.match(prices, /priceCategories/);
+  assert.doesNotMatch(prices, /€|EUR|\d{2,}[,.]\d{2}/);
+  assert.match(hair, /Haarausfall verstehen/);
+  assert.match(contact, /postalCode: \{ value: null/);
+});
+
+test("adds canonical metadata and detail routes", async () => {
+  const [metadata, route, sitemap] = await Promise.all([
+    read("app/_lib/metadata.ts"),
+    read("app/behandlungen/[slug]/page.tsx"),
+    read("app/sitemap.ts"),
+  ]);
+  assert.match(metadata, /alternates: \{ canonical \}/);
+  assert.match(route, /generateStaticParams/);
+  assert.match(route, /generateMetadata/);
+  assert.match(sitemap, /treatments\.map/);
+});
