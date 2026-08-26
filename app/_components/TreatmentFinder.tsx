@@ -139,7 +139,7 @@ export function TreatmentFinder() {
         <div className="finder-safety" role="note"><strong>Wichtig</strong><p>Die endgültige Beurteilung erfolgt nach ärztlicher Beratung. Der Finder bestätigt weder eine Eignung noch schließt er Risiken oder Kontraindikationen aus.</p></div>
         <div className="finder-result-actions">
           <Link className="button button-light" href="/termin/" onClick={() => emitFinderEvent({ name: "booking_clicked" })}>Beratungstermin vereinbaren <span aria-hidden="true">↗</span></Link>
-          {answers.categoryId === "hair" ? <Link className="button button-ghost-light" href="/haare/">Haarmedizin ansehen</Link> : null}
+          {answers.categoryId === "hair" ? <><Link className="button button-ghost-light" href="/haare/haar-check/">Haar-Check starten</Link><Link className="button button-ghost-light" href="/haare/">Haarmedizin ansehen</Link></> : null}
         </div>
       </div> : null}
 

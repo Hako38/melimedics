@@ -1,4 +1,5 @@
 import { doctor } from "../_data/home";
+import { hairCheckApprovalItems } from "../_data/hair-check";
 import { mediaSlots } from "../_data/media";
 import { practice } from "../_data/practice";
 import { finderMappings, finderResultGroups } from "../_data/treatment-finder";
@@ -6,7 +7,7 @@ import { priceCategories, treatments, type MedicalApprovalStatus } from "../_dat
 
 export type ContentStatusItem = {
   id: string;
-  area: "treatment" | "price" | "practice" | "doctor" | "media" | "finder_mapping";
+  area: "treatment" | "price" | "practice" | "doctor" | "media" | "finder_mapping" | "hair_check";
   label: string;
   status: MedicalApprovalStatus;
   todos: string[];
@@ -53,6 +54,7 @@ export function getContentStatusReport() {
     ...Object.values(mediaSlots).map<ContentStatusItem>((media) => ({ id: `media:${media.id}`, area: "media", label: media.alt, status: media.approvalStatus, todos: [media.todo] })),
     ...doctorItems,
     ...finderMappingItems,
+    ...hairCheckApprovalItems.map<ContentStatusItem>((item) => ({ id: `hair-check:${item.id}`, area: "hair_check", label: item.label, status: item.status, todos: [item.todo] })),
   ];
 
   const summary = items.reduce<Record<MedicalApprovalStatus, number>>((counts, item) => {

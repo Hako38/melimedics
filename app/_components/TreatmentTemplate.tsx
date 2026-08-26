@@ -14,12 +14,13 @@ const categoryRoutes: Record<TreatmentCategory, { label: string; href: string }>
 export function TreatmentTemplate({ treatment }: { treatment: TreatmentContent }) {
   const category = categoryRoutes[treatment.category];
   const related = treatment.relatedTreatments?.map((slug) => treatmentBySlug[slug]).filter(Boolean) ?? [];
+  const isHairTreatment = treatment.category === "hair";
 
   return <PageShell>
     <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: category.label, href: category.href }, { label: treatment.title, href: treatment.href }]}/>
     <div className={treatment.theme === "hair" ? "treatment-theme-hair" : "treatment-theme-default"}>
       <InteriorHero eyebrow={treatment.eyebrow} title={treatment.hero} intro={treatment.shortDescription}>
-        <Link className="button button-dark" href="/termin/">Beratung vereinbaren <Arrow/></Link>
+        <div className="hero-actions">{isHairTreatment ? <Link className="button button-dark" href="/haare/haar-check/">Haar-Check starten <Arrow/></Link> : null}<Link className={isHairTreatment ? "button button-secondary" : "button button-dark"} href="/termin/">Beratung vereinbaren <Arrow/></Link></div>
       </InteriorHero>
     </div>
 
@@ -46,6 +47,10 @@ export function TreatmentTemplate({ treatment }: { treatment: TreatmentContent }
     <DoctorTrust/>
 
     {treatment.faq?.length ? <section className="content-section"><SectionHeader eyebrow="Häufige Fragen" title="Gut informiert entscheiden."/><FAQ items={treatment.faq}/></section> : null}
+
+    {treatment.slug === "haartransplantation" ? <section className="two-col-section hair-transplant-trust"><SectionHeader eyebrow="Sorgfältig vorbereitet" title="Beratung, Ablauf und Nachsorge gehören zusammen."/><div className="prose"><p>Eine operative Perspektive wird erst nach persönlicher Untersuchung und realistischer Erwartungsklärung weiterverfolgt. Die Nachsorge wird von Anfang an in die individuelle Planung einbezogen.</p><p><strong>Noch offen:</strong> Operateur, Methode, OP-Standort, Eignungskriterien, Risiken, Heilungsverlauf und Preise werden erst nach medizinischer und vertraglicher Freigabe ergänzt.</p></div></section> : null}
+
+    {isHairTreatment ? <section className="hair-check-inline"><div><p className="eyebrow">Nächster Schritt</p><h2>Angaben für die persönliche Beratung vorbereiten.</h2><p>Der Haar-Check ordnet Ihre Antworten nicht medizinisch ein. Optional ausgewählte Fotos bleiben aktuell ausschließlich in Ihrer Browser-Sitzung.</p></div><Link className="button button-light" href="/haare/haar-check/">Haar-Check starten <Arrow/></Link></section> : null}
 
     {related.length ? <section className="content-section related-section"><SectionHeader eyebrow="Verwandte Behandlungen" title="Weitere mögliche Perspektiven."/><div className="related-grid">{related.map((item) => <Link key={item.slug} href={item.href}><span>{categoryRoutes[item.category].label}</span><h3>{item.title}</h3><p>{item.shortDescription}</p><strong>Mehr erfahren <Arrow/></strong></Link>)}</div></section> : null}
     <CTA title={treatment.bookingType === "consultation" ? "Ihre Beratung beginnt mit einer persönlichen Einordnung." : "Lassen Sie uns die passende Behandlung besprechen."}/>

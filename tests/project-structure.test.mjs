@@ -119,3 +119,28 @@ test("integrates the Phase 2A finder without tracking or diagnosis features", as
   for (const source of [homepage, treatments, category, hair]) assert.match(source, /behandlungsfinder/);
   assert.doesNotMatch(`${page}\n${component}`, /Foto-Upload|Haaranalyse|Lead-Scoring|CRM|Chatbot/i);
 });
+
+test("integrates the Phase 2B hair check and its privacy-safe funnel", async () => {
+  const [page, component, service, analytics, sitemap, hair, template, finder, status] = await Promise.all([
+    read("app/haare/haar-check/page.tsx"),
+    read("app/_components/HairCheck.tsx"),
+    read("app/_lib/hair-check-submission.ts"),
+    read("app/_lib/hair-check-analytics.ts"),
+    read("app/sitemap.ts"),
+    read("app/haare/page.tsx"),
+    read("app/_components/TreatmentTemplate.tsx"),
+    read("app/_components/TreatmentFinder.tsx"),
+    read("app/_lib/content-status.ts"),
+  ]);
+  assert.match(page, /pageMetadata/);
+  assert.match(component, /Keine automatische Diagnose/);
+  assert.match(component, /Keine KI-Bildauswertung/);
+  assert.match(component, /Nur lokale Vorschau/);
+  assert.match(component, /JPEG oder PNG/);
+  assert.match(service, /secure_backend_unavailable/);
+  assert.doesNotMatch(service, /fetch\(|console\./);
+  assert.match(analytics, /hair_check_started/);
+  assert.match(sitemap, /haare\/haar-check/);
+  for (const source of [hair, template, finder]) assert.match(source, /haare\/haar-check/);
+  assert.match(status, /hair_check/);
+});
