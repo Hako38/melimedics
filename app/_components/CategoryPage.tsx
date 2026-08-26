@@ -3,9 +3,9 @@ import { Breadcrumbs, CTA, InteriorHero, PageShell, SectionHeader, TreatmentCard
 
 type Group = { title: string; items: string[]; href?: string };
 
-export function CategoryPage({ eyebrow, title, intro, groups, note, children }: { eyebrow: string; title: ReactNode; intro: string; groups: Group[]; note?: string; children?: ReactNode }) {
+export function CategoryPage({ eyebrow, title, intro, groups, path, note, children }: { eyebrow: string; title: ReactNode; intro: string; groups: Group[]; path: string; note?: string; children?: ReactNode }) {
   return <PageShell>
-    <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: typeof title === "string" ? title : eyebrow }]}/>
+    <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: typeof title === "string" ? title : eyebrow, href: path }]}/>
     <InteriorHero eyebrow={eyebrow} title={title} intro={intro}/>
     <section className="content-section category-section">
       <SectionHeader eyebrow="Behandlungsspektrum" title="Passende Wege für unterschiedliche Anliegen." intro={note}/>

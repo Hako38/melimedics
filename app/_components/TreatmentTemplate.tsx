@@ -16,7 +16,7 @@ export function TreatmentTemplate({ treatment }: { treatment: TreatmentContent }
   const related = treatment.relatedTreatments?.map((slug) => treatmentBySlug[slug]).filter(Boolean) ?? [];
 
   return <PageShell>
-    <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: category.label, href: category.href }, { label: treatment.title }]}/>
+    <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: category.label, href: category.href }, { label: treatment.title, href: treatment.href }]}/>
     <div className={treatment.theme === "hair" ? "treatment-theme-hair" : "treatment-theme-default"}>
       <InteriorHero eyebrow={treatment.eyebrow} title={treatment.hero} intro={treatment.shortDescription}>
         <Link className="button button-dark" href="/termin/">Beratung vereinbaren <Arrow/></Link>

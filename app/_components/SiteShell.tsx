@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { doctor, type VerifiedTestimonial } from "../_data/home";
+import { mediaSlots } from "../_data/media";
 import { visibleContact } from "../_data/practice";
 import { Header } from "./SiteHeader";
+import { StructuredData, breadcrumbSchema, faqSchema } from "./StructuredData";
 
 export { Header } from "./SiteHeader";
 
@@ -26,11 +28,14 @@ export function Footer() {
 }
 
 export function PageShell({ children }: { children: ReactNode }) {
-  return <><Header/><main>{children}</main><Footer/></>;
+  return <><Header/><main id="main-content">{children}</main><Footer/></>;
 }
 
+const breadcrumbPaths: Record<string, string> = { "Arzt & Praxis": "/arzt-praxis/", "Termin buchen": "/termin/", Kontakt: "/kontakt/", Datenschutz: "/datenschutz/", Gesundheit: "/gesundheit/", Preise: "/preise/", Impressum: "/impressum/", Ratgeber: "/ratgeber/", Haarmedizin: "/haare/", Behandlungen: "/behandlungen/" };
+
 export function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
-  return <nav className="breadcrumbs" aria-label="Brotkrümelnavigation"><Link href="/">Start</Link>{items.map((item) => <span key={item.label}><i aria-hidden="true">/</i>{item.href ? <Link href={item.href}>{item.label}</Link> : item.label}</span>)}</nav>;
+  const normalizedItems = items.map((item) => ({ ...item, href: item.href ?? breadcrumbPaths[item.label] ?? "/" }));
+  return <><nav className="breadcrumbs" aria-label="Brotkrümelnavigation"><Link href="/">Start</Link>{normalizedItems.map((item, index) => <span key={item.href}><i aria-hidden="true">/</i>{index < normalizedItems.length - 1 ? <Link href={item.href}>{item.label}</Link> : <span aria-current="page">{item.label}</span>}</span>)}</nav><StructuredData id="breadcrumb-schema" data={breadcrumbSchema(normalizedItems)}/></>;
 }
 
 export function InteriorHero({ eyebrow, title, intro, children }: { eyebrow: string; title: ReactNode; intro: string; children?: ReactNode }) {
@@ -50,7 +55,7 @@ export function TreatmentCard({ title, items, href }: { title: string; items: st
 }
 
 export function DoctorTrust() {
-  return <section className="doctor-trust"><div className="doctor-portrait image-placeholder" aria-label="Platzhalter für das Originalporträt von Melih Kandemir"><span>MK</span><small>Originalfoto wird nach Freigabe ergänzt.</small></div><div><p className="eyebrow">Persönlich ärztlich beraten</p><h2>Medizinische Ästhetik beginnt mit einer <em>persönlichen Beratung.</em></h2><p>Melimedics wird ärztlich von {doctor.name} geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><p className="content-note">Titel, Vita, Qualifikationen, Fortbildungen und Tätigkeitsschwerpunkte sind im Content-Layer als Freigabe-TODOs hinterlegt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <span>→</span></Link></div></section>;
+  return <section className="doctor-trust"><div className="doctor-portrait image-placeholder" aria-label={`Bildplatzhalter: ${mediaSlots.doctorPortrait.alt}`}><span>MK</span><small>Originalporträt folgt.</small></div><div><p className="eyebrow">Persönlich ärztlich beraten</p><h2>Medizinische Ästhetik beginnt mit einer <em>persönlichen Beratung.</em></h2><p>Melimedics wird ärztlich von {doctor.name} geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <span>→</span></Link></div></section>;
 }
 
 export function CTA({ title = "Lassen Sie uns über Ihr Anliegen sprechen.", copy = "In einem persönlichen Beratungsgespräch klären wir, welcher Weg medizinisch sinnvoll ist und zu Ihren Wünschen passt." }: { title?: string; copy?: string }) {
@@ -58,7 +63,7 @@ export function CTA({ title = "Lassen Sie uns über Ihr Anliegen sprechen.", cop
 }
 
 export function FAQ({ items }: { items: { question: string; answer: string }[] }) {
-  return <div className="faq-list">{items.map((item, index) => <details key={item.question}><summary><span>{String(index + 1).padStart(2,"0")}</span>{item.question}<b aria-hidden="true">+</b></summary><p>{item.answer}</p></details>)}</div>;
+  return <><div className="faq-list">{items.map((item, index) => <details key={item.question}><summary><span>{String(index + 1).padStart(2,"0")}</span>{item.question}<b aria-hidden="true">+</b></summary><p>{item.answer}</p></details>)}</div>{items.length > 0 ? <StructuredData id="faq-schema" data={faqSchema(items)}/> : null}</>;
 }
 
 export function PriceRow({ name, price, note }: { name: string; price?: string; note?: string }) {

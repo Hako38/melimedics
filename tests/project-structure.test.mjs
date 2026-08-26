@@ -59,3 +59,38 @@ test("adds canonical metadata and detail routes", async () => {
   assert.match(route, /generateMetadata/);
   assert.match(sitemap, /treatments\.map/);
 });
+
+test("hardens Phase 1D SEO, accessibility, security and error states", async () => {
+  const [layout, robots, config, shell, notFound, errorState, structuredData] = await Promise.all([
+    read("app/layout.tsx"),
+    read("app/robots.ts"),
+    read("next.config.ts"),
+    read("app/_components/SiteShell.tsx"),
+    read("app/not-found.tsx"),
+    read("app/error.tsx"),
+    read("app/_components/StructuredData.tsx"),
+  ]);
+  assert.match(layout, /skip-link/);
+  assert.match(layout, /isIndexableEnvironment/);
+  assert.match(robots, /disallow/);
+  assert.match(config, /Content-Security-Policy/);
+  assert.match(config, /X-Content-Type-Options/);
+  assert.match(config, /Permissions-Policy/);
+  assert.match(shell, /breadcrumbSchema/);
+  assert.match(shell, /faqSchema/);
+  assert.match(notFound, /Fehler 404/);
+  assert.match(errorState, /Erneut versuchen/);
+  assert.match(structuredData, /MedicalClinic/);
+  assert.doesNotMatch(structuredData, /PostalAddress|openingHours|aggregateRating|priceRange/);
+});
+
+test("provides a private centralized content approval report", async () => {
+  const status = await read("app/_lib/content-status.ts");
+  assert.match(status, /getContentStatusReport/);
+  assert.match(status, /approved: 0, needs_review: 0, missing: 0/);
+  assert.match(status, /area: "treatment"/);
+  assert.match(status, /area: "price"/);
+  assert.match(status, /area: "practice"/);
+  assert.match(status, /area: "doctor"/);
+  assert.match(status, /area: "media"/);
+});

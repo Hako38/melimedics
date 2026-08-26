@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const treatment = treatmentBySlug[slug];
   if (!treatment) return {};
-  return pageMetadata(treatment.title, treatment.shortDescription, treatment.href);
+  return pageMetadata(treatment.title, treatment.shortDescription, treatment.href, { shareImage: false });
 }
 
 export default async function TreatmentPage({ params }: Props) {

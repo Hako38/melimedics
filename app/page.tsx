@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Reveal } from "./_components/Reveal";
 import { Arrow, DoctorTrust, FAQ, Footer, Header, Testimonials } from "./_components/SiteShell";
 import { concerns, featuredTreatments, generalFaq, verifiedTestimonials } from "./_data/home";
+import { mediaSlots } from "./_data/media";
 import { pageMetadata } from "./_lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Ärztliche Ästhetik, Haut & Haare", "Ärztliche Ästhetik, Haut- und Haarmedizin mit persönlicher Beratung bei Melimedics in Mainz.", "/");
@@ -23,7 +24,7 @@ const process = [
 export default function Home() {
   return <>
     <Header/>
-    <main>
+    <main id="main-content">
       <section className="home-hero" aria-labelledby="home-hero-title">
         <div className="home-hero-copy">
           <p className="eyebrow hero-reveal hero-delay-1">Privatpraxis · Mainz-Gonsenheim</p>
@@ -39,10 +40,10 @@ export default function Home() {
             <li><span aria-hidden="true"/>Standort Mainz</li>
           </ul>
         </div>
-        <div className="home-hero-media image-placeholder" aria-label="Platzhalter für ein originales Praxis- oder Arztfoto">
+        <div className="home-hero-media image-placeholder" aria-label={`Bildplatzhalter: ${mediaSlots.homeHero.alt}`}>
           <div className="media-grid" aria-hidden="true"/>
           <span className="media-monogram" aria-hidden="true">M</span>
-          <div className="media-note"><small>Bildkonzept</small><strong>Originalfoto der Praxis oder ärztlichen Beratung</strong><span>Nach Freigabe austauschen</span></div>
+          <div className="media-note"><small>Bildkonzept</small><strong>Originalfoto der Praxis oder ärztlichen Beratung</strong><span>Praxisaufnahme folgt</span></div>
           <p>ÄRZTLICHE PRIVATPRAXIS<br/><span>MAINZ · GONSENHEIM</span></p>
         </div>
       </section>
