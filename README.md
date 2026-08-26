@@ -1,4 +1,4 @@
-# Melimedics Website · Phase 1D
+# Melimedics Website · Phase 2A
 
 Portables Standard-Next.js-Projekt für den Relaunch von Melimedics.de.
 
@@ -10,7 +10,9 @@ Portables Standard-Next.js-Projekt für den Relaunch von Melimedics.de.
 - technisches SEO mit Environment-gesteuertem Indexing, Sitemap, Canonicals und Structured Data
 - Security-Header, CSP, Skip-Link, Fehlerseiten und erweiterte Qualitätsprüfungen
 - bestehende SEO-Weiterleitungen aus Phase 1A
-- keine Phase-2-Funktionen: kein Behandlungsfinder, keine KI, kein Haar-Check, kein CRM
+- datengetriebener Behandlungsfinder unter `/behandlungsfinder/` mit fünf Bereichen, kurzen Folgefragen und neutralen Beratungsbereichen
+- internes Freigabemodell für sämtliche Finder-Zuordnungen sowie lokale Analytics-Events ohne Tracking-Request
+- weiterhin keine KI, keine Diagnose, kein Foto-Upload/Haar-Check, kein CRM und keine Automatisierungen
 
 ## Lokale Entwicklung
 
@@ -34,4 +36,4 @@ Das Projekt verwendet Standard-Next.js mit `output: "standalone"` und enthält k
 
 Für statisches IONOS-Webhosting wäre vorab zu prüfen, ob alle dynamischen Next.js-Funktionen entfallen können. Die aktuelle Empfehlung ist ein IONOS-Produkt mit Node.js-Prozess oder Container/VPS, auf dem `.next/standalone/server.js` gestartet werden kann.
 
-Weitere Dokumentation: `docs/PORTABILITY-IONOS.md`, `docs/RELAUNCH-CHECKLIST.md`, `docs/SEO-REDIRECTS.md` und `docs/CONTENT-TODOS.md`.
+Weitere Dokumentation: `docs/PHASE-2A-REPORT.md`, `docs/PORTABILITY-IONOS.md`, `docs/RELAUNCH-CHECKLIST.md`, `docs/SEO-REDIRECTS.md`, `docs/CONTENT-STATUS.md` und `docs/CONTENT-TODOS.md`.

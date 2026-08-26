@@ -316,6 +316,57 @@ h1 em, h2 em { color: var(--color-sage-deep); font-family: var(--font-display), 
 .error-state > p:not(.eyebrow) { max-width: 40rem; margin: var(--space-5) 0; color: var(--color-ink-soft); line-height: 1.8; }
 .error-state > div { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 
+/* Treatment finder */
+.finder-hero { width: min(100%, var(--container)); margin-inline: auto; padding: clamp(4rem, 8vw, 8rem) var(--gutter) clamp(3rem, 6vw, 6rem); display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(18rem, .65fr); gap: var(--space-7); align-items: end; }
+.finder-hero h1 { max-width: 12ch; }
+.finder-hero > p { max-width: 36rem; margin: 0; color: var(--color-ink-soft); font-size: .86rem; line-height: 1.85; }
+.finder-shell { width: min(calc(100% - (var(--gutter) * 2)), calc(var(--container) - (var(--gutter) * 2))); margin: 0 auto var(--section-space); outline: none; }
+.finder-progress { margin-bottom: var(--space-4); }
+.finder-progress > div:first-child { margin-bottom: var(--space-2); display: flex; justify-content: space-between; color: var(--color-ink-muted); font-size: var(--text-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.finder-progress-track { height: 2px; overflow: hidden; background: var(--color-line); }
+.finder-progress-track span { height: 100%; display: block; background: var(--color-sage-deep); transition: width var(--duration-base) var(--ease-standard); }
+.finder-panel { min-height: 42rem; padding: clamp(2rem, 5vw, 5rem); border-radius: var(--radius-xl); background: var(--color-surface); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; }
+.finder-panel fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.finder-panel legend, .finder-results h2 { max-width: 18ch; margin: 0; font-size: clamp(2.8rem, 5.2vw, 5.8rem); font-weight: 500; letter-spacing: -.052em; line-height: .96; text-wrap: balance; }
+.finder-panel legend:focus, .finder-results h2:focus { outline: none; }
+.finder-intro { max-width: 44rem; margin: var(--space-4) 0 var(--space-6); color: var(--color-ink-soft); font-size: .82rem; line-height: 1.8; }
+.finder-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; }
+.finder-options-spacious { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.finder-option { position: relative; min-width: 0; min-height: 9.5rem; padding: var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-md); display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: start; background: rgba(255,255,255,.35); cursor: pointer; transition: transform var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) ease, background-color var(--duration-fast) ease; }
+.finder-options-spacious .finder-option { min-height: 14rem; display: flex; flex-direction: column; }
+.finder-option:hover { transform: translateY(-2px); border-color: var(--color-sage-deep); }
+.finder-option:has(input:checked) { border-color: var(--color-sage-deep); background: var(--color-surface-sage); }
+.finder-option:has(input:focus-visible) { outline: 2px solid var(--color-sage-deep); outline-offset: 3px; }
+.finder-option input { width: 1rem; height: 1rem; margin: 0; border: 1px solid var(--color-ink-muted); border-radius: 50%; grid-column: 3; grid-row: 1; appearance: none; background: transparent; cursor: pointer; }
+.finder-option input:checked { border: .3rem solid var(--color-sage-deep); background: var(--color-white); }
+.finder-option-number { grid-column: 1; grid-row: 1; color: var(--color-ink-muted); font-size: var(--text-xs); letter-spacing: .08em; }
+.finder-option-copy { min-width: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.finder-option-copy strong { font-size: clamp(.88rem, 1.2vw, 1.06rem); line-height: 1.35; overflow-wrap: anywhere; }
+.finder-option-copy small { color: var(--color-ink-soft); font-size: .67rem; line-height: 1.6; }
+.finder-options-spacious .finder-option-copy { margin-top: auto; }
+.finder-options-spacious .finder-option input { order: 3; margin-left: auto; }
+.finder-options-spacious .finder-option-number { order: 1; }
+.finder-options-spacious .finder-option-copy { order: 2; }
+.finder-controls { margin-top: auto; padding-top: var(--space-6); display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.finder-controls button { cursor: pointer; }
+.finder-controls .button:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+.finder-back, .finder-restart { min-height: 2.75rem; padding: 0; border: 0; border-bottom: 1px solid currentColor; background: transparent; font-size: .72rem; font-weight: 700; }
+.finder-results h2 { max-width: 17ch; color: var(--color-white); hyphens: auto; overflow-wrap: anywhere; }
+.finder-results > .finder-intro { color: rgba(255,255,255,.68); }
+.finder-results .eyebrow { color: #aebaaa; }
+.finder-panel:has(.finder-results) { background: var(--color-ink); color: var(--color-white); }
+.finder-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; }
+.finder-result-grid article { min-width: 0; min-height: 22rem; padding: var(--space-4); border: 1px solid var(--color-line-inverse); border-radius: var(--radius-lg); display: flex; flex-direction: column; background: rgba(255,255,255,.035); }
+.finder-result-grid article > span { color: rgba(255,255,255,.52); font-size: var(--text-xs); letter-spacing: .1em; text-transform: uppercase; }
+.finder-result-grid h3 { margin: var(--space-6) 0 var(--space-3); font-size: clamp(2rem, 3vw, 3.5rem); hyphens: auto; overflow-wrap: anywhere; }
+.finder-result-grid p { color: rgba(255,255,255,.68); font-size: .74rem; line-height: 1.75; }
+.finder-result-grid a { min-height: 3rem; margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--color-line-inverse); display: flex; justify-content: space-between; align-items: center; font-size: .7rem; font-weight: 700; }
+.finder-safety { margin-top: var(--space-5); padding: var(--space-4); border-left: 2px solid #aebaaa; background: rgba(255,255,255,.05); display: grid; grid-template-columns: 6rem 1fr; gap: var(--space-4); }
+.finder-safety strong { font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase; }
+.finder-safety p { margin: 0; color: rgba(255,255,255,.68); font-size: .72rem; line-height: 1.7; }
+.finder-result-actions { margin-top: var(--space-5); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.finder-panel:has(.finder-results) .finder-back, .finder-panel:has(.finder-results) .finder-restart { color: var(--color-white); }
+
 /* Footer */
 .footer { padding: 5.5rem var(--gutter) 1.5rem; background: #151713; color: #eae9e4; }
 .footer > * { width: min(100%, var(--container)); margin-inline: auto; }
@@ -367,6 +418,9 @@ h1 em, h2 em { color: var(--color-sage-deep); font-family: var(--font-display), 
   .related-grid, .contact-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hair-path-grid > a { min-height: 28rem; }
   .booking-primary { grid-template-columns: 1fr 1fr; }
+  .finder-options-spacious { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .finder-option { min-height: 9rem; }
+  .finder-options-spacious .finder-option { min-height: 11rem; }
 }
 
 @media (max-width: 48rem) {
@@ -392,4 +446,19 @@ h1 em, h2 em { color: var(--color-sage-deep); font-family: var(--font-display), 
   .contact-card-grid > a { min-height: 20rem; }
   .contact-location > div:first-child { padding: var(--space-6) var(--space-4); }
   .map-placeholder { min-height: 24rem; }
+  .finder-hero { padding-top: var(--space-7); grid-template-columns: 1fr; gap: var(--space-4); }
+  .finder-hero h1 { font-size: clamp(3.4rem, 16vw, 5.3rem); }
+  .finder-shell { width: calc(100% - (var(--gutter) * 2)); }
+  .finder-panel { min-height: 38rem; padding: var(--space-5) var(--space-4); border-radius: var(--radius-lg); }
+  .finder-panel legend, .finder-results h2 { font-size: clamp(2.6rem, 11vw, 4rem); }
+  .finder-options, .finder-options-spacious { grid-template-columns: 1fr; }
+  .finder-option, .finder-options-spacious .finder-option { min-height: 5.5rem; display: grid; grid-template-columns: 2.2rem 1fr auto; }
+  .finder-options-spacious .finder-option-copy { margin-top: 0; }
+  .finder-result-grid { grid-template-columns: 1fr; }
+  .finder-result-grid article { min-height: 18rem; }
+  .finder-safety { grid-template-columns: 1fr; gap: var(--space-2); }
+  .finder-result-actions { flex-direction: column; }
+  .finder-result-actions .button { width: 100%; }
+  .finder-controls { align-items: stretch; }
+  .finder-controls .button { min-width: 8rem; }
 }

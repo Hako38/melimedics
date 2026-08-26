@@ -32,7 +32,7 @@ export default function Home() {
           <p className="home-hero-intro hero-reveal hero-delay-3">Individuelle ärztliche Behandlungen mit Fokus auf natürliche Ergebnisse, moderne Verfahren und persönliche Betreuung.</p>
           <div className="hero-actions hero-reveal hero-delay-4">
             <Link className="button button-primary" href="/termin/">Termin vereinbaren <Arrow/></Link>
-            <Link className="button button-secondary" href="/behandlungen/">Behandlungen entdecken <span aria-hidden="true">→</span></Link>
+            <Link className="button button-secondary" href="/behandlungsfinder/">Behandlung finden <span aria-hidden="true">→</span></Link>
           </div>
           <ul className="hero-trust hero-reveal hero-delay-4" aria-label="Vertrauenshinweise">
             <li><span aria-hidden="true"/>Ärztlich geführt</li>

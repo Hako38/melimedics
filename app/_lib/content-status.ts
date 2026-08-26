@@ -1,11 +1,12 @@
 import { doctor } from "../_data/home";
 import { mediaSlots } from "../_data/media";
 import { practice } from "../_data/practice";
+import { finderMappings, finderResultGroups } from "../_data/treatment-finder";
 import { priceCategories, treatments, type MedicalApprovalStatus } from "../_data/treatments";
 
 export type ContentStatusItem = {
   id: string;
-  area: "treatment" | "price" | "practice" | "doctor" | "media";
+  area: "treatment" | "price" | "practice" | "doctor" | "media" | "finder_mapping";
   label: string;
   status: MedicalApprovalStatus;
   todos: string[];
@@ -26,6 +27,13 @@ export function getContentStatusReport() {
     { id: "doctor:focus", area: "doctor", label: "Tätigkeitsschwerpunkte", status: doctor.focusAreas.length ? "needs_review" : "missing", todos: ["Tätigkeitsschwerpunkte freigeben."] },
     { id: "doctor:photo", area: "doctor", label: "Originalporträt", status: doctor.originalPhoto ? "needs_review" : "missing", todos: ["Freigegebenes Originalporträt bereitstellen."] },
   ];
+  const finderMappingItems = Object.entries(finderMappings).flatMap<ContentStatusItem>(([concernId, mappings]) => mappings.map((mapping) => ({
+    id: `finder:${concernId}:${mapping.resultId}`,
+    area: "finder_mapping",
+    label: `${concernId} → ${finderResultGroups.find(({ id }) => id === mapping.resultId)?.title ?? mapping.resultId}`,
+    status: mapping.medicalApprovalStatus,
+    todos: mapping.medicalApprovalStatus === "approved" ? [] : [`Finder-Zuordnung ärztlich freigeben: ${mapping.internalRationale}`],
+  })));
   const items: ContentStatusItem[] = [
     ...treatments.map<ContentStatusItem>((treatment) => ({
       id: `treatment:${treatment.slug}`,
@@ -44,6 +52,7 @@ export function getContentStatusReport() {
     ...practiceItems,
     ...Object.values(mediaSlots).map<ContentStatusItem>((media) => ({ id: `media:${media.id}`, area: "media", label: media.alt, status: media.approvalStatus, todos: [media.todo] })),
     ...doctorItems,
+    ...finderMappingItems,
   ];
 
   const summary = items.reduce<Record<MedicalApprovalStatus, number>>((counts, item) => {

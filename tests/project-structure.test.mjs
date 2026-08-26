@@ -93,4 +93,29 @@ test("provides a private centralized content approval report", async () => {
   assert.match(status, /area: "practice"/);
   assert.match(status, /area: "doctor"/);
   assert.match(status, /area: "media"/);
+  assert.match(status, /area: "finder_mapping"/);
+});
+
+test("integrates the Phase 2A finder without tracking or diagnosis features", async () => {
+  const [page, component, analytics, sitemap, homepage, treatments, category, hair] = await Promise.all([
+    read("app/behandlungsfinder/page.tsx"),
+    read("app/_components/TreatmentFinder.tsx"),
+    read("app/_lib/finder-analytics.ts"),
+    read("app/sitemap.ts"),
+    read("app/page.tsx"),
+    read("app/behandlungen/page.tsx"),
+    read("app/_components/CategoryPage.tsx"),
+    read("app/haare/page.tsx"),
+  ]);
+  assert.match(page, /pageMetadata/);
+  assert.match(page, /keine Diagnose/);
+  assert.match(component, /type="radio"/);
+  assert.match(component, /Zurück/);
+  assert.match(component, /Finder neu starten/);
+  assert.match(component, /Die endgültige Beurteilung erfolgt nach ärztlicher Beratung/);
+  for (const event of ["finder_started", "category_selected", "finder_completed", "result_clicked", "booking_clicked"]) assert.match(analytics, new RegExp(event));
+  assert.doesNotMatch(analytics, /fetch\(|sendBeacon|google|meta|pixel/i);
+  assert.match(sitemap, /behandlungsfinder/);
+  for (const source of [homepage, treatments, category, hair]) assert.match(source, /behandlungsfinder/);
+  assert.doesNotMatch(`${page}\n${component}`, /Foto-Upload|Haaranalyse|Lead-Scoring|CRM|Chatbot/i);
 });
