@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { StructuredData, medicalClinicSchema } from "./_components/StructuredData";
+import { AssistantLoader } from "./_components/AssistantLoader";
 import { isIndexableEnvironment, siteUrl } from "./_lib/site-config";
 import "./globals.css";
 
@@ -30,5 +31,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="de" data-scroll-behavior="smooth"><body className={`${display.variable} ${sans.className}`}><a className="skip-link" href="#main-content">Zum Hauptinhalt springen</a><StructuredData id="medical-clinic-schema" data={medicalClinicSchema}/>{children}</body></html>;
+  return <html lang="de" data-scroll-behavior="smooth"><body className={`${display.variable} ${sans.className}`}><a className="skip-link" href="#main-content">Zum Hauptinhalt springen</a><StructuredData id="medical-clinic-schema" data={medicalClinicSchema}/>{children}<AssistantLoader/></body></html>;
 }

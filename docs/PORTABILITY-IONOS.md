@@ -1,10 +1,10 @@
 # Portabilität: GitHub → Build → IONOS
 
-Stand: Phase 3A · 26. August 2026
+Stand: Phase 3B · 26. August 2026
 
 ## Ergebnis
 
-Das Projekt verwendet Standard-Next.js 16 mit App Router, React und TypeScript. `output: "standalone"` erzeugt einen portablen Node.js-Server. Es gibt keine Cloudflare-, Vercel-, OpenAI-Sites- oder Worker-Bindung. Phase 3A ergänzt providerneutrale Repository-, private Storage-, Scanner- und Notification-Interfaces.
+Das Projekt verwendet Standard-Next.js 16 mit App Router, React und TypeScript. `output: "standalone"` erzeugt einen portablen Node.js-Server. Es gibt keine Cloudflare-, Vercel-, OpenAI-Sites- oder Worker-Bindung. Phase 3A ergänzt providerneutrale Repository-, private Storage-, Scanner- und Notification-Interfaces; Phase 3B ergänzt einen providerneutralen, ausschließlich serverseitigen KI-Vertrag.
 
 ## A) Anforderungen an das IONOS-Hostingpaket
 
@@ -33,9 +33,11 @@ CONSULTATION_DATA_DIR=/absoluter/nicht-oeffentlicher/persistenter/pfad
 REQUIRE_MALWARE_SCAN=true
 RETENTION_DAYS=<rechtlich-freigegebener-wert>
 RATE_LIMIT_SALT=<secret>
+AI_ENABLED=false
+AI_CONSULTATION_ENHANCER_ENABLED=false
 ```
 
-Zusätzlich werden Consent-Versionen, Mailprovider/-absender/-empfänger und gegebenenfalls Storage-/Scanner-Zugangsdaten ausschließlich als serverseitige Environment Variables gesetzt. Die vollständige Liste steht in `.env.example`.
+Zusätzlich werden Consent-Versionen, Mailprovider/-absender/-empfänger und gegebenenfalls Storage-/Scanner-/KI-Zugangsdaten ausschließlich als serverseitige Environment Variables gesetzt. Bei freigegebener KI-Nutzung werden `AI_PROVIDER=generic-json`, ein HTTPS-Endpunkt, Modell, API-Key und Rate-Limit-Salt konfiguriert. Die vollständige Liste steht in `.env.example`.
 
 Preview/Staging verwendet `SITE_ENV=staging` oder `development`; dadurch erzeugen Metadata und `robots.txt` automatisch `noindex`/Crawling-Sperren.
 
@@ -49,7 +51,7 @@ Ein statischer Export wäre nur als bewusst begrenzte Phase-1-Variante sinnvoll.
 
 Folgende geplante Funktionen benötigen voraussichtlich einen Node-/Backend-Teil oder angebundene Dienste:
 
-- KI-Assistent und sichere serverseitige Modellaufrufe
+- KI-Assistent und sichere serverseitige Modellaufrufe über den generischen JSON-Providervertrag; keine KI-SDK-Abhängigkeit im Browser
 - serverseitige Schema-, Request- und Same-Origin-Validierung
 - private Foto-Uploads inklusive Magic-Byte-/MIME-Prüfung, Zugriffsschutz und zufälliger Dateinamen
 - persistent laufender Node-Prozess; serverlose/ephemere Dateisysteme sind für den Filesystem-Adapter ungeeignet

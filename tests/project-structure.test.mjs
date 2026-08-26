@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
@@ -175,4 +175,45 @@ test("adds the Phase 3A server-only provider-neutral consultation infrastructure
   assert.match(component, /submissionReference/);
   assert.match(component, /keine medizinische Bewertung/);
   assert.doesNotMatch(analytics, /email|phone|contactName|affectedAreas|message/);
+});
+
+test("adds the Phase 3B approval-gated public assistant without exposing internal consultation AI", async () => {
+  const [layout, loader, component, route, core, knowledge, provider, runtime, summary, analytics, environment] = await Promise.all([
+    read("app/layout.tsx"),
+    read("app/_components/AssistantLoader.tsx"),
+    read("app/_components/PracticeAssistant.tsx"),
+    read("app/api/assistant/route.ts"),
+    read("app/_server/assistant/core.ts"),
+    read("app/_server/assistant/knowledge-base.ts"),
+    read("app/_server/assistant/provider.ts"),
+    read("app/_server/assistant/runtime.ts"),
+    read("app/_server/assistant/consultation-summary.ts"),
+    read("app/_lib/assistant-analytics.ts"),
+    read(".env.example"),
+  ]);
+  assert.match(layout, /AssistantLoader/);
+  assert.match(loader, /dynamic\(/);
+  assert.match(loader, /ssr: false/);
+  assert.doesNotMatch(component, /localStorage|sessionStorage|sendBeacon|console\./);
+  assert.match(component, /Keine Diagnose/);
+  assert.match(route, /runtime = "nodejs"/);
+  assert.match(route, /origin_rejected/);
+  assert.match(route, /checkConsultationRateLimit/);
+  assert.doesNotMatch(route, /console\.|searchParams|patient/);
+  for (const name of ["generateAssistantResponse", "classifyInquiry", "summarizeConsultation"]) assert.match(core, new RegExp(name));
+  assert.match(core, /medicalApprovalStatus === "approved"/);
+  assert.match(core, /evaluateGuardrails/);
+  assert.match(knowledge, /treatment\.medicalApprovalStatus/);
+  assert.match(knowledge, /item\.approvalStatus/);
+  assert.match(provider, /GenericJsonAIProvider/);
+  assert.match(runtime, /import "server-only"/);
+  assert.match(runtime, /AI_CONSULTATION_ENHANCER_ENABLED/);
+  assert.match(summary, /summarizeHairConsultationLocally/);
+  assert.doesNotMatch(summary, /contactName|record\.email|record\.phone|photo\.bytes/);
+  assert.doesNotMatch(analytics, /email|phone|message|medical|content|payload|text/i);
+  for (const event of ["assistant_opened", "assistant_closed", "assistant_question_submitted", "assistant_answer_received", "assistant_fallback", "assistant_cta_clicked"]) assert.match(analytics, new RegExp(event));
+  for (const key of ["AI_ENABLED", "AI_PROVIDER", "AI_BASE_URL", "AI_MODEL", "AI_API_KEY", "AI_MAX_OUTPUT_TOKENS"]) assert.match(environment, new RegExp(key));
+  assert.doesNotMatch(environment, /sk-[A-Za-z0-9]|AI_API_KEY=\S+/);
+  const apiFiles = await readdir(new URL("../app/api/", import.meta.url), { recursive: true });
+  assert.ok(!apiFiles.some((file) => /summary|consultation-ai|internal-ai/i.test(file)));
 });
