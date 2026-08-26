@@ -415,10 +415,13 @@ h1 em, h2 em { color: var(--color-sage-deep); font-family: var(--font-display), 
 .hair-silhouette { position: absolute; inset: 0; display: grid; place-items: center; }
 .hair-silhouette span { width: 4rem; aspect-ratio: .82; border: 1px solid rgba(25,27,24,.24); border-radius: 48% 48% 42% 42%; background: rgba(146,159,141,.15); }
 .hair-silhouette i { position: absolute; width: 5.8rem; height: 2.7rem; bottom: -.9rem; border: 1px solid rgba(25,27,24,.18); border-radius: 50% 50% 0 0; }
-.hair-silhouette-top span, .hair-silhouette-crown span { border-radius: 50%; transform: rotate(-8deg); }
-.hair-silhouette-hairline::after { position: absolute; top: 2.5rem; width: 3rem; height: 1px; background: var(--color-sage-deep); content: ""; }
-.hair-silhouette-crown::after { position: absolute; top: 3.4rem; width: 1.6rem; aspect-ratio: 1; border: 1px dashed var(--color-sage-deep); border-radius: 50%; content: ""; }
-.hair-silhouette-donor::after { position: absolute; top: 5rem; width: 3.3rem; height: .9rem; border: 1px dashed var(--color-sage-deep); border-radius: 50%; content: ""; }
+.hair-silhouette-top span, .hair-silhouette-back span { border-radius: 50%; transform: rotate(-8deg); }
+.hair-silhouette-left span { transform: rotate(-12deg) translateX(-.35rem); }
+.hair-silhouette-right span { transform: rotate(12deg) translateX(.35rem); }
+.hair-silhouette-left::after, .hair-silhouette-right::after { position: absolute; top: 3.2rem; width: 1.7rem; height: 1px; background: var(--color-sage-deep); content: ""; }
+.hair-silhouette-left::after { left: 2rem; transform: rotate(-25deg); }
+.hair-silhouette-right::after { right: 2rem; transform: rotate(25deg); }
+.hair-silhouette-back::after { position: absolute; top: 3.4rem; width: 1.6rem; aspect-ratio: 1; border: 1px dashed var(--color-sage-deep); border-radius: 50%; content: ""; }
 .hair-photo-grid article > span { color: var(--color-ink-muted); font-size: .58rem; letter-spacing: .1em; }
 .hair-photo-grid h2 { margin: var(--space-3) 0 .5rem; font-size: 1.35rem; }
 .hair-photo-grid article > p:not(.field-error) { margin: 0 0 var(--space-3); color: var(--color-ink-soft); font-size: .65rem; line-height: 1.55; }
@@ -448,8 +451,12 @@ h1 em, h2 em { color: var(--color-sage-deep); font-family: var(--font-display), 
 .hair-check-back { min-height: 2.75rem; padding: 0; border: 0; border-bottom: 1px solid currentColor; background: transparent; font-size: .7rem; font-weight: 700; }
 .hair-check-success { width: min(calc(100% - (var(--gutter) * 2)), calc(var(--container) - (var(--gutter) * 2))); margin: var(--section-space) auto; padding: clamp(3rem, 7vw, 7rem); border-radius: var(--radius-xl); background: var(--color-surface-sage); }
 .hair-check-success h1 { max-width: 13ch; }
+.hair-check-success h1:focus { outline: none; }
 .hair-check-success > p:not(.eyebrow) { max-width: 40rem; margin: var(--space-4) 0; color: var(--color-ink-soft); line-height: 1.8; }
 .hair-check-success > div { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.hair-check-reference { width: fit-content; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-sm); display: grid; gap: .3rem; background: rgba(255,255,255,.45); }
+.hair-check-reference span { color: var(--color-ink-muted); font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.hair-check-reference strong { font-family: var(--font-display), Georgia, serif; font-size: 1.35rem; letter-spacing: .04em; }
 .hair-check-inline, .hair-check-teaser { width: min(calc(100% - (var(--gutter) * 2)), calc(var(--container) - (var(--gutter) * 2))); margin: 0 auto var(--section-space); padding: clamp(3rem, 6vw, 6rem); border-radius: var(--radius-xl); display: grid; grid-template-columns: 1fr auto; gap: var(--space-7); align-items: end; background: #242823; color: var(--color-white); }
 .hair-check-inline h2, .hair-check-teaser h2 { max-width: 13ch; font-size: clamp(2.8rem, 5vw, 5.6rem); }
 .hair-check-inline p:not(.eyebrow), .hair-check-teaser p:not(.eyebrow) { max-width: 39rem; color: rgba(255,255,255,.66); font-size: .82rem; line-height: 1.8; }
@@ -568,4 +575,6 @@ h1 em, h2 em { color: var(--color-sage-deep); font-family: var(--font-display), 
   .hair-check-controls .button { min-width: 9rem; }
   .hair-submission-message > div, .hair-check-success > div { flex-direction: column; }
   .hair-submission-message .button, .hair-check-success .button { width: 100%; }
+  .hair-check-success { padding: var(--space-6) var(--space-4); }
+  .hair-check-success h1 { max-width: 12ch; font-size: clamp(2.6rem, 11vw, 4rem); overflow-wrap: anywhere; }
 }

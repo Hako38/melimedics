@@ -135,12 +135,44 @@ test("integrates the Phase 2B hair check and its privacy-safe funnel", async () 
   assert.match(page, /pageMetadata/);
   assert.match(component, /Keine automatische Diagnose/);
   assert.match(component, /Keine KI-Bildauswertung/);
-  assert.match(component, /Nur lokale Vorschau/);
+  assert.match(component, /Freiwillige, private Übertragung/);
   assert.match(component, /JPEG oder PNG/);
-  assert.match(service, /secure_backend_unavailable/);
-  assert.doesNotMatch(service, /fetch\(|console\./);
+  assert.match(service, /api\/hair-consultations/);
+  assert.doesNotMatch(service, /https?:\/\/|console\./);
   assert.match(analytics, /hair_check_started/);
   assert.match(sitemap, /haare\/haar-check/);
   for (const source of [hair, template, finder]) assert.match(source, /haare\/haar-check/);
   assert.match(status, /hair_check/);
+});
+
+test("adds the Phase 3A server-only provider-neutral consultation infrastructure", async () => {
+  const [route, core, runtime, filesystem, environment, analytics, component] = await Promise.all([
+    read("app/api/hair-consultations/route.ts"),
+    read("app/_server/hair-consultations/core.ts"),
+    read("app/_server/hair-consultations/runtime.ts"),
+    read("app/_server/hair-consultations/filesystem.ts"),
+    read(".env.example"),
+    read("app/_lib/hair-check-analytics.ts"),
+    read("app/_components/HairCheck.tsx"),
+  ]);
+  assert.match(route, /runtime = "nodejs"/);
+  assert.match(route, /multipart\/form-data/);
+  assert.match(route, /content-length/);
+  assert.match(route, /origin_rejected/);
+  assert.match(route, /checkConsultationRateLimit/);
+  assert.doesNotMatch(route, /console\.|searchParams|params\./);
+  for (const name of ["createConsultation", "getConsultationById", "updateConsultationStatus", "deleteConsultation", "attachPhoto", "deletePhoto"]) assert.match(core, new RegExp(name));
+  assert.match(core, /PrivateFileStorage/);
+  assert.match(core, /ConsultationNotifier/);
+  assert.match(core, /FileContentScanner/);
+  assert.doesNotMatch(core, /diagnosis|graft/i);
+  assert.match(runtime, /import "server-only"/);
+  assert.match(filesystem, /mode: 0o700/);
+  assert.match(filesystem, /mode: 0o600/);
+  assert.match(filesystem, /randomUUID/);
+  for (const key of ["STORAGE_PROVIDER", "CONSULTATION_REPOSITORY", "MAIL_PROVIDER", "MAIL_FROM", "CONSULTATION_RECIPIENT", "RETENTION_DAYS", "RATE_LIMIT_MAX"]) assert.match(environment, new RegExp(key));
+  assert.doesNotMatch(environment, /sk-[A-Za-z0-9]|password\s*=\s*\S+/i);
+  assert.match(component, /submissionReference/);
+  assert.match(component, /keine medizinische Bewertung/);
+  assert.doesNotMatch(analytics, /email|phone|contactName|affectedAreas|message/);
 });

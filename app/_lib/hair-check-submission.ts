@@ -1,38 +1,56 @@
-import type { HairCheckAnswers, HairCheckSubmission } from "../_data/hair-check";
+import type { HairCheckAnswers } from "../_data/hair-check";
 import { validateCompleteHairCheck } from "./hair-check-validation";
 
+export type HairConsultationErrorCode = "validation_failed" | "upload_failed" | "rate_limited" | "submission_unavailable" | "network_error" | "request_too_large" | "scanner_unavailable" | "invalid_request" | "origin_rejected" | "unsupported_media_type";
+
 export type HairConsultationResult =
-  | { ok: true; submissionId: string }
-  | { ok: false; code: "validation_failed" | "secure_backend_unavailable"; message: string };
+  | { ok: true; submissionId: string; reference: string }
+  | { ok: false; code: HairConsultationErrorCode; message: string; fields?: string[] };
 
-export type HairConsultationTransport = (submission: HairCheckSubmission) => Promise<{ submissionId: string }>;
+export type HairConsultationTransport = (body: FormData) => Promise<HairConsultationResult>;
 
-export function prepareHairConsultation(answers: HairCheckAnswers): HairCheckSubmission {
-  return {
-    ...answers,
-    id: crypto.randomUUID(),
-    createdAt: new Date().toISOString(),
-    submissionStatus: "ready_for_secure_backend",
-  };
+export function buildHairConsultationFormData(answers: HairCheckAnswers) {
+  const body = new FormData();
+  body.set("payload", JSON.stringify({
+    ageRange: answers.ageRange,
+    gender: answers.gender ?? undefined,
+    duration: answers.duration,
+    affectedAreas: answers.concernAreas,
+    progression: answers.progression,
+    ongoingLoss: answers.ongoingLoss,
+    previousTreatments: answers.previousTreatments,
+    previousTreatmentNote: answers.previousTreatmentNote || undefined,
+    interest: answers.interest,
+    desiredTimeframe: answers.timeframe,
+    firstName: answers.firstName,
+    lastName: answers.lastName,
+    email: answers.email,
+    phone: answers.phone,
+    preferredContact: answers.preferredContact ?? undefined,
+    message: answers.message || undefined,
+    consentContact: answers.consent,
+    consentPhotos: answers.photoConsent,
+    source: "website_hair_check",
+    spamTrap: "",
+  }));
+  for (const [slot, photo] of Object.entries(answers.photos)) {
+    if (photo) body.set(`photo_${slot}`, photo.file, "private-upload");
+  }
+  return body;
 }
 
-/**
- * Provider-neutral service boundary. Phase 2B deliberately performs no fetch,
- * persistence or logging. A production adapter must be server-side and must not
- * expose storage credentials or public object URLs.
- */
-export async function submitHairConsultation(answers: HairCheckAnswers, transport?: HairConsultationTransport): Promise<HairConsultationResult> {
-  if (Object.keys(validateCompleteHairCheck(answers)).length > 0) {
-    return { ok: false, code: "validation_failed", message: "Bitte prüfen Sie die markierten Angaben." };
+const apiTransport: HairConsultationTransport = async (body) => {
+  try {
+    const response = await fetch("/api/hair-consultations/", { method: "POST", body, credentials: "same-origin", headers: { Accept: "application/json" } });
+    const result = await response.json().catch(() => null) as HairConsultationResult | null;
+    if (result && typeof result === "object" && "ok" in result) return result;
+    return { ok: false, code: "submission_unavailable", message: "Die Anfrage konnte derzeit nicht sicher gespeichert werden. Bitte versuchen Sie es später erneut." };
+  } catch {
+    return { ok: false, code: "network_error", message: "Die Verbindung konnte nicht hergestellt werden. Ihre Angaben bleiben erhalten; bitte versuchen Sie es erneut." };
   }
-  const submission = prepareHairConsultation(answers);
-  if (transport) {
-    const result = await transport(submission);
-    return { ok: true, submissionId: result.submissionId };
-  }
-  return {
-    ok: false,
-    code: "secure_backend_unavailable",
-    message: "Die sichere Übermittlung ist in dieser lokalen Phase noch nicht aktiviert. Ihre Angaben und Fotos wurden nicht gesendet.",
-  };
+};
+
+export async function submitHairConsultation(answers: HairCheckAnswers, transport: HairConsultationTransport = apiTransport): Promise<HairConsultationResult> {
+  if (Object.keys(validateCompleteHairCheck(answers)).length > 0) return { ok: false, code: "validation_failed", message: "Bitte prüfen Sie die markierten Angaben." };
+  return transport(buildHairConsultationFormData(answers));
 }

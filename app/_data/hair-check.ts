@@ -11,7 +11,7 @@ export type PreviousTreatment = "prp-prf" | "transplant" | "medical" | "cosmetic
 export type HairInterest = "understand-cause" | "prp" | "transplant" | "combination" | "consultation" | "unsure";
 export type HairTimeframe = "soon" | "1-3-months" | "later" | "information";
 export type PreferredContact = "email" | "phone" | "no-preference";
-export type HairPhotoSlotId = "front" | "hairline" | "top" | "crown" | "donor";
+export type HairPhotoSlotId = "front" | "top" | "left" | "right" | "back";
 export type HairSubmissionStatus = "draft" | "ready_for_secure_backend" | "submitted" | "failed";
 
 export type HairCheckPhoto = {
@@ -111,16 +111,18 @@ export const preferredContactOptions: HairCheckOption<PreferredContact>[] = [
 ];
 export const photoSlots: { id: HairPhotoSlotId; label: string; instruction: string }[] = [
   { id: "front", label: "Frontal", instruction: "Gesicht gerade zur Kamera, Haare gut sichtbar." },
-  { id: "hairline", label: "Haarlinie", instruction: "Haaransatz bei gleichmäßigem Licht fotografieren." },
   { id: "top", label: "Oberkopf", instruction: "Kamera möglichst senkrecht über dem Kopf halten." },
-  { id: "crown", label: "Tonsur / Hinterkopf", instruction: "Wirbel und hinteren Oberkopf vollständig zeigen." },
-  { id: "donor", label: "Spenderbereich", instruction: "Hinterkopf auf Höhe der Ohren aufnehmen." },
+  { id: "left", label: "Linke Seite", instruction: "Linke Schläfe und seitliche Haarlinie vollständig zeigen." },
+  { id: "right", label: "Rechte Seite", instruction: "Rechte Schläfe und seitliche Haarlinie vollständig zeigen." },
+  { id: "back", label: "Hinterkopf", instruction: "Wirbel und Hinterkopf bei gleichmäßigem Licht aufnehmen." },
 ];
 
 export const hairCheckApprovalItems: { id: string; label: string; status: MedicalApprovalStatus; todo: string }[] = [
   { id: "privacy-consent", label: "Datenschutz-Einwilligung Haar-Check", status: "needs_review", todo: "Finale juristische Einwilligungsformulierung und Verarbeitungszweck freigeben." },
   { id: "photo-consent", label: "Separate Foto-Einwilligung", status: "needs_review", todo: "Finale juristische Foto-Einwilligung, Aufbewahrung und Widerrufsprozess freigeben." },
-  { id: "secure-upload", label: "Sicherer Foto-Upload", status: "missing", todo: "Privates Storage, authentifizierte Upload-API, Zugriffskontrolle, Malware-Prüfung, Löschung und Retention implementieren." },
+  { id: "secure-upload", label: "Sicherer Foto-Upload", status: "missing", todo: "Privaten Production-Storage und Malware-Scanner konfigurieren; Zugriff, Löschung und Retention operativ freigeben." },
+  { id: "notification", label: "Serverseitige Anfrage-Benachrichtigung", status: "missing", todo: "Mailprovider, Absender und internen Empfänger freigeben und serverseitig konfigurieren." },
+  { id: "retention", label: "Retention und Löschkonzept", status: "needs_review", todo: "Aufbewahrungsdauer, Löschfrequenz und Verantwortlichkeit rechtlich sowie organisatorisch freigeben." },
 ];
 
 export const optionLabel = <T extends string>(options: HairCheckOption<T>[], id: T | null) => options.find((option) => option.id === id)?.label ?? "Nicht angegeben";

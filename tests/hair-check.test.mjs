@@ -70,20 +70,21 @@ test("E: separate photo consent is required only when a photo exists", () => {
   assert.match(validation.validateHairCheckStep("contact", withPhotos).photoConsent, /separate Zustimmung/);
 });
 
-test("I: default submission remains safely unavailable and does not fake success", async () => {
-  const result = await submission.submitHairConsultation(validAnswers());
+test("I: a server error remains an error and does not fake success", async () => {
+  const result = await submission.submitHairConsultation(validAnswers(), async () => ({ ok: false, code: "submission_unavailable", message: "Nicht gespeichert." }));
   assert.deepEqual(result.ok, false);
-  assert.equal(result.code, "secure_backend_unavailable");
-  assert.match(result.message, /nicht gesendet/);
+  assert.equal(result.code, "submission_unavailable");
+  assert.match(result.message, /Nicht gespeichert/);
 });
 
 test("J: provider-neutral service supports a successful approved transport adapter", async () => {
-  const result = await submission.submitHairConsultation(validAnswers(), async (prepared) => {
-    assert.equal(prepared.submissionStatus, "ready_for_secure_backend");
+  const result = await submission.submitHairConsultation(validAnswers(), async (body) => {
+    const prepared = JSON.parse(body.get("payload"));
     assert.equal(prepared.email, "test@example.com");
-    return { submissionId: "approved-test-id" };
+    assert.equal(prepared.source, "website_hair_check");
+    return { ok: true, submissionId: "approved-test-id", reference: "HC-APPROVED" };
   });
-  assert.deepEqual(result, { ok: true, submissionId: "approved-test-id" });
+  assert.deepEqual(result, { ok: true, submissionId: "approved-test-id", reference: "HC-APPROVED" });
 });
 
 test("C/H/K/L: UI includes navigation, review, responsive and accessible upload states", async () => {
@@ -103,7 +104,8 @@ test("privacy boundary excludes persistence, network submission and medical anal
     read("app/_components/HairCheck.tsx"), read("app/_lib/hair-check-submission.ts"), read("app/_lib/hair-check-analytics.ts"),
   ]);
   assert.doesNotMatch(`${component}\n${service}`, /localStorage|sessionStorage|indexedDB/);
-  assert.doesNotMatch(service, /fetch\(|XMLHttpRequest|sendBeacon|console\./);
+  assert.match(service, /fetch\("\/api\/hair-consultations\//);
+  assert.doesNotMatch(service, /https?:\/\/|XMLHttpRequest|sendBeacon|console\./);
   assert.doesNotMatch(analytics, /concern|email|phone|message|photoName|File/);
-  for (const event of ["hair_check_started", "hair_check_step_completed", "hair_photo_added", "hair_check_completed", "hair_consultation_submitted", "hair_booking_clicked"]) assert.match(analytics, new RegExp(event));
+  for (const event of ["hair_check_started", "hair_check_step_completed", "hair_photo_added", "hair_check_photo_added", "hair_check_completed", "hair_consultation_submitted", "hair_check_submit_started", "hair_check_submit_success", "hair_check_submit_error", "hair_booking_clicked"]) assert.match(analytics, new RegExp(event));
 });
