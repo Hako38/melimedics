@@ -22,6 +22,32 @@ test("contains the complete Phase 1B homepage without fabricated proof", async (
   assert.doesNotMatch(`${homepage}\n${content}`, /Lorem ipsum|Sarah J\.|Michael T\.|five-star reviews/i);
 });
 
+test("uses local, documented images from the existing Melimedics website", async () => {
+  const [media, homepage, shell, practice, sources, files] = await Promise.all([
+    read("app/_data/media.ts"),
+    read("app/page.tsx"),
+    read("app/_components/SiteShell.tsx"),
+    read("app/arzt-praxis/page.tsx"),
+    read("docs/IMAGE-SOURCES.md"),
+    readdir(new URL("../public/images/melimedics/", import.meta.url)),
+  ]);
+  for (const file of [
+    "praxis-behandlung.webp",
+    "melih-kandemir-prp.jpeg",
+    "gesichtsberatung.webp",
+    "botulinumtoxin-behandlung.jpeg",
+    "gesichtspflege.jpeg",
+    "schroepfen-behandlung.jpeg",
+  ]) assert.ok(files.includes(file));
+  assert.match(media, /sourceUrl: `https:\/\/\$\{string\}`/);
+  assert.match(homepage, /mediaSlots\.homeHero\.src/);
+  assert.match(shell, /mediaSlots\.doctorPortrait\.src/);
+  assert.match(shell, /interior-art-photo/);
+  assert.match(practice, /mediaSlots\.botulinumtoxinTreatment\.src/);
+  assert.match(sources, /keine Bilddateien der Bestandswebsite per Hotlink/);
+  assert.doesNotMatch(`${homepage}\n${shell}\n${practice}`, /https:\/\/melimedics\.de\/wp-content\/uploads/);
+});
+
 test("keeps SEO redirects and legal routes", async () => {
   const [botox, privacy, imprint] = await Promise.all([read("app/botox/page.tsx"), read("app/datenschutz/page.tsx"), read("app/impressum/page.tsx")]);
   assert.match(botox, /permanentRedirect/);

@@ -51,7 +51,7 @@ export function getContentStatusReport() {
       todos: item.price ? [] : ["Finalen Preis kaufmännisch und medizinisch freigeben."],
     }))),
     ...practiceItems,
-    ...Object.values(mediaSlots).map<ContentStatusItem>((media) => ({ id: `media:${media.id}`, area: "media", label: media.alt, status: media.approvalStatus, todos: [media.todo] })),
+    ...Object.values(mediaSlots).map<ContentStatusItem>((media) => ({ id: `media:${media.id}`, area: "media", label: media.alt, status: media.approvalStatus, todos: media.todo ? [media.todo] : [] })),
     ...doctorItems,
     ...finderMappingItems,
     ...hairCheckApprovalItems.map<ContentStatusItem>((item) => ({ id: `hair-check:${item.id}`, area: "hair_check", label: item.label, status: item.status, todos: [item.todo] })),

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { mediaSlots, type MediaSlot } from "../_data/media";
 import { treatmentBySlug, type TreatmentCategory, type TreatmentContent } from "../_data/treatments";
 import { Arrow, Breadcrumbs, CTA, DoctorTrust, FAQ, InteriorHero, PageShell, SectionHeader } from "./SiteShell";
 
@@ -11,6 +12,13 @@ const categoryRoutes: Record<TreatmentCategory, { label: string; href: string }>
   cosmetics: { label: "Kosmetik", href: "/kosmetik/" },
 };
 
+const treatmentMedia: Partial<Record<string, MediaSlot>> = {
+  botulinumtoxin: mediaSlots.botulinumtoxinTreatment,
+  "prp-behandlung": mediaSlots.doctorPortrait,
+  "prp-haare": mediaSlots.doctorPortrait,
+  aquafacial: mediaSlots.facialTreatment,
+};
+
 export function TreatmentTemplate({ treatment }: { treatment: TreatmentContent }) {
   const category = categoryRoutes[treatment.category];
   const related = treatment.relatedTreatments?.map((slug) => treatmentBySlug[slug]).filter(Boolean) ?? [];
@@ -19,7 +27,7 @@ export function TreatmentTemplate({ treatment }: { treatment: TreatmentContent }
   return <PageShell>
     <Breadcrumbs items={[{ label: "Behandlungen", href: "/behandlungen/" }, { label: category.label, href: category.href }, { label: treatment.title, href: treatment.href }]}/>
     <div className={treatment.theme === "hair" ? "treatment-theme-hair" : "treatment-theme-default"}>
-      <InteriorHero eyebrow={treatment.eyebrow} title={treatment.hero} intro={treatment.shortDescription}>
+      <InteriorHero eyebrow={treatment.eyebrow} title={treatment.hero} intro={treatment.shortDescription} media={treatmentMedia[treatment.slug]} mediaLabel={treatment.title}>
         <div className="hero-actions">{isHairTreatment ? <Link className="button button-dark" href="/haare/haar-check/">Haar-Check starten <Arrow/></Link> : null}<Link className={isHairTreatment ? "button button-secondary" : "button button-dark"} href="/termin/">Beratung vereinbaren <Arrow/></Link></div>
       </InteriorHero>
     </div>

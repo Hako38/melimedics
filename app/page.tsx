@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Reveal } from "./_components/Reveal";
 import { Arrow, DoctorTrust, FAQ, Footer, Header, Testimonials } from "./_components/SiteShell";
@@ -21,6 +22,11 @@ const process = [
   ["04", "Nachsorge", "Fragen nach der Behandlung und die weitere Begleitung sind Teil unseres Verständnisses."],
 ];
 
+const featuredTreatmentMedia = {
+  "/behandlungen/botulinumtoxin/": mediaSlots.botulinumtoxinTreatment,
+  "/behandlungen/prp-haare/": mediaSlots.doctorPortrait,
+};
+
 export default function Home() {
   return <>
     <Header/>
@@ -40,11 +46,9 @@ export default function Home() {
             <li><span aria-hidden="true"/>Standort Mainz</li>
           </ul>
         </div>
-        <div className="home-hero-media image-placeholder" aria-label={`Bildplatzhalter: ${mediaSlots.homeHero.alt}`}>
-          <div className="media-grid" aria-hidden="true"/>
-          <span className="media-monogram" aria-hidden="true">M</span>
-          <div className="media-note"><small>Bildkonzept</small><strong>Originalfoto der Praxis oder ärztlichen Beratung</strong><span>Praxisaufnahme folgt</span></div>
-          <p>ÄRZTLICHE PRIVATPRAXIS<br/><span>MAINZ · GONSENHEIM</span></p>
+        <div className="home-hero-media">
+          <Image src={mediaSlots.homeHero.src} alt={mediaSlots.homeHero.alt} fill priority quality={88} sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1440px) 42vw, 650px"/>
+          <div className="home-photo-label"><small>Originalaufnahme</small><strong>Aus der Melimedics Praxis</strong><span>Mainz · Gonsenheim</span></div>
         </div>
       </section>
 
@@ -55,7 +59,7 @@ export default function Home() {
 
       <Reveal><section className="home-section treatments-section" aria-labelledby="treatments-title">
         <div className="home-section-head"><div><p className="eyebrow">Behandlungsschwerpunkte</p><h2 id="treatments-title">Sorgfältig geplant.<br/><em>Persönlich abgestimmt.</em></h2></div><Link className="text-link" href="/behandlungen/">Alle Behandlungen <span>→</span></Link></div>
-        <div className="featured-treatment-grid">{featuredTreatments.map((item, index) => <Link href={item.href} key={item.title} className="featured-treatment-card"><div className="treatment-card-top"><small>{item.label}</small><span>{String(index + 1).padStart(2,"0")}</span></div><div className="treatment-visual" aria-hidden="true"><i/><i/></div><h3>{item.title}</h3><p>{item.copy}</p><strong>Behandlung ansehen <Arrow/></strong></Link>)}</div>
+        <div className="featured-treatment-grid">{featuredTreatments.map((item, index) => { const media = featuredTreatmentMedia[item.href as keyof typeof featuredTreatmentMedia]; return <Link href={item.href} key={item.title} className="featured-treatment-card"><div className="treatment-card-top"><small>{item.label}</small><span>{String(index + 1).padStart(2,"0")}</span></div><div className={`treatment-visual${media ? " treatment-visual-photo" : ""}`}>{media ? <Image src={media.src} alt={media.alt} fill sizes="(max-width: 768px) calc(100vw - 4rem), (max-width: 1200px) 45vw, 28vw"/> : <><i aria-hidden="true"/><i aria-hidden="true"/></>}</div><h3>{item.title}</h3><p>{item.copy}</p><strong>Behandlung ansehen <Arrow/></strong></Link>; })}</div>
       </section></Reveal>
 
       <Reveal><DoctorTrust/></Reveal>

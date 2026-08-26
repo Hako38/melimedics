@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { doctor, type VerifiedTestimonial } from "../_data/home";
-import { mediaSlots } from "../_data/media";
+import { mediaSlots, type MediaSlot } from "../_data/media";
 import { visibleContact } from "../_data/practice";
 import { Header } from "./SiteHeader";
 import { StructuredData, breadcrumbSchema, faqSchema } from "./StructuredData";
@@ -38,8 +39,8 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
   return <><nav className="breadcrumbs" aria-label="Brotkrümelnavigation"><Link href="/">Start</Link>{normalizedItems.map((item, index) => <span key={item.href}><i aria-hidden="true">/</i>{index < normalizedItems.length - 1 ? <Link href={item.href}>{item.label}</Link> : <span aria-current="page">{item.label}</span>}</span>)}</nav><StructuredData id="breadcrumb-schema" data={breadcrumbSchema(normalizedItems)}/></>;
 }
 
-export function InteriorHero({ eyebrow, title, intro, children }: { eyebrow: string; title: ReactNode; intro: string; children?: ReactNode }) {
-  return <section className="interior-hero"><div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="hero-intro">{intro}</p>{children}</div><div className="interior-art" aria-hidden="true"><span>M</span><i/><i/></div></section>;
+export function InteriorHero({ eyebrow, title, intro, children, media, mediaLabel }: { eyebrow: string; title: ReactNode; intro: string; children?: ReactNode; media?: MediaSlot; mediaLabel?: string }) {
+  return <section className="interior-hero"><div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="hero-intro">{intro}</p>{children}</div><div className={`interior-art${media ? " interior-art-photo" : ""}`}>{media ? <><Image src={media.src} alt={media.alt} fill quality={86} sizes="(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1440px) 36vw, 540px"/><div className="interior-photo-label"><small>Originalaufnahme</small><strong>{mediaLabel ?? "Melimedics · Mainz"}</strong></div></> : <><span aria-hidden="true">M</span><i aria-hidden="true"/><i aria-hidden="true"/></>}</div></section>;
 }
 
 export function SectionHeader({ eyebrow, title, intro }: { eyebrow?: string; title: ReactNode; intro?: string }) {
@@ -55,7 +56,7 @@ export function TreatmentCard({ title, items, href }: { title: string; items: st
 }
 
 export function DoctorTrust() {
-  return <section className="doctor-trust"><div className="doctor-portrait image-placeholder" aria-label={`Bildplatzhalter: ${mediaSlots.doctorPortrait.alt}`}><span>MK</span><small>Originalporträt folgt.</small></div><div><p className="eyebrow">Persönlich ärztlich beraten</p><h2>Medizinische Ästhetik beginnt mit einer <em>persönlichen Beratung.</em></h2><p>Melimedics wird ärztlich von {doctor.name} geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <span>→</span></Link></div></section>;
+  return <section className="doctor-trust"><div className="doctor-portrait"><Image src={mediaSlots.doctorPortrait.src} alt={mediaSlots.doctorPortrait.alt} fill quality={86} sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1440px) 40vw, 560px"/><div className="doctor-photo-label"><small>Melimedics · Mainz</small><strong>{doctor.name}</strong></div></div><div><p className="eyebrow">Persönlich ärztlich beraten</p><h2>Medizinische Ästhetik beginnt mit einer <em>persönlichen Beratung.</em></h2><p>Melimedics wird ärztlich von {doctor.name} geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <span>→</span></Link></div></section>;
 }
 
 export function CTA({ title = "Lassen Sie uns über Ihr Anliegen sprechen.", copy = "In einem persönlichen Beratungsgespräch klären wir, welcher Weg medizinisch sinnvoll ist und zu Ihren Wünschen passt." }: { title?: string; copy?: string }) {

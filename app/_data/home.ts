@@ -28,14 +28,13 @@ export const doctor = {
   qualifications: [] as string[],
   training: [] as string[],
   focusAreas: [] as string[],
-  originalPhoto: null,
+  originalPhoto: "/images/melimedics/melih-kandemir-prp.jpeg",
   contentTodos: [
     "Vollständigen Namen anhand eines Primärnachweises bestätigen",
     "Korrekte Berufsbezeichnung und Titel freigeben",
     "Vita ärztlich/redaktionell freigeben",
     "Qualifikationen und Fortbildungen verifizieren",
     "Tätigkeitsschwerpunkte bestätigen",
-    "Originalfoto bereitstellen",
     "Praxisteam und Praxisinformationen ergänzen",
   ],
 };
