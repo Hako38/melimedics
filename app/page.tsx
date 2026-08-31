@@ -24,7 +24,11 @@ const process = [
 
 const featuredTreatmentMedia = {
   "/behandlungen/botulinumtoxin/": mediaSlots.botulinumtoxinTreatment,
-  "/behandlungen/prp-haare/": mediaSlots.doctorPortrait,
+  "/behandlungen/hyaluronsaeure/": mediaSlots.doctorFacialTreatment,
+  "/behandlungen/biostimulatoren/": mediaSlots.aestheticTreatment,
+  "/behandlungen/co2-laser/": mediaSlots.laserTreatment,
+  "/behandlungen/prp-haare/": mediaSlots.prpPreparation,
+  "/behandlungen/haartransplantation/": mediaSlots.treatmentPreparation,
 };
 
 export default function Home() {
@@ -35,7 +39,7 @@ export default function Home() {
         <div className="home-hero-copy">
           <p className="eyebrow hero-reveal hero-delay-1">Privatpraxis · Mainz-Gonsenheim</p>
           <h1 id="home-hero-title" className="hero-reveal hero-delay-2">Ästhetische Medizin, <em>Haut &amp; Haare</em> in Mainz</h1>
-          <p className="home-hero-intro hero-reveal hero-delay-3">Individuelle ärztliche Behandlungen mit Fokus auf natürliche Ergebnisse, moderne Verfahren und persönliche Betreuung.</p>
+          <p className="home-hero-intro hero-reveal hero-delay-3">Individuelle ärztliche Beratung mit Blick auf Möglichkeiten, Grenzen und eine persönliche Begleitung.</p>
           <div className="hero-actions hero-reveal hero-delay-4">
             <Link className="button button-primary" href="/termin/">Termin vereinbaren <Arrow/></Link>
             <Link className="button button-secondary" href="/behandlungsfinder/">Behandlung finden <span aria-hidden="true">→</span></Link>

@@ -1,14 +1,37 @@
-# Bildquellen der Bestandswebsite
+# Bildquellen und Asset-Status
 
-Die folgenden Dateien wurden am 26. August 2026 von der öffentlich erreichbaren Bestandswebsite `melimedics.de` lokal übernommen. Die neue Website bindet keine Bilddateien der Bestandswebsite per Hotlink ein.
+Stand: 31. August 2026
 
-| Lokale Datei | Originalquelle | Verwendung |
+Die öffentliche Bestandswebsite `https://melimedics.de/` wurde einschließlich ihrer XML-Sitemaps, öffentlichen Inhaltsseiten und WordPress-Medienbibliothek inventarisiert. Alle 235 öffentlich abrufbaren Bilder wurden lokal gespeichert; die neue Website verwendet keine Hotlinks.
+
+## Klassifizierung
+
+| Klasse | Anzahl | Öffentliche Verwendung |
+| --- | ---: | --- |
+| A – verifiziert/authentisch | 26 | 17 Praxis- und Behandlungsfotos werden passend eingesetzt; 4 weitere authentische Behandlungsfotos und 5 Marken-/Logo-Dateien bleiben lokal dokumentiert. |
+| B – Herkunft unklar | 0 | Keine. Sechs zunächst unklare Stock-/Texturdateien konnten dem importierten Templatebestand zugeordnet werden. |
+| C – Template/Demo | 209 | Ausschließlich im lokalen Archiv `public/images/legacy/template-demo/`; keine öffentliche Referenz im App-Code. |
+
+Die maschinenlesbare Einzelinventur mit WordPress-ID, Originalquelle, Dateiformat, Abmessungen, Fundstellen, Klassifizierung und lokalen Pfaden liegt in `docs/LEGACY-ASSET-INVENTORY.json`.
+
+## Öffentliche A-Assets
+
+| Bereich | Optimierte Dateien | Verwendung |
 | --- | --- | --- |
-| `public/images/melimedics/praxis-behandlung.webp` | `https://melimedics.de/wp-content/uploads/2025/03/Melimedics-scaled.webp` | Startseiten-Hero |
-| `public/images/melimedics/melih-kandemir-prp.jpeg` | `https://melimedics.de/wp-content/uploads/2025/03/Melih-Kandemir--scaled.jpeg` | Arzt-/Vertrauensbereich |
-| `public/images/melimedics/gesichtsberatung.webp` | `https://melimedics.de/wp-content/uploads/2025/03/instagram-4.webp` | Ästhetische Medizin / Gesichtsberatung |
-| `public/images/melimedics/botulinumtoxin-behandlung.jpeg` | `https://melimedics.de/wp-content/uploads/2025/03/Botox-Behandlung-scaled.jpeg` | Arzt & Praxis: Ästhetische Medizin |
-| `public/images/melimedics/gesichtspflege.jpeg` | `https://melimedics.de/wp-content/uploads/2025/03/Gesichtspflege-scaled.jpeg` | Arzt & Praxis: Kosmetik |
-| `public/images/melimedics/schroepfen-behandlung.jpeg` | `https://melimedics.de/wp-content/uploads/2025/03/Melimedics-Schroepfen-Ruecken-2-scaled.jpeg` | Arzt & Praxis: Gesundheit |
+| Arzt & Behandlung | `public/images/doctor/*.webp` | Startseite, Arzt-/Praxisbereich, ästhetische und haarmedizinische Detailseiten |
+| Praxis | `public/images/practice/*.webp` | Startseite, Gesundheit, Arzt & Praxis |
+| Ästhetik | `public/images/treatments/aesthetics/*.webp` | Gesichtsbereich, Detailseiten, Kosmetik |
+| Haut & Laser | `public/images/skin-laser/*.webp` | Kategorie und Detailseiten für Laser/HIFU |
+| PRP/Haar | `public/images/hair/*.webp` | PRP- und Haarseiten sowie Diagnostik |
+| Gesundheit | `public/images/treatments/health/*.webp` | Authentische Praxiseinblicke in der Galerie; keine Ableitung nicht bestätigter aktueller Leistungen |
+| Markenmaterial | `public/images/miscellaneous/*.webp` | Lokal bewahrt; vorhandenes Code-Logo bleibt unverändert |
 
-Vor einer öffentlichen Veröffentlichung bleiben die Bild- und Personenrechte sowie die interne Freigabe Teil der finalen redaktionellen Prüfung.
+Die Webvarianten sind auf maximal 1.600 × 1.800 Pixel begrenzt und als WebP mit einer qualitätsorientierten Komprimierung erzeugt. Die Quelldateien bleiben jeweils im Unterordner `originals/` erhalten. Bilder werden über `next/image` mit intrinsischen Abmessungen beziehungsweise responsiven `sizes` eingebunden.
+
+## Redaktionelle Regeln
+
+- Personen und Räume werden nur als Melimedics-Aufnahmen bezeichnet, wenn Bildinhalt und Bestandskontext dies tragen.
+- Eine Aufnahme dokumentiert nicht automatisch, dass ein bestimmtes Gerät, Produkt oder eine Leistung aktuell angeboten wird.
+- Keine Vorher-Nachher-, Demoarzt-, Stock-Testimonial- oder Templatebilder werden öffentlich verwendet.
+- Alt-Texte beschreiben den sichtbaren Inhalt und vermeiden Behandlungs- oder Erfolgsbehauptungen.
+- Vor dem Produktivgang bleiben Bild- und Personenrechte sowie die interne Freigabe Teil der abschließenden rechtlichen Prüfung.

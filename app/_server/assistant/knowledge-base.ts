@@ -3,14 +3,14 @@ import { practice } from "../../_data/practice";
 import { priceCategories, treatments } from "../../_data/treatments";
 import type { KnowledgeEntry } from "./core";
 
-const lastUpdated = "2026-08-26";
+const lastUpdated = "2026-08-31";
 
 const administrativeEntries: KnowledgeEntry[] = [
   {
     id: "practice-location",
     title: "Praxisstandort",
     category: "practice",
-    content: `Melimedics befindet sich in ${practice.city.value}.`,
+    content: `Melimedics befindet sich in der ${practice.street.value} in ${practice.city.value}. Eine Postleitzahl wird erst nach Klärung widersprüchlicher Bestandsangaben veröffentlicht.`,
     url: "/kontakt/",
     medicalApprovalStatus: practice.city.status === "verified" ? "approved" : practice.city.status,
     keywords: ["praxis", "standort", "mainz", "gonsenheim", "adresse", "kontakt"],
@@ -73,23 +73,13 @@ const treatmentEntries: KnowledgeEntry[] = treatments.flatMap((treatment) => {
     id: `treatment-${treatment.slug}`,
     title: treatment.title,
     category: treatment.category === "hair" ? "hair" : "treatment",
-    content: [treatment.shortDescription, ...(treatment.explanation ?? [])].join(" "),
+    content: treatment.assistantSummary,
     url: treatment.href,
-    medicalApprovalStatus: treatment.medicalApprovalStatus,
+    medicalApprovalStatus: treatment.assistantApprovalStatus,
     keywords: [treatment.title, treatment.slug, treatment.category, ...(treatment.concerns ?? [])],
     lastUpdated,
   };
-  const faq = (treatment.faq ?? []).map<KnowledgeEntry>((item, index) => ({
-    id: `faq-${treatment.slug}-${index + 1}`,
-    title: item.question,
-    category: "faq",
-    content: item.answer,
-    url: treatment.href,
-    medicalApprovalStatus: treatment.medicalApprovalStatus,
-    keywords: [treatment.title, treatment.slug, item.question],
-    lastUpdated,
-  }));
-  return [base, ...faq];
+  return [base];
 });
 
 const priceEntries: KnowledgeEntry[] = priceCategories.flatMap((category) => category.items.map((item) => ({

@@ -28,7 +28,7 @@ export const doctor = {
   qualifications: [] as string[],
   training: [] as string[],
   focusAreas: [] as string[],
-  originalPhoto: "/images/melimedics/melih-kandemir-prp.jpeg",
+  originalPhoto: "/images/doctor/melih-kandemir-prp.webp",
   contentTodos: [
     "Vollständigen Namen anhand eines Primärnachweises bestätigen",
     "Korrekte Berufsbezeichnung und Titel freigeben",

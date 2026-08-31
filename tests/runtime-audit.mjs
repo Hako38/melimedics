@@ -100,7 +100,7 @@ const transplantHtml = await (await fetchLocal("/behandlungen/haartransplantatio
 const botoxHtml = await (await fetchLocal("/behandlungen/botulinumtoxin/")).text();
 assert.match(homeHtml, /"@type":"FAQPage"/);
 assert.match(transplantHtml, /"@type":"FAQPage"/);
-assert.doesNotMatch(botoxHtml, /"@type":"FAQPage"/);
+assert.match(botoxHtml, /"@type":"FAQPage"/);
 
 const headersResponse = await fetchLocal("/");
 for (const header of ["content-security-policy", "referrer-policy", "x-content-type-options", "x-frame-options", "permissions-policy"]) {

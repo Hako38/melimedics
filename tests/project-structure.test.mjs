@@ -23,28 +23,26 @@ test("contains the complete Phase 1B homepage without fabricated proof", async (
 });
 
 test("uses local, documented images from the existing Melimedics website", async () => {
-  const [media, homepage, shell, practice, sources, files] = await Promise.all([
+  const [media, homepage, shell, practice, sources, inventorySource, templateFiles] = await Promise.all([
     read("app/_data/media.ts"),
     read("app/page.tsx"),
     read("app/_components/SiteShell.tsx"),
     read("app/arzt-praxis/page.tsx"),
     read("docs/IMAGE-SOURCES.md"),
-    readdir(new URL("../public/images/melimedics/", import.meta.url)),
+    read("docs/LEGACY-ASSET-INVENTORY.json"),
+    readdir(new URL("../public/images/legacy/template-demo/", import.meta.url)),
   ]);
-  for (const file of [
-    "praxis-behandlung.webp",
-    "melih-kandemir-prp.jpeg",
-    "gesichtsberatung.webp",
-    "botulinumtoxin-behandlung.jpeg",
-    "gesichtspflege.jpeg",
-    "schroepfen-behandlung.jpeg",
-  ]) assert.ok(files.includes(file));
+  const inventory = JSON.parse(inventorySource);
+  assert.equal(inventory.length, 235);
+  assert.equal(inventory.filter(({ classification }) => classification === "verified_authentic").length, 26);
+  assert.equal(inventory.filter(({ classification }) => classification === "template_demo").length, 209);
+  assert.equal(templateFiles.length, 209);
   assert.match(media, /sourceUrl: `https:\/\/\$\{string\}`/);
   assert.match(homepage, /mediaSlots\.homeHero\.src/);
   assert.match(shell, /mediaSlots\.doctorPortrait\.src/);
   assert.match(shell, /interior-art-photo/);
-  assert.match(practice, /mediaSlots\.botulinumtoxinTreatment\.src/);
-  assert.match(sources, /keine Bilddateien der Bestandswebsite per Hotlink/);
+  assert.match(practice, /mediaSlots\.doctorBotulinumtoxin/);
+  assert.match(sources, /keine Hotlinks/);
   assert.doesNotMatch(`${homepage}\n${shell}\n${practice}`, /https:\/\/melimedics\.de\/wp-content\/uploads/);
 });
 
@@ -229,7 +227,7 @@ test("adds the Phase 3B approval-gated public assistant without exposing interna
   for (const name of ["generateAssistantResponse", "classifyInquiry", "summarizeConsultation"]) assert.match(core, new RegExp(name));
   assert.match(core, /medicalApprovalStatus === "approved"/);
   assert.match(core, /evaluateGuardrails/);
-  assert.match(knowledge, /treatment\.medicalApprovalStatus/);
+  assert.match(knowledge, /treatment\.assistantApprovalStatus/);
   assert.match(knowledge, /item\.approvalStatus/);
   assert.match(provider, /GenericJsonAIProvider/);
   assert.match(runtime, /import "server-only"/);

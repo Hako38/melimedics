@@ -9,7 +9,7 @@ export type VerifiedValue = {
 export const practice = {
   name: "Melimedics",
   city: { value: "Mainz-Gonsenheim", status: "verified" } satisfies VerifiedValue,
-  street: { value: null, status: "needs_review", todo: "Straße und Hausnummer anhand eines Primärnachweises bestätigen." } satisfies VerifiedValue,
+  street: { value: "Elbestraße 90", status: "verified" } satisfies VerifiedValue,
   postalCode: { value: null, status: "needs_review", todo: "Widerspruch zwischen 55122 und 55124 vor Veröffentlichung auflösen." } satisfies VerifiedValue,
   phone: { value: "01575 8272466", status: "verified" } satisfies VerifiedValue,
   phoneHref: "tel:+4915758272466",
@@ -21,6 +21,7 @@ export const practice = {
 } as const;
 
 export const visibleContact = {
+  street: practice.street.value,
   location: practice.city.value,
   phone: practice.phone.value,
   phoneHref: practice.phoneHref,

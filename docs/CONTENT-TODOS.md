@@ -23,7 +23,7 @@
 - vollständige Praxisanschrift inklusive korrekter Postleitzahl (Widerspruch 55122/55124 auflösen)
 - Öffnungszeiten
 - ärztliche Vita, Qualifikationen, Fortbildungen und Berufsangaben
-- originale Arzt- und Praxisfotografie
+- Bild- und Personenrechte der 26 authentischen Bestandsassets abschließend dokumentieren
 - Operateur, Standort und Methode einer möglichen Haartransplantation
 - Praxis- und Nachsorgeablauf für operative Leistungen
 - rechtlich vollständiges Impressum und Datenschutz
@@ -40,8 +40,8 @@
 ## Kontaktdaten
 
 - Telefonnummer und E-Mail sind zentral als verifiziert hinterlegt
-- Mainz-Gonsenheim ist als Standort sichtbar
-- Straße, Hausnummer, Postleitzahl, Öffnungszeiten, Maps-Link und Anfahrt bleiben bis zur Bestätigung verborgen
+- Elbestraße 90 und Mainz-Gonsenheim sind als verifizierbare Bestandsangaben sichtbar
+- Die Postleitzahl bleibt wegen des Konflikts 55122/55124 verborgen; Öffnungszeiten, Maps-Link und konkrete Anfahrt bleiben bis zur Bestätigung offen
 
 ## Bewertungen
 

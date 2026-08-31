@@ -1,36 +1,33 @@
 # Zentraler Content-Freigabestatus
 
-Stand: Phase 1D · 25. August 2026
+Stand: Final Content & Asset Pass · 31. August 2026
 
-Die öffentliche Website zeigt diese internen Statuswerte nicht an. Die programmatische Quelle ist `getContentStatusReport()` in `app/_lib/content-status.ts`; sie aggregiert Behandlungen, Preise, Praxisdaten, Arztdaten und Medien zentral.
-
-## Zusammenfassung
-
-| Status | Anzahl | Bedeutung |
-|---|---:|---|
-| `approved` | 4 | verifizierte Praxis-/Kontaktdaten |
-| `needs_review` | 16 | 13 Behandlungstexte, 2 Praxisfelder und der Arztname |
-| `missing` | 26 | 15 Preise, 2 Praxisfelder, 3 Medien und 6 Arztdaten |
-| **Gesamt** | **46** | zentral erfasste Freigabepunkte |
+Die öffentliche Website zeigt interne Statuswerte nicht an. Die programmatische Quelle ist `getContentStatusReport()` in `app/_lib/content-status.ts`; sie aggregiert Behandlungen, Preise, Praxisdaten, Arztdaten, Medien, Finder-Mappings und Haar-Check-Freigaben.
 
 ## Approved
 
-- Ort: Mainz-Gonsenheim
-- Telefon: 01575 8272466
-- E-Mail: info@melimedics.de
-- Planity-Buchungslink
+- Standort Mainz-Gonsenheim
+- Straße und Hausnummer: Elbestraße 90
+- Telefon, E-Mail und Planity-Buchungslink
+- 21 klassifizierte authentische Web-Bildslots
+- konservative Assistenten-Zusammenfassungen aller 15 Behandlungsbereiche
+- allgemeine Navigation und sichere Beratungshinweise des Website-Assistenten
 
 ## Needs review
 
-- alle 13 Behandlungstexte: medizinische Angaben, Risiken, Kontraindikationen, Wirkung, Ablauf und Nachsorge gemäß jeweiliger TODOs
-- Praxis: Straße/Hausnummer und PLZ; insbesondere den Widerspruch 55122/55124 auflösen
-- Arzt: vollständige Namensschreibweise „Melih Kandemir“ anhand einer Primärquelle bestätigen
+- alle 15 ausführlichen Behandlungstexte: medizinische Endabnahme von Indikationen, Wirkprinzip, Grenzen, Risiken, Gegenanzeigen, Ablauf, Nachsorge und FAQ
+- Postleitzahl; insbesondere den Widerspruch 55122/55124 auflösen
+- vollständige Namensschreibweise und öffentliche Darstellung von Melih Kandemir anhand einer verbindlichen Primärquelle bestätigen
+- Finder-Zuordnungen und Haar-Check-Einwilligungstexte
+- Bild- und Personenrechte für den öffentlichen Produktivbetrieb abschließend dokumentieren
 
 ## Missing
 
-- alle 15 kaufmännischen Preispositionen
-- Öffnungs-/Sprechzeiten und verifizierter Maps-Link
-- Hero-/Praxisfoto, Arztporträt und Praxis-Innenaufnahme
-- Arzttitel/Berufsbezeichnung, Vita, Qualifikationen, Fortbildungen, Tätigkeitsschwerpunkte und freigegebenes Porträt
+- alle 15 Preispositionen
+- Öffnungs-/Sprechzeiten und verifizierter Kartenlink
+- Arzttitel/Berufsbezeichnung, Vita, Qualifikationen, Fortbildungen und bestätigte Tätigkeitsschwerpunkte
+- Haartransplantationsmethode, Operateur, Operationsstandort und vertraglich/medizinisch bestätigter Ablauf
+- konkrete Geräte, Produktprotokolle und Laborabläufe
+- produktiver privater Foto-Storage, Malware-Prüfung, Benachrichtigung und Retention für den Haar-Check
 
-Vor dem Relaunch ist die separate `RELAUNCH-CHECKLIST.md` verbindlich abzuarbeiten.
+Die vollständigen offenen Punkte stehen in `CONTENT-TODOS.md`; vor dem Relaunch ist zusätzlich `RELAUNCH-CHECKLIST.md` abzuarbeiten.
