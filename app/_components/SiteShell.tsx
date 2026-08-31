@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer-lead">
-        <Link className="brand brand-light" href="/"><span className="brand-mark">M</span><span className="brand-word">MELIMEDICS<small>PRIVATPRAXIS · MAINZ</small></span></Link>
+        <Link className="brand brand-light" href="/" aria-label="Melimedics Startseite"><span className="brand-logo"><Image src={mediaSlots.brandLogo.src} alt="" fill sizes="12rem"/></span></Link>
         <p>Ärztliche Ästhetik, Haut- und Haarmedizin aus einer Hand – persönlich in Mainz.</p>
       </div>
       <div className="footer-grid">

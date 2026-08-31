@@ -9,7 +9,7 @@ Die öffentliche Website zeigt interne Statuswerte nicht an. Die programmatische
 - Standort Mainz-Gonsenheim
 - Straße und Hausnummer: Elbestraße 90
 - Telefon, E-Mail und Planity-Buchungslink
-- 21 klassifizierte authentische Web-Bildslots
+- 22 lokale, aus authentischen Bestandsassets abgeleitete Web-Bildslots
 - konservative Assistenten-Zusammenfassungen aller 15 Behandlungsbereiche
 - allgemeine Navigation und sichere Beratungshinweise des Website-Assistenten
 

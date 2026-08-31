@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { visibleContact } from "../_data/practice";
+import { mediaSlots } from "../_data/media";
 
 const navigation = [
   ["Behandlungen", "/behandlungen/"],
@@ -29,8 +31,7 @@ export function Header() {
     <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
       <div className="header-inner">
         <Link className="brand" href="/" aria-label="Melimedics Startseite">
-          <span className="brand-mark" aria-hidden="true">M</span>
-          <span className="brand-word">MELIMEDICS<small>PRIVATPRAXIS · MAINZ</small></span>
+          <span className="brand-logo"><Image src={mediaSlots.brandLogo.src} alt="" fill priority sizes="(max-width: 768px) 9rem, 11rem"/></span>
         </Link>
         <nav className="desktop-nav" aria-label="Hauptnavigation">
           {navigation.map(([label, href]) => <Link key={href} href={href} aria-current={pathname.startsWith(href) ? "page" : undefined}>{label}</Link>)}

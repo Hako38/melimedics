@@ -20,6 +20,7 @@ const approvedMedia = (id: string, src: string, alt: string, width: number, heig
 });
 
 export const mediaSlots = {
+  brandLogo: approvedMedia("brand-logo", "/images/miscellaneous/melimedics-logo-header.webp", "Melimedics Beauty & Health Logo", 631, 445, "https://melimedics.de/wp-content/uploads/2025/03/Melimedics-Logo-2.png"),
   homeHero: approvedMedia("home-hero", "/images/practice/praxis-behandlung.webp", "Melih Kandemir während einer Behandlung in der Melimedics Praxis", 1200, 1800, "https://melimedics.de/wp-content/uploads/2025/03/Melimedics.webp"),
   doctorPortrait: approvedMedia("doctor-portrait", "/images/doctor/melih-kandemir-prp.webp", "Melih Kandemir bereitet eine PRP-Behandlung vor", 1200, 1800, "https://melimedics.de/wp-content/uploads/2025/03/Melih-Kandemir-.jpeg"),
   doctorBotulinumtoxin: approvedMedia("doctor-botulinumtoxin", "/images/doctor/melih-kandemir-botulinumtoxin.webp", "Melih Kandemir bei einer ästhetischen Behandlung", 1200, 1800, "https://melimedics.de/wp-content/uploads/2025/03/Melih-Kandemir-Botox.jpeg"),

@@ -24,9 +24,11 @@ Die maschinenlesbare Einzelinventur mit WordPress-ID, Originalquelle, Dateiforma
 | Haut & Laser | `public/images/skin-laser/*.webp` | Kategorie und Detailseiten für Laser/HIFU |
 | PRP/Haar | `public/images/hair/*.webp` | PRP- und Haarseiten sowie Diagnostik |
 | Gesundheit | `public/images/treatments/health/*.webp` | Authentische Praxiseinblicke in der Galerie; keine Ableitung nicht bestätigter aktueller Leistungen |
-| Markenmaterial | `public/images/miscellaneous/*.webp` | Lokal bewahrt; vorhandenes Code-Logo bleibt unverändert |
+| Markenmaterial | `public/images/miscellaneous/*.webp` | Lokal bewahrt; die authentische Wort-/Bildmarke wird in Header und Footer verwendet |
 
 Die Webvarianten sind auf maximal 1.600 × 1.800 Pixel begrenzt und als WebP mit einer qualitätsorientierten Komprimierung erzeugt. Die Quelldateien bleiben jeweils im Unterordner `originals/` erhalten. Bilder werden über `next/image` mit intrinsischen Abmessungen beziehungsweise responsiven `sizes` eingebunden.
+
+Für Header und Footer wird zusätzlich `melimedics-logo-header.webp` verwendet: eine verlustfreie Randbereinigung der authentischen transparenten Logoquelle `melimedics-logo-signatur.webp`, ohne inhaltliche oder gestalterische Änderung der Wort-/Bildmarke.
 
 ## Redaktionelle Regeln
 

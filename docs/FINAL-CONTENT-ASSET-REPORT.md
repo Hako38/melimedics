@@ -10,6 +10,7 @@ Abschlussstand: 31. August 2026
 - 209 importierte Theme-, Stock-, Demoarzt-, Testimonial-, Platzhalter- und Dekorassets identifiziert und ausschließlich unter `public/images/legacy/template-demo/` archiviert.
 - Klasse B nach abschließender Sichtprüfung: 0. Sechs zunächst unklare Stock-/Texturassets wurden eindeutig Klasse C zugeordnet.
 - Für alle 26 A-Assets optimierte WebP-Varianten erzeugt; Originaldateien bleiben erhalten.
+- Die Melimedics-Wort-/Bildmarke wird zusätzlich als randbereinigte, inhaltlich unveränderte Header-/Footer-Variante aus der authentischen transparenten Quelldatei eingebunden.
 - 17 unterschiedliche authentische Fotos passend auf Startseite, Kategorien, Behandlungsdetails, Arzt & Praxis und Kontakt eingesetzt.
 - 4 weitere authentische Behandlungsfotos werden wegen fehlender aktueller Leistungsbestätigung nicht erzwungen öffentlich eingesetzt; 5 Logo-/Markenassets bleiben dokumentiert.
 - Keine Bild-Hotlinks und keine öffentliche Referenz auf das Demoarchiv.
