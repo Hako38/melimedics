@@ -62,6 +62,8 @@ export type HairConsultation = {
   previousTreatmentNote?: string;
   interest: string[];
   desiredTimeframe: string;
+  firstName: string;
+  lastName: string;
   contactName: string;
   email: string;
   phone: string;
@@ -92,7 +94,7 @@ export interface PrivateFileStorage {
 }
 
 export interface ConsultationNotifier {
-  notify(input: { consultationId: string; createdAt: string; photoCount: number }): Promise<{ delivered: boolean }>;
+  notify(input: { consultation: HairConsultation }): Promise<{ delivered: boolean }>;
 }
 
 export interface FileContentScanner {
@@ -243,6 +245,8 @@ export function createConsultationService(deps: ConsultationServiceDependencies)
       previousTreatmentNote: input.previousTreatmentNote,
       interest: input.interest,
       desiredTimeframe: input.desiredTimeframe,
+      firstName: input.firstName,
+      lastName: input.lastName,
       contactName: `${input.firstName} ${input.lastName}`,
       email: input.email,
       phone: input.phone,
@@ -266,7 +270,7 @@ export function createConsultationService(deps: ConsultationServiceDependencies)
       throw new ConsultationServiceError("storage_error");
     }
     try {
-      await deps.notifier.notify({ consultationId: id, createdAt, photoCount: uploaded.length });
+      await deps.notifier.notify({ consultation: record });
     } catch {
       // Notification is an optional side effect. The persisted submission remains valid.
     }

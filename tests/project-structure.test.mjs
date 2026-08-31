@@ -243,3 +243,25 @@ test("adds the Phase 3B approval-gated public assistant without exposing interna
   const apiFiles = await readdir(new URL("../app/api/", import.meta.url), { recursive: true });
   assert.ok(!apiFiles.some((file) => /summary|consultation-ai|internal-ai/i.test(file)));
 });
+
+test("adds the Phase 3C provider-neutral and approval-gated automation architecture", async () => {
+  const [core, runtime, analytics, environment, operations] = await Promise.all([
+    read("app/_server/automation/core.ts"),
+    read("app/_server/automation/runtime.ts"),
+    read("app/_lib/automation-analytics.ts"),
+    read(".env.example"),
+    read("docs/PHASE-3C-OPERATIONS.md"),
+  ]);
+  for (const event of ["consultation_submitted", "consultation_contacted", "appointment_booked", "appointment_upcoming", "treatment_completed", "followup_due", "review_request_due"]) assert.match(core, new RegExp(event));
+  for (const template of ["consultation_received", "internal_new_consultation", "appointment_preparation", "followup_open_consultation", "treatment_aftercare", "control_reminder", "review_request"]) assert.match(core, new RegExp(template));
+  for (const method of ["schedule", "cancel", "executeDueJobs", "markCompleted", "markFailed"]) assert.match(core, new RegExp(method));
+  assert.match(core, /idempotencyKey/);
+  assert.match(core, /approvalStatus !== "approved"/);
+  assert.match(runtime, /DisabledCommunicationProvider/);
+  assert.match(runtime, /marketing: false/);
+  assert.doesNotMatch(analytics, /\b(email|phone|contactName|healthData|messageText|photoData)\s*:/i);
+  for (const key of ["COMMUNICATION_ENABLED", "COMMUNICATION_PROVIDER", "MAIL_FROM", "MELIMEDICS_NOTIFICATION_RECIPIENT", "AUTOMATION_ENABLED", "AUTOMATION_MAX_RETRIES", "REVIEW_URL"]) assert.match(environment, new RegExp(key));
+  assert.match(operations, /IONOS/);
+  assert.match(operations, /Cron/);
+  assert.match(operations, /persistente/);
+});

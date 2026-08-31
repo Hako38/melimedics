@@ -1,7 +1,8 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { createConsultationService, type ConsultationNotifier, type ConsultationRepository, type FileContentScanner, type PrivateFileStorage } from "./core";
+import { createConsultationService, type ConsultationRepository, type FileContentScanner, type PrivateFileStorage } from "./core";
 import { FileSystemConsultationRepository, FileSystemPrivateFileStorage } from "./filesystem";
+import { AutomationConsultationNotifier } from "../automation/runtime";
 
 class DisabledRepository implements ConsultationRepository {
   private unavailable(): never { throw new Error("repository unavailable"); }
@@ -15,10 +16,6 @@ class DisabledRepository implements ConsultationRepository {
 class DisabledStorage implements PrivateFileStorage {
   put(): Promise<never> { return Promise.reject(new Error("storage unavailable")); }
   delete(): Promise<void> { return Promise.reject(new Error("storage unavailable")); }
-}
-
-class DisabledNotifier implements ConsultationNotifier {
-  async notify() { return { delivered: false }; }
 }
 
 class UnconfiguredScanner implements FileContentScanner {
@@ -57,7 +54,7 @@ export function getHairConsultationService() {
   return createConsultationService({
     repository,
     storage,
-    notifier: new DisabledNotifier(),
+    notifier: new AutomationConsultationNotifier(),
     scanner: new UnconfiguredScanner(),
     config: {
       maxFileSize: config.maxFileSize,
