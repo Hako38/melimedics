@@ -134,7 +134,7 @@ export const finderFollowUpQuestions = {
 } as const;
 
 export const finderResultGroups: FinderResult[] = [
-  { id: "botulinumtoxin", title: "Botulinumtoxin", eyebrow: "Ästhetische Medizin", description: "Eine mögliche ärztliche Beratungsperspektive für ausgewählte mimische Anliegen.", href: "/behandlungen/botulinumtoxin/", medicalApprovalStatus: "needs_review" },
+  { id: "botulinumtoxin", title: "Botox (Botulinumtoxin)", eyebrow: "Ästhetische Medizin", description: "Eine mögliche ärztliche Beratungsperspektive für ausgewählte mimische Anliegen.", href: "/behandlungen/botulinumtoxin/", medicalApprovalStatus: "needs_review" },
   { id: "hyaluronsaeure", title: "Hyaluronsäure", eyebrow: "Ästhetische Medizin", description: "Eine mögliche Beratungsperspektive für Proportionen, Konturen oder ausgewählte Volumenthemen.", href: "/behandlungen/hyaluronsaeure/", medicalApprovalStatus: "needs_review" },
   { id: "biostimulatoren", title: "Biostimulatoren", eyebrow: "Ästhetische Medizin", description: "Ein Bereich für die ärztliche Einordnung regenerativer und strukturbezogener Behandlungsansätze.", href: "/behandlungen/biostimulatoren/", medicalApprovalStatus: "needs_review" },
   { id: "polynukleotide", title: "Polynukleotide", eyebrow: "Ästhetische Medizin", description: "Ein möglicher Beratungsbereich rund um Hautqualität und regenerative Ansätze.", href: "/behandlungen/polynukleotide/", medicalApprovalStatus: "needs_review" },

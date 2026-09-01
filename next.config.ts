@@ -17,6 +17,7 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  images: { qualities: [75, 86, 88] },
   devIndicators: false,
   poweredByHeader: false,
   reactStrictMode: true,

@@ -28,7 +28,7 @@ const featuredTreatmentMedia = {
   "/behandlungen/biostimulatoren/": mediaSlots.aestheticTreatment,
   "/behandlungen/co2-laser/": mediaSlots.laserTreatment,
   "/behandlungen/prp-haare/": mediaSlots.prpPreparation,
-  "/behandlungen/haartransplantation/": mediaSlots.treatmentPreparation,
+  "/behandlungen/haartransplantation/": mediaSlots.hairTransplantConsultation,
 };
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
         <div className="home-hero-copy">
           <p className="eyebrow hero-reveal hero-delay-1">Privatpraxis · Mainz-Gonsenheim</p>
           <h1 id="home-hero-title" className="hero-reveal hero-delay-2">Ästhetische Medizin, <em>Haut &amp; Haare</em> in Mainz</h1>
-          <p className="home-hero-intro hero-reveal hero-delay-3">Individuelle ärztliche Beratung mit Blick auf Möglichkeiten, Grenzen und eine persönliche Begleitung.</p>
+          <p className="home-hero-intro hero-reveal hero-delay-3">Individuelle ärztliche Beratung mit Blick auf Möglichkeiten, Grenzen und eine persönliche Begleitung. In unserer Privatpraxis verbinden wir ästhetische Medizin, Haut- und Haarmedizin zu einem sorgfältig geplanten Behandlungskonzept.</p>
           <div className="hero-actions hero-reveal hero-delay-4">
             <Link className="button button-primary" href="/termin/">Termin vereinbaren <Arrow/></Link>
             <Link className="button button-secondary" href="/behandlungsfinder/">Behandlung finden <span aria-hidden="true">→</span></Link>
@@ -69,7 +69,7 @@ export default function Home() {
 
       <Reveal><section className="home-section treatments-section" aria-labelledby="treatments-title">
         <div className="home-section-head"><div><p className="eyebrow">Behandlungsschwerpunkte</p><h2 id="treatments-title">Sorgfältig geplant.<br/><em>Persönlich abgestimmt.</em></h2></div><Link className="text-link" href="/behandlungen/">Alle Behandlungen <span>→</span></Link></div>
-        <div className="featured-treatment-grid">{featuredTreatments.map((item, index) => { const media = featuredTreatmentMedia[item.href as keyof typeof featuredTreatmentMedia]; return <Link href={item.href} key={item.title} className="featured-treatment-card"><div className="treatment-card-top"><small>{item.label}</small><span>{String(index + 1).padStart(2,"0")}</span></div><div className={`treatment-visual${media ? " treatment-visual-photo" : ""}`}>{media ? <Image src={media.src} alt={media.alt} fill sizes="(max-width: 768px) calc(100vw - 4rem), (max-width: 1200px) 45vw, 28vw"/> : <><i aria-hidden="true"/><i aria-hidden="true"/></>}</div><h3>{item.title}</h3><p>{item.copy}</p><strong>Behandlung ansehen <Arrow/></strong></Link>; })}</div>
+        <div className="featured-treatment-grid">{featuredTreatments.map((item, index) => { const media = featuredTreatmentMedia[item.href as keyof typeof featuredTreatmentMedia]; return <Link href={item.href} key={item.title} className="featured-treatment-card"><div className="treatment-card-top"><small>{item.label}</small><span>{String(index + 1).padStart(2,"0")}</span></div><div className={`treatment-visual${media ? " treatment-visual-photo" : ""}`}>{media ? <><Image src={media.src} alt={media.alt} fill sizes="(max-width: 768px) calc(100vw - 4rem), (max-width: 1200px) 45vw, 28vw"/>{media.mediaKind === "ai-generated" ? <small className="ai-media-badge">{media.disclosure}</small> : null}</> : <><i aria-hidden="true"/><i aria-hidden="true"/></>}</div><h3>{item.title}</h3><p>{item.copy}</p><strong>Behandlung ansehen <Arrow/></strong></Link>; })}</div>
       </section></Reveal>
 
       <Reveal><DoctorTrust/></Reveal>

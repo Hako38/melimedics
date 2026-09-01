@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Arrow, Breadcrumbs, CTA, InteriorHero, PageShell, SectionHeader } from "../_components/SiteShell";
+import { mediaSlots } from "../_data/media";
 import { priceCategories, priceSourceUrl, treatmentBySlug } from "../_data/treatments";
 import { pageMetadata } from "../_lib/metadata";
 
@@ -16,6 +17,8 @@ export default function PricesPage() {
       eyebrow="Preise"
       title={<>Transparent vergleichen.<br/><em>Persönlich planen.</em></>}
       intro="Hier finden Sie die aktuell über Planity veröffentlichten Preise. Der konkrete Behandlungsumfang wird vor dem Termin individuell besprochen."
+      media={mediaSlots.facialConsultation}
+      mediaLabel="Persönliche Planung bei Melimedics"
     />
     <section className="content-section price-section">
       <SectionHeader

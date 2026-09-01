@@ -20,7 +20,7 @@ test("contains the complete Phase 1B homepage with verified Google proof", async
   assert.match(homepage, /Testimonials items=\{verifiedTestimonials\}/);
   assert.match(content, /verifiedTestimonials: VerifiedTestimonial\[\] = \[\]/);
   assert.match(content, /rating: "5,0"/);
-  assert.match(content, /count: 137/);
+  assert.match(content, /count: 136/);
   assert.match(homepage, /hero-google-rating/);
   assert.doesNotMatch(`${homepage}\n${content}`, /Lorem ipsum|Sarah J\.|Michael T\.|five-star reviews/i);
 });

@@ -54,10 +54,10 @@ const generalContraindications = [
 
 export const treatments: TreatmentContent[] = [
   {
-    slug: "botulinumtoxin", title: "Botulinumtoxin", href: "/behandlungen/botulinumtoxin/", category: "aesthetics", eyebrow: "Ästhetische Medizin",
-    hero: "Mimik verstehen. Persönlich beraten.", shortDescription: "Ärztliche Beratung zu einer Behandlung mit Botulinumtoxin bei Melimedics in Mainz.",
+    slug: "botulinumtoxin", title: "Botox (Botulinumtoxin)", href: "/behandlungen/botulinumtoxin/", category: "aesthetics", eyebrow: "Botox Mainz · Ästhetische Medizin",
+    hero: "Mimik verstehen. Persönlich beraten.", shortDescription: "Ärztliche Beratung zu Botox – dem bekannten Markennamen für Behandlungen mit Botulinumtoxin – bei Melimedics in Mainz.",
     concerns: ["Ausgeprägte mimische Linien", "Anspannung bestimmter Gesichtsmuskeln", "Wunsch nach einer zurückhaltenden Veränderung"],
-    explanation: ["Botulinumtoxin ist ein verschreibungspflichtiger Wirkstoff. In ausgewählten Muskeln kann er die Signalübertragung vorübergehend reduzieren und damit die Aktivität dieser Muskeln beeinflussen.", "Welche Region behandelt werden kann und welches Maß sinnvoll ist, hängt von Mimik, Anatomie, Vorerkrankungen und dem persönlichen Ziel ab. Eine Behandlung erfolgt nur nach ärztlicher Aufklärung."],
+    explanation: ["Botox ist die im Alltag bekannteste Bezeichnung für eine Behandlung mit Botulinumtoxin. Medizinisch korrekt geht es um einen verschreibungspflichtigen Wirkstoff, der in ausgewählten Muskeln die Signalübertragung vorübergehend reduzieren und damit deren Aktivität beeinflussen kann.", "Welche Region behandelt werden kann und welches Maß sinnvoll ist, hängt von Mimik, Anatomie, Vorerkrankungen und dem persönlichen Ziel ab. Eine Behandlung erfolgt nur nach ärztlicher Aufklärung."],
     mechanism: ["Der Wirkstoff hemmt zeitlich begrenzt die Übertragung von Nervenimpulsen auf ausgewählte Muskeln.", "Die Wirkung baut sich nicht sofort auf und lässt mit der Zeit wieder nach; der Verlauf ist individuell."],
     facts: [{ label: "Planung", value: "Nach Mimik- und Gesichtsanalyse" }, { label: "Ergebnis", value: "Individuell und vorübergehend" }, { label: "Nachsorge", value: "Persönliche Hinweise beachten" }],
     procedure: consultationProcess,
@@ -363,7 +363,7 @@ export const priceCategories: PriceCategory[] = [
     ],
   },
   {
-    title: "Botulinumtoxin",
+    title: "Botox / Botulinumtoxin",
     items: [
       { id: "botulinumtoxin-zone-1", treatmentSlug: "botulinumtoxin", label: "Behandlung – 1 Zone", duration: "30 Min.", price: "200 €", approvalStatus: "approved" },
       { id: "botulinumtoxin-zonen-2", treatmentSlug: "botulinumtoxin", label: "Behandlung – 2 Zonen", duration: "30 Min.", price: "200 €", approvalStatus: "approved" },

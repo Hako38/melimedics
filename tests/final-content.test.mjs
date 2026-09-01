@@ -53,3 +53,22 @@ test("does not publish template assets or hotlink images", async () => {
   assert.match(media, /brandLogo/);
   assert.ok(localSources.every((source) => source.startsWith("/images/")));
 });
+
+test("publishes the guide articles and clearly discloses generated visuals", async () => {
+  const [guides, guideIndex, guideRoute, media, shell, homepage, practice] = await Promise.all([
+    read("app/_data/guides.ts"),
+    read("app/ratgeber/page.tsx"),
+    read("app/ratgeber/[slug]/page.tsx"),
+    read("app/_data/media.ts"),
+    read("app/_components/SiteShell.tsx"),
+    read("app/page.tsx"),
+    read("app/arzt-praxis/page.tsx"),
+  ]);
+  for (const slug of ["beratungsgespraech-vorbereiten", "hautanalyse-am-anfang", "haarausfall-verstehen"]) assert.match(guides, new RegExp(`slug: "${slug}"`));
+  assert.match(guideIndex, /Aktuelle Beiträge/);
+  assert.doesNotMatch(guideIndex, /Redaktionell in Vorbereitung|Themen in Vorbereitung/);
+  assert.match(guideRoute, /generateStaticParams/);
+  assert.match(media, /mediaKind: "ai-generated"/);
+  assert.match(media, /disclosure: "KI-Visualisierung"/);
+  for (const source of [shell, homepage, practice]) assert.match(source, /ai-media-badge/);
+});

@@ -1,2 +1,2 @@
 import { permanentRedirect } from "next/navigation";
-export default function LegacyBotox(){ permanentRedirect("/behandlungen/gesicht/"); }
+export default function LegacyBotox(){ permanentRedirect("/behandlungen/botulinumtoxin/"); }

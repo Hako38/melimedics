@@ -13,7 +13,7 @@ export const concerns: LinkCard[] = [
 ];
 
 export const featuredTreatments: LinkCard[] = [
-  { title: "Botulinumtoxin", copy: "Ärztlich geplante Behandlung für ausgewählte ästhetische und medizinische Anliegen.", href: "/behandlungen/botulinumtoxin/", label: "Gesicht" },
+  { title: "Botox (Botulinumtoxin)", copy: "Ärztlich geplante Behandlung für ausgewählte mimische und medizinische Anliegen.", href: "/behandlungen/botulinumtoxin/", label: "Gesicht" },
   { title: "Hyaluronsäure", copy: "Individuelle Planung mit Blick auf Proportionen und einen natürlichen Gesamteindruck.", href: "/behandlungen/hyaluronsaeure/", label: "Gesicht" },
   { title: "Biostimulatoren", copy: "Behandlungskonzepte nach persönlicher Beratung und ärztlicher Einschätzung.", href: "/behandlungen/biostimulatoren/", label: "Gesicht" },
   { title: "CO₂-Laser", copy: "Hautbehandlung auf Grundlage von Hautzustand, Anliegen und medizinischer Einschätzung.", href: "/behandlungen/co2-laser/", label: "Haut & Laser" },
@@ -52,7 +52,7 @@ export const verifiedTestimonials: VerifiedTestimonial[] = [];
 
 export const googleReviewSummary = {
   rating: "5,0",
-  count: 137,
+  count: 136,
   label: "Google-Bewertungen",
   sourceUrl: "https://www.google.com/maps/place/Melimedics/@50.0055131,8.2227146,17z/data=!3m1!4b1!4m6!3m5!1s0x47bd953ce8ea976f:0x9e7f5112b0983871!8m2!3d50.0055131!4d8.2227146!16s%2Fg%2F11x80pbclq",
   verifiedAt: "2026-09-01",

@@ -8,6 +8,8 @@ export type MediaSlot = {
   width: number;
   height: number;
   sourceUrl: `https://${string}`;
+  mediaKind: "original" | "ai-generated";
+  disclosure?: string;
   approvalStatus: MedicalApprovalStatus;
   todo: string;
 };
@@ -15,6 +17,21 @@ export type MediaSlot = {
 const approvedMedia = (id: string, src: string, alt: string, width: number, height: number, sourceUrl: `https://${string}`): MediaSlot => ({
   id, src, alt, width, height, sourceUrl,
   aspectRatio: `${width}/${height}`,
+  mediaKind: "original",
+  approvalStatus: "approved",
+  todo: "",
+});
+
+const generatedMedia = (id: string, src: string, alt: string): MediaSlot => ({
+  id,
+  src,
+  alt,
+  width: 1200,
+  height: 1800,
+  sourceUrl: "https://openai.com/",
+  aspectRatio: "1200/1800",
+  mediaKind: "ai-generated",
+  disclosure: "KI-Visualisierung",
   approvalStatus: "approved",
   todo: "",
 });
@@ -42,4 +59,10 @@ export const mediaSlots = {
   cuppingDetail: approvedMedia("cupping-detail", "/images/treatments/health/schroepfen-detail.webp", "Detail einer Schröpfbehandlung bei Melimedics", 1200, 1800, "https://melimedics.de/wp-content/uploads/2025/03/Melimedics-Schroepfen.jpeg"),
   cuppingBack: approvedMedia("cupping-back", "/images/treatments/health/schroepfen-ruecken.webp", "Schröpfgläser während einer Behandlung bei Melimedics", 1200, 1800, "https://melimedics.de/wp-content/uploads/2025/03/Melimedics-Schroepfen-Ruecken.jpeg"),
   cuppingTreatment: approvedMedia("cupping-treatment", "/images/treatments/health/schroepfen-behandlung.webp", "Melih Kandemir führt eine Schröpfbehandlung durch", 1200, 1800, "https://melimedics.de/wp-content/uploads/2025/03/Melimedics-Schroepfen-Ruecken-2.jpeg"),
+  hairLossExamination: generatedMedia("hair-loss-examination", "/images/ai/haarausfall-untersuchung.jpg", "Ärztliche Untersuchung der Kopfhaut zur Einordnung von Haarausfall"),
+  hairTransplantConsultation: generatedMedia("hair-transplant-consultation", "/images/ai/haartransplantation-beratung.jpg", "Ärztliche Beratung und Untersuchung der Haarlinie vor einer möglichen Haartransplantation"),
+  treatmentRoomVisualization: generatedMedia("treatment-room-visualization", "/images/ai/behandlungsraum-visualisierung.jpg", "Visualisierung einer ruhigen medizinischen Behandlungsumgebung"),
+  treatmentPreparationVisualization: generatedMedia("treatment-preparation-visualization", "/images/ai/behandlungsvorbereitung-visualisierung.jpg", "Visualisierung einer sorgfältig vorbereiteten medizinischen Behandlung"),
+  practiceDetailVisualization: generatedMedia("practice-detail-visualization", "/images/ai/praxisdetails-visualisierung.jpg", "Visualisierung ruhiger und zurückhaltend gestalteter Praxisdetails"),
+  consultationVisualization: generatedMedia("consultation-visualization", "/images/ai/beratungsgespraech-visualisierung.jpg", "Visualisierung eines ruhigen ärztlichen Beratungsgesprächs"),
 } satisfies Record<string, MediaSlot>;

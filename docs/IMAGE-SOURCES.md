@@ -1,6 +1,6 @@
 # Bildquellen und Asset-Status
 
-Stand: 31. August 2026
+Stand: 1. September 2026
 
 Die öffentliche Bestandswebsite `https://melimedics.de/` wurde einschließlich ihrer XML-Sitemaps, öffentlichen Inhaltsseiten und WordPress-Medienbibliothek inventarisiert. Alle 235 öffentlich abrufbaren Bilder wurden lokal gespeichert; die neue Website verwendet keine Hotlinks.
 
@@ -30,10 +30,24 @@ Die Webvarianten sind auf maximal 1.600 × 1.800 Pixel begrenzt und als WebP mit
 
 Für Header und Footer wird zusätzlich `melimedics-logo-header.webp` verwendet: eine verlustfreie Randbereinigung der authentischen transparenten Logoquelle `melimedics-logo-signatur.webp`, ohne inhaltliche oder gestalterische Änderung der Wort-/Bildmarke.
 
+## Klar gekennzeichnete KI-Visualisierungen
+
+Für Motive, die weder auf der Bestandswebsite noch im Google-Unternehmensprofil passend vorlagen, wurden sechs fotorealistische Visualisierungen erstellt und lokal unter `public/images/ai/` gespeichert:
+
+- ärztliche Untersuchung bei Haarausfall
+- Beratung und Haarlinienuntersuchung vor einer möglichen Haartransplantation
+- ruhige Behandlungsumgebung
+- sorgfältige Behandlungsvorbereitung
+- zurückhaltende Praxisdetails
+- persönliches ärztliches Beratungsgespräch für den Ratgeber
+
+Die Bilder wurden am 1. September 2026 mit der integrierten OpenAI-Bildgenerierung erstellt. Sie enthalten selbst keinen eingebrannten Text. Die Website versieht jede Verwendung automatisch unten rechts mit dem Hinweis `KI-Visualisierung`; Alt-Texte beschreiben die Motive ausdrücklich als Untersuchung, Beratung oder Visualisierung und behaupten keine dokumentarische Aufnahme der realen Praxis.
+
 ## Redaktionelle Regeln
 
 - Personen und Räume werden nur als Melimedics-Aufnahmen bezeichnet, wenn Bildinhalt und Bestandskontext dies tragen.
 - Eine Aufnahme dokumentiert nicht automatisch, dass ein bestimmtes Gerät, Produkt oder eine Leistung aktuell angeboten wird.
 - Keine Vorher-Nachher-, Demoarzt-, Stock-Testimonial- oder Templatebilder werden öffentlich verwendet.
 - Alt-Texte beschreiben den sichtbaren Inhalt und vermeiden Behandlungs- oder Erfolgsbehauptungen.
+- Jedes Motiv wird innerhalb eines Karten- oder Galeriebereichs nur einmal eingesetzt; Dopplungen in derselben Ansicht werden vermieden.
 - Vor dem Produktivgang bleiben Bild- und Personenrechte sowie die interne Freigabe Teil der abschließenden rechtlichen Prüfung.

@@ -44,6 +44,6 @@
 
 ## Bewertungen
 
-- Google Maps zeigte am 1. September 2026 eine Bewertung von 5,0 bei 137 Rezensionen; Quelle und Prüfdatum sind zentral dokumentiert
+- Google Maps zeigte am 1. September 2026 eine Bewertung von 5,0 bei 136 Rezensionen; Quelle und Prüfdatum sind zentral dokumentiert
 - die dynamische Gesamtzahl vor größeren Kampagnen oder Relaunches erneut abgleichen
 - keine einzelnen Rezensionstexte ohne gesonderte Freigabe übernehmen

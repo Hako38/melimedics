@@ -40,7 +40,7 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
 }
 
 export function InteriorHero({ eyebrow, title, intro, children, media, mediaLabel }: { eyebrow: string; title: ReactNode; intro: string; children?: ReactNode; media?: MediaSlot; mediaLabel?: string }) {
-  return <section className="interior-hero"><div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="hero-intro">{intro}</p>{children}</div><div className={`interior-art${media ? " interior-art-photo" : ""}`}>{media ? <><Image src={media.src} alt={media.alt} fill quality={86} sizes="(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1440px) 36vw, 540px"/><div className="interior-photo-label"><small>Originalaufnahme</small><strong>{mediaLabel ?? "Melimedics · Mainz"}</strong></div></> : <><span aria-hidden="true">M</span><i aria-hidden="true"/><i aria-hidden="true"/></>}</div></section>;
+  return <section className="interior-hero"><div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="hero-intro">{intro}</p>{children}</div><div className={`interior-art${media ? " interior-art-photo" : ""}`}>{media ? <><Image src={media.src} alt={media.alt} fill priority quality={86} sizes="(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1440px) 36vw, 540px"/>{media.mediaKind === "ai-generated" ? <small className="ai-media-badge">{media.disclosure}</small> : <div className="interior-photo-label"><small>Originalaufnahme</small><strong>{mediaLabel ?? "Melimedics · Mainz"}</strong></div>}</> : <><span aria-hidden="true">M</span><i aria-hidden="true"/><i aria-hidden="true"/></>}</div></section>;
 }
 
 export function SectionHeader({ eyebrow, title, intro }: { eyebrow?: string; title: ReactNode; intro?: string }) {

@@ -13,7 +13,7 @@ Stand der Prüfung: 1. September 2026
 ## Google-Bewertung
 
 - Quelle: verifizierter Google-Maps-Eintrag „Melimedics“, Elbestraße 90, 55122 Mainz.
-- Am Prüftag: 5,0 Sterne bei 137 Rezensionen.
+- Am Prüftag: 5,0 Sterne bei 136 Rezensionen.
 - Auf der Website wird nur die aggregierte, verlinkte Gesamtbewertung gezeigt. Einzelne Rezensionstexte wurden nicht kopiert.
 - Da sich die Anzahl dynamisch verändert, ist sie regelmäßig zu aktualisieren.
 

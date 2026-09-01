@@ -11,7 +11,7 @@ Die öffentliche Website zeigt interne Statuswerte nicht an. Die programmatische
 - Telefon, E-Mail und Planity-Buchungslink
 - Postleitzahl 55122 und verifizierter Google-Maps-Link
 - 34 veröffentlichte Planity-Preispositionen inklusive Dauer, Einzel-, „Ab“- und Paketpreisen
-- Google-Gesamtbewertung 5,0 bei 137 Rezensionen, geprüft am 1. September 2026
+- Google-Gesamtbewertung 5,0 bei 136 Rezensionen, geprüft am 1. September 2026
 - Impressum, Datenschutzhinweise sowie getrennte Haar-Check- und Foto-Einwilligungen in Version 2026-09-01
 - 22 lokale, aus authentischen Bestandsassets abgeleitete Web-Bildslots
 - konservative Assistenten-Zusammenfassungen aller 15 Behandlungsbereiche
