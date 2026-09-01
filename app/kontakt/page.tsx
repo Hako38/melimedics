@@ -20,7 +20,7 @@ export default function ContactPage() {
     </section>
     <section className="contact-location">
       <div><p className="eyebrow">Standort &amp; Anfahrt</p><h2>{visibleContact.street}<br/>{visibleContact.postalCode} Mainz</h2><p>Melimedics befindet sich in Mainz-Gonsenheim. Über den Kartenlink können Sie Ihre individuelle Route planen.</p><p>Für einen Behandlungstermin nutzen Sie bitte die Online-Buchung oder kontaktieren Sie uns persönlich.</p></div>
-      <a className="map-placeholder map-link" href={visibleContact.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Melimedics bei Google Maps öffnen"><span>M</span><strong>Route bei Google Maps öffnen ↗</strong><small>Mainz · Gonsenheim</small></a>
+      <a className="map-placeholder map-link" href={visibleContact.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Melimedics bei Google Maps öffnen"><span>M</span><strong>Route bei Google Maps öffnen <Arrow/></strong><small>Mainz · Gonsenheim</small></a>
     </section>
   </PageShell>;
 }

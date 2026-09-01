@@ -42,13 +42,13 @@ export default function Home() {
           <p className="home-hero-intro hero-reveal hero-delay-3">Individuelle ärztliche Beratung mit Blick auf Möglichkeiten, Grenzen und eine persönliche Begleitung. In unserer Privatpraxis verbinden wir ästhetische Medizin, Haut- und Haarmedizin zu einem sorgfältig geplanten Behandlungskonzept.</p>
           <div className="hero-actions hero-reveal hero-delay-4">
             <Link className="button button-primary" href="/termin/">Termin vereinbaren <Arrow/></Link>
-            <Link className="button button-secondary" href="/behandlungsfinder/">Behandlung finden <span aria-hidden="true">→</span></Link>
+            <Link className="button button-secondary" href="/behandlungsfinder/">Behandlung finden <Arrow direction="right"/></Link>
           </div>
           <a className="hero-google-rating hero-reveal hero-delay-4" href={googleReviewSummary.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${googleReviewSummary.rating} von 5 Sternen aus ${googleReviewSummary.count} Google-Bewertungen ansehen`}>
             <span className="hero-google-stars" aria-hidden="true">★★★★★</span>
             <strong>{googleReviewSummary.rating}</strong>
             <span><b>{googleReviewSummary.count} {googleReviewSummary.label}</b><small>Aktueller Stand · bei Google ansehen</small></span>
-            <i aria-hidden="true">↗</i>
+            <Arrow/>
           </a>
           <ul className="hero-trust hero-reveal hero-delay-4" aria-label="Vertrauenshinweise">
             <li><span aria-hidden="true"/>Ärztlich geführt</li>
@@ -64,11 +64,11 @@ export default function Home() {
 
       <Reveal><section className="home-section concerns-section" aria-labelledby="concerns-title">
         <div className="home-section-head"><div><p className="eyebrow">Von Ihrem Anliegen aus gedacht</p><h2 id="concerns-title">Was möchten Sie <em>verändern?</em></h2></div><p>Eine gute Beratung beginnt nicht bei einer Methode, sondern bei dem, was Sie beschäftigt.</p></div>
-        <div className="concern-grid">{concerns.map((item, index) => <Link key={item.title} href={item.href} className={`concern-card concern-${index + 1}`}><div><span>0{index + 1}</span><small>{item.label}</small></div><h3>{item.title}</h3><p>{item.copy}</p><b aria-hidden="true">↗</b></Link>)}</div>
+        <div className="concern-grid">{concerns.map((item, index) => <Link key={item.title} href={item.href} className={`concern-card concern-${index + 1}`}><div><span>0{index + 1}</span><small>{item.label}</small></div><h3>{item.title}</h3><p>{item.copy}</p><Arrow/></Link>)}</div>
       </section></Reveal>
 
       <Reveal><section className="home-section treatments-section" aria-labelledby="treatments-title">
-        <div className="home-section-head"><div><p className="eyebrow">Behandlungsschwerpunkte</p><h2 id="treatments-title">Sorgfältig geplant.<br/><em>Persönlich abgestimmt.</em></h2></div><Link className="text-link" href="/behandlungen/">Alle Behandlungen <span>→</span></Link></div>
+        <div className="home-section-head"><div><p className="eyebrow">Behandlungsschwerpunkte</p><h2 id="treatments-title">Sorgfältig geplant.<br/><em>Persönlich abgestimmt.</em></h2></div><Link className="text-link" href="/behandlungen/">Alle Behandlungen <Arrow direction="right"/></Link></div>
         <div className="featured-treatment-grid">{featuredTreatments.map((item, index) => { const media = featuredTreatmentMedia[item.href as keyof typeof featuredTreatmentMedia]; return <Link href={item.href} key={item.title} className="featured-treatment-card"><div className="treatment-card-top"><small>{item.label}</small><span>{String(index + 1).padStart(2,"0")}</span></div><div className={`treatment-visual${media ? " treatment-visual-photo" : ""}`}>{media ? <><Image src={media.src} alt={media.alt} fill sizes="(max-width: 768px) calc(100vw - 4rem), (max-width: 1200px) 45vw, 28vw"/>{media.mediaKind === "ai-generated" ? <small className="ai-media-badge">{media.disclosure}</small> : null}</> : <><i aria-hidden="true"/><i aria-hidden="true"/></>}</div><h3>{item.title}</h3><p>{item.copy}</p><strong>Behandlung ansehen <Arrow/></strong></Link>; })}</div>
       </section></Reveal>
 
@@ -76,7 +76,7 @@ export default function Home() {
 
       <Reveal><section className="home-section core-section" aria-labelledby="core-title">
         <div className="home-section-head"><div><p className="eyebrow">Drei Kernbereiche</p><h2 id="core-title">Medizinische Kompetenz.<br/><em>Unter einem Dach.</em></h2></div><p>Die Bereiche greifen ineinander und werden immer aus Ihrer individuellen Situation heraus betrachtet.</p></div>
-        <div className="core-grid">{coreAreas.map((area) => <Link href={area.href} key={area.number} className={`core-card ${area.featured ? "is-featured" : ""}`}><span>{area.number}</span><div><h3>{area.title}</h3><p>{area.copy}</p></div><b aria-hidden="true">↗</b></Link>)}</div>
+        <div className="core-grid">{coreAreas.map((area) => <Link href={area.href} key={area.number} className={`core-card ${area.featured ? "is-featured" : ""}`}><span>{area.number}</span><div><h3>{area.title}</h3><p>{area.copy}</p></div><Arrow/></Link>)}</div>
       </section></Reveal>
 
       <Reveal><section className="hair-feature" aria-labelledby="hair-title">
@@ -95,7 +95,7 @@ export default function Home() {
         <div className="home-section-head"><div><p className="eyebrow">Gut informiert entscheiden</p><h2 id="faq-title">Häufige <em>Fragen.</em></h2></div><p>Allgemeine Orientierung vor Ihrem persönlichen Beratungsgespräch.</p></div><FAQ items={generalFaq}/>
       </section></Reveal>
 
-      <Reveal><section className="final-cta" aria-labelledby="final-cta-title"><div><p className="eyebrow">Persönliche Beratung</p><h2 id="final-cta-title">Welche Behandlung zu Ihnen passt, <em>klären wir persönlich.</em></h2></div><p>Vereinbaren Sie einen Termin für ein ärztliches Beratungsgespräch in Mainz.</p><div className="final-cta-actions"><Link className="button button-light" href="/termin/">Termin vereinbaren <Arrow/></Link><Link className="button button-ghost-light" href="/behandlungen/">Behandlungen ansehen <span aria-hidden="true">→</span></Link></div></section></Reveal>
+      <Reveal><section className="final-cta" aria-labelledby="final-cta-title"><div><p className="eyebrow">Persönliche Beratung</p><h2 id="final-cta-title">Welche Behandlung zu Ihnen passt, <em>klären wir persönlich.</em></h2></div><p>Vereinbaren Sie einen Termin für ein ärztliches Beratungsgespräch in Mainz.</p><div className="final-cta-actions"><Link className="button button-light" href="/termin/">Termin vereinbaren <Arrow/></Link><Link className="button button-ghost-light" href="/behandlungen/">Behandlungen ansehen <Arrow direction="right"/></Link></div></section></Reveal>
     </main>
     <Footer/>
   </>;

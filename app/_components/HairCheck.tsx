@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowIcon } from "./ArrowIcon";
 import {
   HAIR_CHECK_MAX_MESSAGE_LENGTH,
   HAIR_CHECK_MAX_NOTE_LENGTH,
@@ -177,7 +178,7 @@ export function HairCheck() {
   };
 
   if (step === "start") return <section className="hair-check-start" aria-labelledby="hair-check-title">
-    <div><p className="eyebrow">Haar-Check · 2–4 Minuten</p><h1 id="hair-check-title">Ihre Haarberatung<br/><em>beginnt hier.</em></h1><p>Beantworten Sie einige Fragen und bereiten Sie Ihre Angaben für eine persönliche Beratung vor. Optional können Sie Fotos für die persönliche Sichtung hinzufügen.</p><button className="button button-light" type="button" onClick={start}>Haar-Check starten <span aria-hidden="true">→</span></button></div>
+    <div><p className="eyebrow">Haar-Check · 2–4 Minuten</p><h1 id="hair-check-title">Ihre Haarberatung<br/><em>beginnt hier.</em></h1><p>Beantworten Sie einige Fragen und bereiten Sie Ihre Angaben für eine persönliche Beratung vor. Optional können Sie Fotos für die persönliche Sichtung hinzufügen.</p><button className="button button-light" type="button" onClick={start}>Haar-Check starten <ArrowIcon direction="right"/></button></div>
     <aside aria-label="Hinweise zum Haar-Check"><span>Keine automatische Diagnose</span><span>Keine KI-Bildauswertung</span><span>Ärztliche Einschätzung im Gespräch</span><span>Fotos freiwillig</span></aside>
   </section>;
 
@@ -217,7 +218,7 @@ export function HairCheck() {
 
       {step === "review" ? <div className="hair-review"><ReviewRow label="Altersgruppe" value={optionLabel(ageOptions, answers.ageRange)} onEdit={() => setStep("basics")}/><ReviewRow label="Hauptanliegen" value={optionLabels(concernOptions, answers.concernAreas).join(", ")} onEdit={() => setStep("concern")}/><ReviewRow label="Dauer" value={optionLabel(durationOptions, answers.duration)} onEdit={() => setStep("basics")}/><ReviewRow label="Verlauf" value={optionLabel(progressionOptions, answers.progression)} onEdit={() => setStep("progression")}/><ReviewRow label="Bisherige Behandlung" value={optionLabels(previousTreatmentOptions, answers.previousTreatments).join(", ")} onEdit={() => setStep("treatments")}/><ReviewRow label="Interesse" value={optionLabels(interestOptions, answers.interest).join(", ")} onEdit={() => setStep("interest")}/><ReviewRow label="Zeitraum" value={optionLabel(timeframeOptions, answers.timeframe)} onEdit={() => setStep("timeframe")}/><ReviewRow label="Fotos" value={`${photoCount} von 5 vorbereitet`} onEdit={() => setStep("photos")}/><ReviewRow label="Kontakt" value={`${answers.firstName} ${answers.lastName} · ${answers.email} · ${answers.phone}`} onEdit={() => setStep("contact")}/><div className="hair-review-safety" role="note"><strong>Sichere Übermittlung</strong><p>Erst mit „Beratungsanfrage senden“ werden Ihre Angaben serverseitig validiert und – bei konfiguriertem privaten Storage – gespeichert. Ohne sichere Speicherung erscheint kein Erfolgszustand.</p></div>{submissionMessage ? <div className="hair-submission-message" role="alert"><strong>Nicht gesendet</strong><p>{submissionMessage}</p><div><Link className="button button-dark" href="/termin/" onClick={() => emitHairCheckEvent({ name: "hair_booking_clicked" })}>Termin vereinbaren</Link><Link className="button button-secondary" href="/haare/">Zur Haarmedizin</Link></div></div> : null}</div> : null}
 
-      <div className="hair-check-controls"><button type="button" className="hair-check-back" onClick={back}><span aria-hidden="true">←</span> Zurück</button>{step === "review" ? <button type="button" className="button button-dark" onClick={submit} disabled={isSubmitting}>{isSubmitting ? "Wird geprüft …" : "Beratungsanfrage senden"}</button> : <button type="button" className="button button-dark" onClick={next}>{step === "photos" ? "Ohne weitere Fotos weiter" : "Weiter"} <span aria-hidden="true">→</span></button>}</div>
+      <div className="hair-check-controls"><button type="button" className="hair-check-back" onClick={back}><ArrowIcon direction="left"/> Zurück</button>{step === "review" ? <button type="button" className="button button-dark" onClick={submit} disabled={isSubmitting}>{isSubmitting ? "Wird geprüft …" : "Beratungsanfrage senden"}</button> : <button type="button" className="button button-dark" onClick={next}>{step === "photos" ? "Ohne weitere Fotos weiter" : "Weiter"} <ArrowIcon direction="right"/></button>}</div>
     </div>
   </section>;
 }

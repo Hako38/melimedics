@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowIcon } from "./ArrowIcon";
 import {
   finderCategories,
   finderFollowUpQuestions,
@@ -133,19 +134,19 @@ export function TreatmentFinder() {
             <span>{String(index + 1).padStart(2, "0")} · {result.eyebrow}</span>
             <h3>{result.title}</h3>
             <p>{result.description}</p>
-            <Link href={result.href} onClick={() => emitFinderEvent({ name: "result_clicked", result: result.id })}>Mehr erfahren <span aria-hidden="true">↗</span></Link>
+            <Link href={result.href} onClick={() => emitFinderEvent({ name: "result_clicked", result: result.id })}>Mehr erfahren <ArrowIcon/></Link>
           </article>)}
         </div>
         <div className="finder-safety" role="note"><strong>Wichtig</strong><p>Die endgültige Beurteilung erfolgt nach ärztlicher Beratung. Der Finder bestätigt weder eine Eignung noch schließt er Risiken oder Kontraindikationen aus.</p></div>
         <div className="finder-result-actions">
-          <Link className="button button-light" href="/termin/" onClick={() => emitFinderEvent({ name: "booking_clicked" })}>Beratungstermin vereinbaren <span aria-hidden="true">↗</span></Link>
+          <Link className="button button-light" href="/termin/" onClick={() => emitFinderEvent({ name: "booking_clicked" })}>Beratungstermin vereinbaren <ArrowIcon/></Link>
           {answers.categoryId === "hair" ? <><Link className="button button-ghost-light" href="/haare/haar-check/">Haar-Check starten</Link><Link className="button button-ghost-light" href="/haare/">Haarmedizin ansehen</Link></> : null}
         </div>
       </div> : null}
 
       <div className="finder-controls">
-        {step !== "category" ? <button type="button" className="finder-back" onClick={goBack}><span aria-hidden="true">←</span> Zurück</button> : <span/>}
-        {step !== "results" ? <button type="button" className="button button-dark" disabled={!canContinue} onClick={continueForward}>Weiter <span aria-hidden="true">→</span></button> : <button type="button" className="finder-restart" onClick={restart}>Finder neu starten</button>}
+        {step !== "category" ? <button type="button" className="finder-back" onClick={goBack}><ArrowIcon direction="left"/> Zurück</button> : <span/>}
+        {step !== "results" ? <button type="button" className="button button-dark" disabled={!canContinue} onClick={continueForward}>Weiter <ArrowIcon direction="right"/></button> : <button type="button" className="finder-restart" onClick={restart}>Finder neu starten</button>}
       </div>
     </div>
   </section>;

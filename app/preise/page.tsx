@@ -42,7 +42,7 @@ export default function PricesPage() {
         </section>)}
       </div>
       <div className="price-source">
-        <span aria-hidden="true">↗</span>
+        <span><Arrow/></span>
         <div><strong>Quelle und Online-Buchung</strong><p>Aktuelle Verfügbarkeit und Preise werden im Melimedics-Profil bei Planity geführt.</p></div>
         <a href={priceSourceUrl} target="_blank" rel="noopener noreferrer">Zu Planity</a>
       </div>

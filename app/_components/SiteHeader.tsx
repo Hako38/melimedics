@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { visibleContact } from "../_data/practice";
 import { mediaSlots } from "../_data/media";
+import { ArrowIcon } from "./ArrowIcon";
 
 const navigation = [
   ["Behandlungen", "/behandlungen/"],
@@ -36,7 +37,7 @@ export function Header() {
         <nav className="desktop-nav" aria-label="Hauptnavigation">
           {navigation.map(([label, href]) => <Link key={href} href={href} aria-current={pathname.startsWith(href) ? "page" : undefined}>{label}</Link>)}
         </nav>
-        <Link className="button button-primary header-cta" href="/termin/">Termin buchen <span aria-hidden="true">↗</span></Link>
+        <Link className="button button-primary header-cta" href="/termin/">Termin buchen <ArrowIcon/></Link>
         <Link className="mobile-booking" href="/termin/">Termin</Link>
         <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Menü schließen" : "Menü öffnen"} onClick={() => setOpen((value) => !value)}><span/><span/></button>
       </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { emitAssistantEvent } from "../_lib/assistant-analytics";
+import { ArrowIcon } from "./ArrowIcon";
 
 type AssistantAction = { label: string; href: string };
 type AssistantMode = "provider" | "fallback" | "guardrail";
@@ -86,17 +87,17 @@ export function PracticeAssistant() {
           <p className="eyebrow">Wobei dürfen wir helfen?</p>
           <h3>Schnell zur passenden Information.</h3>
           <p>Ich helfe bei Praxisinformationen und Navigation. Medizinische Entscheidungen gehören in die persönliche ärztliche Beratung.</p>
-          <div className="assistant-suggestions">{suggestions.map((suggestion) => <button type="button" key={suggestion.label} onClick={() => void ask(suggestion.message)}>{suggestion.label}<span aria-hidden="true">→</span></button>)}</div>
+          <div className="assistant-suggestions">{suggestions.map((suggestion) => <button type="button" key={suggestion.label} onClick={() => void ask(suggestion.message)}>{suggestion.label}<ArrowIcon direction="right"/></button>)}</div>
         </div> : messages.map((message) => <article key={message.id} className={`assistant-message is-${message.role}`}>
           <span>{message.role === "assistant" ? "Melimedics" : "Sie"}</span>
           <p>{message.text}</p>
-          {message.actions?.length ? <div>{message.actions.map((action) => <Link key={`${message.id}-${action.href}`} href={action.href} onClick={() => emitAssistantEvent({ name: "assistant_cta_clicked", target: action.href })}>{action.label}<span aria-hidden="true">↗</span></Link>)}</div> : null}
+          {message.actions?.length ? <div>{message.actions.map((action) => <Link key={`${message.id}-${action.href}`} href={action.href} onClick={() => emitAssistantEvent({ name: "assistant_cta_clicked", target: action.href })}>{action.label}<ArrowIcon/></Link>)}</div> : null}
         </article>)}
         {pending ? <div className="assistant-thinking" role="status"><span/><span/><span/><b className="sr-only">Antwort wird vorbereitet</b></div> : null}
       </div>
       <form className="assistant-form" onSubmit={submit}>
         <label htmlFor="assistant-input">Ihre Frage</label>
-        <div><input ref={inputRef} id="assistant-input" value={input} onChange={(event) => setInput(event.target.value)} maxLength={600} placeholder="Zum Beispiel: Wie buche ich einen Termin?" autoComplete="off" disabled={pending}/><button type="submit" disabled={pending || input.trim().length < 2} aria-label="Frage senden">→</button></div>
+        <div><input ref={inputRef} id="assistant-input" value={input} onChange={(event) => setInput(event.target.value)} maxLength={600} placeholder="Zum Beispiel: Wie buche ich einen Termin?" autoComplete="off" disabled={pending}/><button type="submit" disabled={pending || input.trim().length < 2} aria-label="Frage senden"><ArrowIcon direction="right"/></button></div>
         <input className="assistant-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" hidden/>
         <small>Keine Diagnose · Keine Chat-Speicherung · Bitte keine persönlichen Daten eingeben</small>
       </form>

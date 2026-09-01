@@ -5,11 +5,12 @@ import { doctor, type VerifiedTestimonial } from "../_data/home";
 import { mediaSlots, type MediaSlot } from "../_data/media";
 import { visibleContact } from "../_data/practice";
 import { Header } from "./SiteHeader";
+import { ArrowIcon } from "./ArrowIcon";
 import { StructuredData, breadcrumbSchema, faqSchema } from "./StructuredData";
 
 export { Header } from "./SiteHeader";
 
-export const Arrow = () => <span aria-hidden="true">↗</span>;
+export const Arrow = ArrowIcon;
 
 export function Footer() {
   return (
@@ -56,7 +57,7 @@ export function TreatmentCard({ title, items, href }: { title: string; items: st
 }
 
 export function DoctorTrust() {
-  return <section className="doctor-trust"><div className="doctor-portrait"><Image src={mediaSlots.doctorPortrait.src} alt={mediaSlots.doctorPortrait.alt} fill quality={86} sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1440px) 40vw, 560px"/><div className="doctor-photo-label"><small>Melimedics · Mainz</small><strong>{doctor.name}</strong></div></div><div><p className="eyebrow">Persönlich ärztlich beraten</p><h2>Medizinische Ästhetik beginnt mit einer <em>persönlichen Beratung.</em></h2><p>Melimedics wird ärztlich von {doctor.name} geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <span>→</span></Link></div></section>;
+  return <section className="doctor-trust"><div className="doctor-portrait"><Image src={mediaSlots.doctorPortrait.src} alt={mediaSlots.doctorPortrait.alt} fill quality={86} sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1440px) 40vw, 560px"/><div className="doctor-photo-label"><small>Melimedics · Mainz</small><strong>{doctor.name}</strong></div></div><div><p className="eyebrow">Persönlich ärztlich beraten</p><h2>Medizinische Ästhetik beginnt mit einer <em>persönlichen Beratung.</em></h2><p>Melimedics wird ärztlich von {doctor.name} geleitet. Im Mittelpunkt stehen eine sorgfältige Einordnung Ihres Anliegens, verständliche Aufklärung und ein Behandlungsplan, der zu Ihnen passt.</p><Link className="text-link" href="/arzt-praxis/">Arzt &amp; Praxis kennenlernen <Arrow direction="right"/></Link></div></section>;
 }
 
 export function CTA({ title = "Lassen Sie uns über Ihr Anliegen sprechen.", copy = "In einem persönlichen Beratungsgespräch klären wir, welcher Weg medizinisch sinnvoll ist und zu Ihren Wünschen passt." }: { title?: string; copy?: string }) {
