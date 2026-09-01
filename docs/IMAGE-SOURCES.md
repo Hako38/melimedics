@@ -19,7 +19,7 @@ Die maschinenlesbare Einzelinventur mit WordPress-ID, Originalquelle, Dateiforma
 | Bereich | Optimierte Dateien | Verwendung |
 | --- | --- | --- |
 | Arzt & Behandlung | `public/images/doctor/*.webp` | Startseite, Arzt-/Praxisbereich, ästhetische und haarmedizinische Detailseiten |
-| Praxis | `public/images/practice/*.webp` | Startseite, Gesundheit, Arzt & Praxis |
+| Praxis | `public/images/practice/*` | Startseite, Gesundheit, Arzt & Praxis; einschließlich des vom Auftraggeber bereitgestellten Empfangsfotos aus dem Google-Unternehmensprofil |
 | Ästhetik | `public/images/treatments/aesthetics/*.webp` | Gesichtsbereich, Detailseiten, Kosmetik |
 | Haut & Laser | `public/images/skin-laser/*.webp` | Kategorie und Detailseiten für Laser/HIFU |
 | PRP/Haar | `public/images/hair/*.webp` | PRP- und Haarseiten sowie Diagnostik |
@@ -41,7 +41,7 @@ Für Motive, die weder auf der Bestandswebsite noch im Google-Unternehmensprofil
 - zurückhaltende Praxisdetails
 - persönliches ärztliches Beratungsgespräch für den Ratgeber
 
-Die Bilder wurden am 1. September 2026 mit der integrierten OpenAI-Bildgenerierung erstellt. Sie enthalten selbst keinen eingebrannten Text. Die Website versieht jede Verwendung automatisch unten rechts mit dem Hinweis `KI-Visualisierung`; Alt-Texte beschreiben die Motive ausdrücklich als Untersuchung, Beratung oder Visualisierung und behaupten keine dokumentarische Aufnahme der realen Praxis.
+Die Bilder wurden am 1. September 2026 mit der integrierten OpenAI-Bildgenerierung erstellt. Sie enthalten selbst keinen eingebrannten Text. Die Website versieht jede Verwendung automatisch unten rechts mit dem Hinweis `KI-Visualisierung`; Alt-Texte beschreiben die Motive ausdrücklich als Untersuchung, Beratung oder Visualisierung und behaupten keine dokumentarische Aufnahme der realen Praxis. Die zunächst erstellte Visualisierung der Praxisdetails wurde am selben Tag durch das vom Auftraggeber bereitgestellte authentische Empfangsfoto ersetzt und wird öffentlich nicht mehr referenziert.
 
 ## Redaktionelle Regeln
 

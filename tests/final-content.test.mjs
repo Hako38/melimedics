@@ -49,8 +49,9 @@ test("does not publish template assets or hotlink images", async () => {
   assert.doesNotMatch(publicCode, /\/images\/legacy\//);
   assert.doesNotMatch(publicCode, /https:\/\/melimedics\.de\/wp-content\/uploads/);
   const localSources = [...media.matchAll(/approvedMedia\("[^"]+",\s*"([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(localSources.length, 22);
+  assert.equal(localSources.length, 23);
   assert.match(media, /brandLogo/);
+  assert.match(media, /practiceReception/);
   assert.ok(localSources.every((source) => source.startsWith("/images/")));
 });
 
