@@ -28,12 +28,13 @@ test("keeps uncertain practice, clinical and commercial claims gated", async () 
     read("app/kontakt/page.tsx"),
     read("app/_server/assistant/knowledge-base.ts"),
   ]);
-  assert.match(practice, /postalCode: \{ value: null, status: "needs_review"/);
-  assert.doesNotMatch(contact, />5512[24]</);
+  assert.match(practice, /postalCode: \{ value: "55122", status: "verified"/);
+  assert.match(contact, /visibleContact\.postalCode/);
   assert.match(treatments, /medicalApprovalStatus: "needs_review"/);
   assert.match(treatments, /assistantApprovalStatus: "approved"/);
   assert.doesNotMatch(treatments, /grafts?\s*[:=]\s*\d+/i);
-  assert.doesNotMatch(treatments, /\b\d+\s*(?:€|Euro)\b/i);
+  assert.match(treatments, /priceSourceUrl/);
+  assert.match(treatments, /price: "150 €"/);
   assert.match(knowledge, /content: treatment\.assistantSummary/);
 });
 

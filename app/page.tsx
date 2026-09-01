@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { Reveal } from "./_components/Reveal";
 import { Arrow, DoctorTrust, FAQ, Footer, Header, Testimonials } from "./_components/SiteShell";
-import { concerns, featuredTreatments, generalFaq, verifiedTestimonials } from "./_data/home";
+import { concerns, featuredTreatments, generalFaq, googleReviewSummary, verifiedTestimonials } from "./_data/home";
 import { mediaSlots } from "./_data/media";
 import { pageMetadata } from "./_lib/metadata";
 
@@ -44,6 +44,12 @@ export default function Home() {
             <Link className="button button-primary" href="/termin/">Termin vereinbaren <Arrow/></Link>
             <Link className="button button-secondary" href="/behandlungsfinder/">Behandlung finden <span aria-hidden="true">→</span></Link>
           </div>
+          <a className="hero-google-rating hero-reveal hero-delay-4" href={googleReviewSummary.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${googleReviewSummary.rating} von 5 Sternen aus ${googleReviewSummary.count} Google-Bewertungen ansehen`}>
+            <span className="hero-google-stars" aria-hidden="true">★★★★★</span>
+            <strong>{googleReviewSummary.rating}</strong>
+            <span><b>{googleReviewSummary.count} {googleReviewSummary.label}</b><small>Aktueller Stand · bei Google ansehen</small></span>
+            <i aria-hidden="true">↗</i>
+          </a>
           <ul className="hero-trust hero-reveal hero-delay-4" aria-label="Vertrauenshinweise">
             <li><span aria-hidden="true"/>Ärztlich geführt</li>
             <li><span aria-hidden="true"/>Persönliche Beratung</li>

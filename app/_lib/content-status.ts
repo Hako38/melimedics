@@ -44,11 +44,11 @@ export function getContentStatusReport() {
       todos: treatment.contentTodos,
     })),
     ...priceCategories.flatMap((category) => category.items.map<ContentStatusItem>((item) => ({
-      id: `price:${item.treatmentSlug}`,
+      id: `price:${item.id}`,
       area: "price" as const,
       label: `${category.title}: ${item.label}`,
       status: item.approvalStatus,
-      todos: item.price ? [] : ["Finalen Preis kaufmännisch und medizinisch freigeben."],
+      todos: [],
     }))),
     ...practiceItems,
     ...Object.values(mediaSlots).map<ContentStatusItem>((media) => ({ id: `media:${media.id}`, area: "media", label: media.alt, status: media.approvalStatus, todos: media.todo ? [media.todo] : [] })),

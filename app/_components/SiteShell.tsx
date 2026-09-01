@@ -72,8 +72,6 @@ export function PriceRow({ name, price, note }: { name: string; price?: string; 
 }
 
 export function Testimonials({ items }: { items: VerifiedTestimonial[] }) {
-  if (items.length === 0) {
-    return <section className="testimonials-empty" aria-labelledby="testimonials-title"><div><p className="eyebrow">Erfahrungen</p><h2 id="testimonials-title">Vertrauen zeigt sich<br/><em>im persönlichen Erleben.</em></h2></div><p>Hier werden ausschließlich echte, nachvollziehbar verifizierte Bewertungen veröffentlicht. Bis zur Freigabe bleibt dieser Bereich bewusst ohne Zitate, Sterne oder Bewertungszahlen.</p></section>;
-  }
+  if (items.length === 0) return null;
   return <section className="testimonials"><h2 id="testimonials-title">Verifizierte Erfahrungen</h2><div>{items.map((item) => <figure key={`${item.source}-${item.verifiedAt}`}><blockquote>{item.quote}</blockquote><figcaption>{item.displayName} · {item.source}</figcaption></figure>)}</div></section>;
 }

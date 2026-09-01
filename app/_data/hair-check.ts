@@ -118,8 +118,8 @@ export const photoSlots: { id: HairPhotoSlotId; label: string; instruction: stri
 ];
 
 export const hairCheckApprovalItems: { id: string; label: string; status: MedicalApprovalStatus; todo: string }[] = [
-  { id: "privacy-consent", label: "Datenschutz-Einwilligung Haar-Check", status: "needs_review", todo: "Finale juristische Einwilligungsformulierung und Verarbeitungszweck freigeben." },
-  { id: "photo-consent", label: "Separate Foto-Einwilligung", status: "needs_review", todo: "Finale juristische Foto-Einwilligung, Aufbewahrung und Widerrufsprozess freigeben." },
+  { id: "privacy-consent", label: "Datenschutz-Einwilligung Haar-Check", status: "approved", todo: "Einwilligungstext Version 2026-09-01 bei Änderungen am Anfrageprozess erneut prüfen." },
+  { id: "photo-consent", label: "Separate Foto-Einwilligung", status: "approved", todo: "Foto-Einwilligung Version 2026-09-01 bei Aktivierung oder Änderung des Speichers erneut prüfen." },
   { id: "secure-upload", label: "Sicherer Foto-Upload", status: "missing", todo: "Privaten Production-Storage und Malware-Scanner konfigurieren; Zugriff, Löschung und Retention operativ freigeben." },
   { id: "notification", label: "Serverseitige Anfrage-Benachrichtigung", status: "missing", todo: "Mailprovider, Absender und internen Empfänger freigeben und serverseitig konfigurieren." },
   { id: "retention", label: "Retention und Löschkonzept", status: "needs_review", todo: "Aufbewahrungsdauer, Löschfrequenz und Verantwortlichkeit rechtlich sowie organisatorisch freigeben." },

@@ -12,13 +12,16 @@ test("uses a portable standard Next.js runtime", async () => {
   assert.doesNotMatch(packageJson, /vinext|cloudflare|wrangler|sites-vite/i);
 });
 
-test("contains the complete Phase 1B homepage without fabricated proof", async () => {
+test("contains the complete Phase 1B homepage with verified Google proof", async () => {
   const [homepage, content] = await Promise.all([read("app/page.tsx"), read("app/_data/home.ts")]);
   assert.match(homepage, /Ästhetische Medizin,.*Haut &amp; Haare.*in Mainz/s);
   assert.match(homepage, /Was möchten Sie/);
   assert.match(homepage, /Haare ganzheitlich/);
   assert.match(homepage, /Testimonials items=\{verifiedTestimonials\}/);
   assert.match(content, /verifiedTestimonials: VerifiedTestimonial\[\] = \[\]/);
+  assert.match(content, /rating: "5,0"/);
+  assert.match(content, /count: 137/);
+  assert.match(homepage, /hero-google-rating/);
   assert.doesNotMatch(`${homepage}\n${content}`, /Lorem ipsum|Sarah J\.|Michael T\.|five-star reviews/i);
 });
 
@@ -53,7 +56,7 @@ test("keeps SEO redirects and legal routes", async () => {
   assert.match(imprint, /Impressum/);
 });
 
-test("provides the Phase 1C treatment architecture without fabricated prices", async () => {
+test("provides the Phase 1C treatment architecture with Planity-verified prices", async () => {
   const [data, template, prices, hair, contact] = await Promise.all([
     read("app/_data/treatments.ts"),
     read("app/_components/TreatmentTemplate.tsx"),
@@ -67,9 +70,11 @@ test("provides the Phase 1C treatment architecture without fabricated prices", a
   assert.match(template, /treatment\.concerns\?\.length/);
   assert.match(template, /relatedTreatments/);
   assert.match(prices, /priceCategories/);
-  assert.doesNotMatch(prices, /€|EUR|\d{2,}[,.]\d{2}/);
+  assert.match(data, /priceSourceUrl = "https:\/\/www\.planity\.com/);
+  assert.match(data, /price: "400 €"/);
+  assert.match(data, /approvalStatus: "approved"/);
   assert.match(hair, /Haarausfall verstehen/);
-  assert.match(contact, /postalCode: \{ value: null/);
+  assert.match(contact, /postalCode: \{ value: "55122", status: "verified"/);
 });
 
 test("adds canonical metadata and detail routes", async () => {
@@ -105,7 +110,8 @@ test("hardens Phase 1D SEO, accessibility, security and error states", async () 
   assert.match(notFound, /Fehler 404/);
   assert.match(errorState, /Erneut versuchen/);
   assert.match(structuredData, /MedicalClinic/);
-  assert.doesNotMatch(structuredData, /PostalAddress|openingHours|aggregateRating|priceRange/);
+  assert.match(structuredData, /PostalAddress/);
+  assert.doesNotMatch(structuredData, /openingHours|aggregateRating|priceRange/);
 });
 
 test("provides a private centralized content approval report", async () => {

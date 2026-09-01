@@ -50,6 +50,14 @@ export type VerifiedTestimonial = {
 // Erst nach dokumentierter Verifizierung befüllen. Leere Liste rendert keine Bewertung.
 export const verifiedTestimonials: VerifiedTestimonial[] = [];
 
+export const googleReviewSummary = {
+  rating: "5,0",
+  count: 137,
+  label: "Google-Bewertungen",
+  sourceUrl: "https://www.google.com/maps/place/Melimedics/@50.0055131,8.2227146,17z/data=!3m1!4b1!4m6!3m5!1s0x47bd953ce8ea976f:0x9e7f5112b0983871!8m2!3d50.0055131!4d8.2227146!16s%2Fg%2F11x80pbclq",
+  verifiedAt: "2026-09-01",
+} as const;
+
 export const generalFaq = [
   { question: "Wie beginnt eine Behandlung bei Melimedics?", answer: "Am Anfang steht ein persönliches Gespräch. Dabei werden Ihr Anliegen, Ihre Erwartungen und die medizinische Ausgangssituation besprochen, bevor ein möglicher Behandlungsweg geplant wird." },
   { question: "Kann ich direkt einen Beratungstermin vereinbaren?", answer: "Ja. Über die Terminseite erreichen Sie die bestehende Online-Buchung sowie die telefonischen und schriftlichen Kontaktmöglichkeiten der Praxis." },

@@ -39,13 +39,13 @@ Die Texte wurden neu und konservativ formuliert. Die Bestandswebsite diente als 
 
 ## Bewusst offene Fakten
 
-- Postleitzahl: Konflikt 55122/55124; auf der öffentlichen Seite nicht ausgegeben.
-- Öffnungs-/Sprechzeiten und Kartenlink: nicht verifiziert.
+- Postleitzahl und Kartenlink: am 1. September 2026 anhand von Planity und Google Maps als Elbestraße 90, 55122 Mainz verifiziert.
+- Öffnungs-/Sprechzeiten: nicht intern bestätigt.
 - Arztvita, Berufsbezeichnung, Qualifikationen und Zertifikate: nicht ausreichend dokumentiert.
 - Haartransplantation: Operateur, Methode, Operationsstandort, Umfang und Graftzahlen nicht bestätigt.
 - Laser/HIFU/Microneedling/Aquafacial: Geräte und konkrete Protokolle nicht bestätigt.
 - Biostimulatoren/Polynukleotide: konkrete Produkte, Zulassungen und Protokolle nicht bestätigt.
 - Diagnostik/Gewichtsmanagement: Leistungsumfang, Laborpartner, Medikamente, Programme und Preise nicht bestätigt.
-- Für keine Behandlung sind freigegebene Preise hinterlegt.
+- 34 öffentlich buchbare Preispositionen wurden am 1. September 2026 aus dem Melimedics-Profil bei Planity übernommen; nicht dort gelistete Leistungen bleiben ohne Preis.
 
-Alle Behandlungsvolltexte bleiben bis zur medizinischen Abnahme mit `medicalApprovalStatus: "needs_review"` gekennzeichnet. Für den Website-Assistenten existieren getrennte, knapp formulierte und konservative Zusammenfassungen; offene Praxisfakten und Preise bleiben ausgeschlossen.
+Alle Behandlungsvolltexte bleiben bis zur medizinischen Abnahme mit `medicalApprovalStatus: "needs_review"` gekennzeichnet. Für den Website-Assistenten existieren getrennte, knapp formulierte und konservative Zusammenfassungen; die öffentlich verifizierten Planity-Preise sind davon getrennt als `approved` hinterlegt.

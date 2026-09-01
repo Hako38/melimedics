@@ -332,17 +332,106 @@ export const treatmentsByCategory = (category: TreatmentCategory) => treatments.
 
 export type PriceCategory = {
   title: string;
-  items: { treatmentSlug: string; label: string; price: string | null; approvalStatus: MedicalApprovalStatus }[];
+  items: {
+    id: string;
+    treatmentSlug?: string;
+    label: string;
+    duration: string;
+    price: string;
+    approvalStatus: MedicalApprovalStatus;
+  }[];
 };
 
+export const priceSourceUrl = "https://www.planity.com/de-DE/melimedics-55122-mainz";
+
 export const priceCategories: PriceCategory[] = [
-  { title: "Botulinumtoxin", items: [{ treatmentSlug: "botulinumtoxin", label: "Botulinumtoxin", price: null, approvalStatus: "missing" }] },
-  { title: "Hyaluronsäure", items: [{ treatmentSlug: "hyaluronsaeure", label: "Hyaluronsäure", price: null, approvalStatus: "missing" }] },
-  { title: "Biostimulatoren", items: [{ treatmentSlug: "biostimulatoren", label: "Biostimulatoren", price: null, approvalStatus: "missing" }] },
-  { title: "Polynukleotide", items: [{ treatmentSlug: "polynukleotide", label: "Polynukleotide", price: null, approvalStatus: "missing" }] },
-  { title: "Haut & Laser", items: ["co2-laser", "tattoo-laser", "hifu"].map((slug) => ({ treatmentSlug: slug, label: treatmentBySlug[slug].title, price: null, approvalStatus: "missing" as const })) },
-  { title: "PRP", items: ["prp-behandlung", "prp-haare"].map((slug) => ({ treatmentSlug: slug, label: treatmentBySlug[slug].title, price: null, approvalStatus: "missing" as const })) },
-  { title: "Haare", items: ["haarausfall", "haartransplantation"].map((slug) => ({ treatmentSlug: slug, label: treatmentBySlug[slug].title, price: null, approvalStatus: "missing" as const })) },
-  { title: "Gesundheit", items: [{ treatmentSlug: "gewichtsmanagement", label: "Gewichtsmanagement", price: null, approvalStatus: "missing" }, { treatmentSlug: "diagnostik", label: "Blutuntersuchungen & Diagnostik", price: null, approvalStatus: "missing" }] },
-  { title: "Kosmetik", items: ["microneedling", "aquafacial"].map((slug) => ({ treatmentSlug: slug, label: treatmentBySlug[slug].title, price: null, approvalStatus: "missing" as const })) },
+  {
+    title: "Biostimulatoren",
+    items: [
+      { id: "sculptra", treatmentSlug: "biostimulatoren", label: "Sculptra (Poly-L-Milchsäure)", duration: "30 Min.", price: "400 €", approvalStatus: "approved" },
+      { id: "radiesse", treatmentSlug: "biostimulatoren", label: "Radiesse (Calciumhydroxylapatit)", duration: "30 Min.", price: "ab 400 €", approvalStatus: "approved" },
+      { id: "paris-glow", treatmentSlug: "biostimulatoren", label: "Paris Glow (NCTF 135 HA)", duration: "30 Min.", price: "250 €", approvalStatus: "approved" },
+      { id: "polynukleotide", treatmentSlug: "polynukleotide", label: "Polynukleotide (Lachs-DNA)", duration: "30 Min.", price: "ab 250 €", approvalStatus: "approved" },
+      { id: "profhilo", treatmentSlug: "biostimulatoren", label: "Profhilo", duration: "30 Min.", price: "ab 250 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "PRP / Vampirlifting",
+    items: [
+      { id: "prp-einzeln", treatmentSlug: "prp-behandlung", label: "PRP-Behandlung", duration: "30 Min.", price: "150 €", approvalStatus: "approved" },
+      { id: "prp-paket", treatmentSlug: "prp-behandlung", label: "PRP-Behandlung (3er-Paket)", duration: "30 Min.", price: "350 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "Botulinumtoxin",
+    items: [
+      { id: "botulinumtoxin-zone-1", treatmentSlug: "botulinumtoxin", label: "Behandlung – 1 Zone", duration: "30 Min.", price: "200 €", approvalStatus: "approved" },
+      { id: "botulinumtoxin-zonen-2", treatmentSlug: "botulinumtoxin", label: "Behandlung – 2 Zonen", duration: "30 Min.", price: "200 €", approvalStatus: "approved" },
+      { id: "botulinumtoxin-zonen-3", treatmentSlug: "botulinumtoxin", label: "Behandlung – 3 Zonen", duration: "30 Min.", price: "300 €", approvalStatus: "approved" },
+      { id: "botulinumtoxin-masseter", treatmentSlug: "botulinumtoxin", label: "Masseter-Behandlung", duration: "30 Min.", price: "350 €", approvalStatus: "approved" },
+      { id: "nefertiti-lift", treatmentSlug: "botulinumtoxin", label: "Nefertiti Lift", duration: "30 Min.", price: "ab 400 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "Fett-weg-Spritze",
+    items: [
+      { id: "injektionslipolyse", label: "Behandlung (Injektionslipolyse)", duration: "30 Min.", price: "200 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "Hyaluronsäure / Filler",
+    items: [
+      { id: "filler-lippen", treatmentSlug: "hyaluronsaeure", label: "Lippen", duration: "30 Min.", price: "ab 180 €", approvalStatus: "approved" },
+      { id: "filler-traenensaecke", treatmentSlug: "hyaluronsaeure", label: "Tränensäcke", duration: "30 Min.", price: "ab 250 €", approvalStatus: "approved" },
+      { id: "filler-wangen", treatmentSlug: "hyaluronsaeure", label: "Wangen · 1 ml", duration: "30 Min.", price: "ab 300 €", approvalStatus: "approved" },
+      { id: "filler-kinn", treatmentSlug: "hyaluronsaeure", label: "Kinn · 1 ml", duration: "30 Min.", price: "ab 250 €", approvalStatus: "approved" },
+      { id: "filler-jawline", treatmentSlug: "hyaluronsaeure", label: "Jawline · 2 ml", duration: "30 Min.", price: "ab 350 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "Hylase",
+    items: [
+      { id: "hylase", treatmentSlug: "hyaluronsaeure", label: "Auflösung von Filler", duration: "30 Min.", price: "100 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "Medizinisches Schröpfen",
+    items: [
+      { id: "schroepfen-10", label: "Schröpfen · 10 Cups", duration: "30 Min.", price: "70 €", approvalStatus: "approved" },
+      { id: "schroepfen-15", label: "Schröpfen · 15 Cups", duration: "30 Min.", price: "90 €", approvalStatus: "approved" },
+      { id: "schroepfen-20", label: "Schröpfen · 20 Cups", duration: "30 Min.", price: "110 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "Infusionstherapie",
+    items: [
+      { id: "infusion-multivitamin", label: "Multivitamin-Infusion", duration: "30 Min.", price: "100 €", approvalStatus: "approved" },
+      { id: "infusion-vitamin-c", label: "Hochdosis Vitamin C", duration: "30 Min.", price: "100 €", approvalStatus: "approved" },
+      { id: "infusion-eisen", label: "Eisen-Infusion", duration: "30 Min.", price: "100 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "Tattoo- & PMU-Entfernung",
+    items: [
+      { id: "tattoo-mini", treatmentSlug: "tattoo-laser", label: "Mini · bis 5 × 5 cm", duration: "30 Min.", price: "100 €", approvalStatus: "approved" },
+      { id: "tattoo-klein", treatmentSlug: "tattoo-laser", label: "Klein · bis 5 × 10 cm", duration: "30 Min.", price: "130 €", approvalStatus: "approved" },
+      { id: "tattoo-mittel", treatmentSlug: "tattoo-laser", label: "Mittel · bis 10 × 10 cm", duration: "30 Min.", price: "180 €", approvalStatus: "approved" },
+      { id: "tattoo-gross", treatmentSlug: "tattoo-laser", label: "Groß · bis 10 × 20 cm", duration: "30 Min.", price: "250 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "CO₂-Laser",
+    items: [
+      { id: "co2-augenpartie", treatmentSlug: "co2-laser", label: "Augenpartie", duration: "30 Min.", price: "350 €", approvalStatus: "approved" },
+      { id: "co2-gesicht", treatmentSlug: "co2-laser", label: "Gesicht komplett", duration: "60 Min.", price: "550 €", approvalStatus: "approved" },
+      { id: "co2-narben", treatmentSlug: "co2-laser", label: "Narbenbehandlung", duration: "30 Min.", price: "ab 100 €", approvalStatus: "approved" },
+    ],
+  },
+  {
+    title: "HIFU",
+    items: [
+      { id: "hifu-nasolabial", treatmentSlug: "hifu", label: "Nasolabial", duration: "30 Min.", price: "250 €", approvalStatus: "approved" },
+      { id: "hifu-jawline", treatmentSlug: "hifu", label: "Jawline", duration: "45 Min.", price: "250 €", approvalStatus: "approved" },
+    ],
+  },
 ];

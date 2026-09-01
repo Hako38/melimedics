@@ -60,9 +60,9 @@ Die Volltexte sind weiterhin `needs_review` und benötigen medizinische Endabnah
 ## Vor einem Livegang weiter offen
 
 - medizinische Freigabe aller Behandlungsvolltexte
-- rechtliche Freigabe von Datenschutz, Impressum, Haar-Check-Einwilligungen und Bild-/Personenrechten
-- korrekte Postleitzahl und verifizierte Öffnungszeiten
-- kaufmännisch freigegebene Preise
+- externe rechtliche Endprüfung der angepassten Rechtstexte sowie Freigabe der Bild-/Personenrechte
+- verifizierte Öffnungszeiten
+- laufende Synchronisierung der 34 am 1. September 2026 aus Planity übernommenen Preise
 - bestätigte Geräte, Produkte und Protokolle
 - belastbare Arztvita und Qualifikationsnachweise
 - operative und vertragliche Fakten zur Haartransplantation

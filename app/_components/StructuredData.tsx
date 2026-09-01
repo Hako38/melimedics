@@ -16,6 +16,13 @@ export const medicalClinicSchema = {
   url: absoluteUrl("/"),
   telephone: visibleContact.phone,
   email: visibleContact.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: visibleContact.street,
+    postalCode: visibleContact.postalCode,
+    addressLocality: "Mainz",
+    addressCountry: "DE",
+  },
   areaServed: { "@type": "City", name: "Mainz" },
 };
 

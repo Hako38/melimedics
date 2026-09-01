@@ -83,10 +83,10 @@ const treatmentEntries: KnowledgeEntry[] = treatments.flatMap((treatment) => {
 });
 
 const priceEntries: KnowledgeEntry[] = priceCategories.flatMap((category) => category.items.map((item) => ({
-  id: `price-${item.treatmentSlug}`,
+  id: `price-${item.id}`,
   title: `${category.title}: ${item.label}`,
   category: "price" as const,
-  content: item.price ? `${item.label}: ${item.price}` : "Keine freigegebene Preisangabe vorhanden.",
+  content: `${item.label}: ${item.price} (${item.duration})`,
   url: "/preise/",
   medicalApprovalStatus: item.approvalStatus,
   keywords: ["preis", "kosten", category.title, item.label],

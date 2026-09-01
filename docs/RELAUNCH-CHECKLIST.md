@@ -31,8 +31,9 @@ Diese Liste muss vor Domainumschaltung vollständig abgearbeitet und dokumentier
 
 ## Kaufmännisch
 
-- [ ] alle Preise und „ab“-Preise freigeben
-- [ ] Beratungs-, Paket- und Serienpreise prüfen
+- [x] 34 veröffentlichte Planity-Preise und „Ab“-Preise übernehmen (Stand 01.09.2026)
+- [x] bei Planity ausgewiesenen PRP-Paketpreis übernehmen
+- [ ] nicht bei Planity ausgewiesene Beratungs-, Paket- und Serienpreise intern prüfen
 - [ ] Buchungs-, Storno- und Zahlungsregeln freigeben
 
 ## Medien
@@ -48,7 +49,7 @@ Diese Liste muss vor Domainumschaltung vollständig abgearbeitet und dokumentier
 - [ ] Impressum anwaltlich/rechtlich finalisieren
 - [ ] Datenschutzerklärung für IONOS und tatsächlich eingesetzte Dienste finalisieren
 - [ ] Consent-Lösung vor jedem optionalen Tracking implementieren
-- [ ] Planity-Verlinkung und Datenschutzhinweis prüfen
+- [x] Planity-Verlinkung und Datenschutzhinweis an die aktuelle Website anpassen
 - [ ] externe rechtliche Prüfung dokumentieren
 
 ## Technisch

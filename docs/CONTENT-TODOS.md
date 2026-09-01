@@ -13,20 +13,19 @@
 
 ## Kaufmännisch freigeben
 
-- alle Einzelpreise und „Preis ab“-Angaben
-- Beratungskosten
-- Paket-/Serienpreise
+- die 34 am 1. September 2026 aus Planity übernommenen Einzel-, „Ab“- und Paketpreise bei künftigen Änderungen synchron halten
+- nicht bei Planity aufgeführte Beratungskosten nur nach Bestätigung ergänzen
 - Zahlungs- und Stornobedingungen
 
 ## Praxisdaten freigeben
 
-- vollständige Praxisanschrift inklusive korrekter Postleitzahl (Widerspruch 55122/55124 auflösen)
+- vollständige Praxisanschrift ist mit Planity und Google Maps auf Elbestraße 90, 55122 Mainz abgeglichen
 - Öffnungszeiten
 - ärztliche Vita, Qualifikationen, Fortbildungen und Berufsangaben
 - Bild- und Personenrechte der 26 authentischen Bestandsassets abschließend dokumentieren
 - Operateur, Standort und Methode einer möglichen Haartransplantation
 - Praxis- und Nachsorgeablauf für operative Leistungen
-- rechtlich vollständiges Impressum und Datenschutz
+- Impressum und Datenschutz sind an den aktuellen Vercel-/Planity-/Google-/Haar-Check-Stand angepasst; externe rechtliche Endprüfung empfohlen
 - verbindliche Terminbuchungs-URL
 
 ## Behandlungsinhalte
@@ -41,11 +40,10 @@
 
 - Telefonnummer und E-Mail sind zentral als verifiziert hinterlegt
 - Elbestraße 90 und Mainz-Gonsenheim sind als verifizierbare Bestandsangaben sichtbar
-- Die Postleitzahl bleibt wegen des Konflikts 55122/55124 verborgen; Öffnungszeiten, Maps-Link und konkrete Anfahrt bleiben bis zur Bestätigung offen
+- Postleitzahl 55122 und der Maps-Link sind anhand von Planity und Google Maps verifiziert; Öffnungszeiten bleiben bis zur internen Bestätigung offen
 
 ## Bewertungen
 
-- nur nachweislich echte Bewertungen übernehmen
-- Quelle und Prüfdatum dokumentieren
-- Freigabe zur Veröffentlichung klären
-- keine Sterne, Gesamtzahlen oder Zitate aus ungeprüften Bestands-/Template-Inhalten verwenden
+- Google Maps zeigte am 1. September 2026 eine Bewertung von 5,0 bei 137 Rezensionen; Quelle und Prüfdatum sind zentral dokumentiert
+- die dynamische Gesamtzahl vor größeren Kampagnen oder Relaunches erneut abgleichen
+- keine einzelnen Rezensionstexte ohne gesonderte Freigabe übernehmen
