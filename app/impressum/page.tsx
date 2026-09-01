@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, InteriorHero, PageShell } from "../_components/SiteShell";
+import { mediaSlots } from "../_data/media";
 
 export const metadata: Metadata = {
   title: "Impressum",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function ImprintPage() {
   return <PageShell>
     <Breadcrumbs items={[{ label: "Impressum" }]}/>
-    <InteriorHero eyebrow="Rechtliches" title="Impressum" intro="Anbieterangaben und Kontaktinformationen von Melimedics."/>
+    <InteriorHero eyebrow="Rechtliches" title="Impressum" intro="Anbieterangaben und Kontaktinformationen von Melimedics." media={mediaSlots.practiceDetail} mediaLabel="Detail aus der Melimedics Praxis"/>
     <article className="legal-copy">
       <p className="legal-updated">Angaben gemäß § 5 DDG</p>
 

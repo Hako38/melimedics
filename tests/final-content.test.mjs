@@ -55,6 +55,20 @@ test("does not publish template assets or hotlink images", async () => {
   assert.ok(localSources.every((source) => source.startsWith("/images/")));
 });
 
+test("keeps every editorial interior hero connected to a real media slot", async () => {
+  const pages = await Promise.all([
+    read("app/behandlungen/page.tsx"),
+    read("app/haare/page.tsx"),
+    read("app/termin/page.tsx"),
+    read("app/datenschutz/page.tsx"),
+    read("app/impressum/page.tsx"),
+  ]);
+  for (const page of pages) {
+    assert.match(page, /<InteriorHero/);
+    assert.match(page, /media=\{mediaSlots\.[A-Za-z]+\}/);
+  }
+});
+
 test("publishes the guide articles and clearly discloses generated visuals", async () => {
   const [guides, guideIndex, guideRoute, media, shell, homepage, practice] = await Promise.all([
     read("app/_data/guides.ts"),

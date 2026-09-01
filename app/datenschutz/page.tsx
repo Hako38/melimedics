@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, InteriorHero, PageShell } from "../_components/SiteShell";
+import { mediaSlots } from "../_data/media";
 
 export const metadata: Metadata = {
   title: "Datenschutz",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return <PageShell>
     <Breadcrumbs items={[{ label: "Datenschutz" }]}/>
-    <InteriorHero eyebrow="Rechtliches" title="Datenschutz" intro="Transparente Informationen zur Verarbeitung personenbezogener Daten auf dieser Website."/>
+    <InteriorHero eyebrow="Rechtliches" title="Datenschutz" intro="Transparente Informationen zur Verarbeitung personenbezogener Daten auf dieser Website." media={mediaSlots.practiceDecor} mediaLabel="Detail aus der Melimedics Praxis"/>
     <article className="legal-copy">
       <p className="legal-updated">Stand: 1. September 2026</p>
 
